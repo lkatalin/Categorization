@@ -21,7 +21,7 @@ class Tree(object):
     def add_child(self, child):
         assert isinstance(child, Tree)
         self.children.append(child)
-    def add_parent(self, parent)
+    def add_parent(self, parent):
         assert isinstance(parent, Tree)
         self.parents.append(parent)
 

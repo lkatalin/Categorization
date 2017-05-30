@@ -22,14 +22,19 @@ def compare_trees(t1, t2, orig_list):
     else:
         return maybe_tree 
 
-def combine_trees([tree_list]):
-    for tree in tree_list:
-        other_trees = tree_list.remove(tree)
-     
-        #if same node, then combine trees
-        for other_tree in other_trees:
-            definitely_a_tree = compare_trees(tree, other_tree, tree_list)
-
+def combine_trees(tree_list):
+    l = len(tree_list)
+    print l
+    if l < 1:
+        print "cannot process empty list"
+    elif l == 1:
+        return tree_list[0]
+    else:
+        for tree in tree_list:
+            print "for tree"
+            print tree_list
+            other_trees = [x for x in tree_list if x != tree]
+            print other_trees
 
 def dag(trace):
     tree = Tree()
@@ -42,38 +47,37 @@ def dag(trace):
 
        #all you're doing here is updating pointers in the nodes
        #this first bit should return the first tree in which the node is present
-        srcnode = for tree in trees:
-                      find_b(tree, src)
-        dstnode = for tree in trees:
-                      find_b(tree, dst)
+        for tree in trees:
+            srcnode = find_b(tree, src)
+            dstnode = find_b(tree, dst)
          
-        #if neither is in the tree, make new populated tree structure
-        if not srcnode and not dstnode:
-            new_src_tree = Tree(src)
-            new_dst_tree = Tree(dst)
+            #if neither is in the tree, make new populated tree structure
+            if not srcnode and not dstnode:
+                new_src_tree = Tree(src)
+                new_dst_tree = Tree(dst)
             
-            new_src_tree.add_child(dst)
-            new_dst_tree.add_parent(src)
+                new_src_tree.add_child(dst)
+                new_dst_tree.add_parent(src)
 
-            #add only src tree into list
-            trees.append(new_src_tree)
+                #add only src tree into list
+                trees.append(new_src_tree)
 
-        #if they're both there, just connect them
-        else if srcnode and dstnode:
-            srcenode.add_child(dstnode)
-            dstnode.add_parent(srcnode)
+            #if they're both there, just connect them
+            elif srcnode and dstnode:
+                srcenode.add_child(dstnode)
+                dstnode.add_parent(srcnode)
             
-        #if only one is present, add the other
-        else if srcnode and not dstnode:
-            new_dst_tree = Tree(dst)
-            new_dst_tree.add_parent(srcnode)
-            srcnode.add_child(new_dst_tree)
+            #if only one is present, add the other
+            elif srcnode and not dstnode:
+                new_dst_tree = Tree(dst)
+                new_dst_tree.add_parent(srcnode)
+                srcnode.add_child(new_dst_tree)
 
-        else if dstnode and not srcenode:
-            #add the src as a tree (with dstnode child) to dst's parents
-            new_src_tree = Tree(src)
-            new_src_tree.add_child(dstnode)
-            dstnode.add_parent(new_src_tree)
+            elif dstnode and not srcenode:
+                #add the src as a tree (with dstnode child) to dst's parents
+                new_src_tree = Tree(src)
+                new_src_tree.add_child(dstnode)
+                dstnode.add_parent(new_src_tree)
 
 #def hashval(trace):
 
