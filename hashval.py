@@ -2,20 +2,28 @@ import re
 from make_tree import *
 
 def compare_nodes(n1, n2, orig_lst):
+    #print "comparing nodes now for % s and %s" % (n1.name, n2.name)
     #this keeps the first tree in case of same node
     if n1.name == n2.name:
-        for child in n2.children:
-            n1.add_child(child)
-        for parent in n2.parents:
-            n1.add_parent(parent)
-        orig_lst = orig_lst.remove(n2)
-        return n1
+        for child in n1.children:
+            n2.add_child(child)
+        for parent in n1.parents:
+            n2.add_parent(parent)
+        #orig_lst = orig_lst.remove(n2)
+        n1.name = 'remove'
+        #print "updated a tree. %s now has children : " % n2.name
+        #for child in n2.children:
+        #    print child
+        return n2
     else: 
-        return false
+        return False
 
 def compare_trees(t1, t2, orig_list):
-    maybe_tree = compare_nodes(t1, t2)
-    if not c:
+    print "comparing trees now"
+    maybe_tree = compare_nodes(t1, t2, orig_list)
+    if not maybe_tree:
+        for child2 in t2.children:
+            compare_nodes(t1, child2, orig_list)
         for child1 in t1.children:
             for child2 in t2.children:
                 compare_nodes(child1, child2, orig_list)
@@ -23,18 +31,24 @@ def compare_trees(t1, t2, orig_list):
         return maybe_tree 
 
 def combine_trees(tree_list):
+    print "our starting tree list is " 
+    print tree_list
     l = len(tree_list)
-    print l
     if l < 1:
         print "cannot process empty list"
     elif l == 1:
         return tree_list[0]
     else:
         for tree in tree_list:
-            print "for tree"
-            print tree_list
             other_trees = [x for x in tree_list if x != tree]
-            print other_trees
+            for other_tree in other_trees:
+                maybe_tree = compare_trees(tree, other_tree, tree_list)
+                if maybe_tree:
+                    tree_list.replace(tree, maybe_tree)
+    for tree in tree_list:
+        if tree.name == 'remove':
+            tree_list.remove(tree)
+    return tree_list
 
 def dag(trace):
     tree = Tree()
