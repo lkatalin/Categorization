@@ -5,16 +5,27 @@ from extract_trace import *
 
 filename = argv[1]
 
-# read file into list of trace objects
-# with "extract_traces" module as pluggable 
-# interface
-
+# EXTRACT TRACES
 with open(filename) as infile:
         tracelist = extract_traces(infile)
 
+
+# GROUP TRACES
+# to do
+
+
+# TESTING
 trace_test(tracelist)
 
 # create dag for each trace
+daglist = []
+print "dags: "
 for trace in tracelist:
-    dag = dag(trace)
-    print dag
+    graph = dag(trace)
+    daglist.append(graph)
+
+for dag in daglist:
+    print_tree(dag)
+
+#first node label is call and end is reply
+# make sure each has a reply

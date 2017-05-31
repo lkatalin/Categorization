@@ -22,7 +22,7 @@ def trace_test(tracelist):
         print "\nedges:"
         for edge in trace.edges:
             print edge
-        print "hashval: TBD \n" + trace.hashval
+        print "\nhashval: TBD\n"
 
 def tree_test():
     t = Tree('*', [Tree('1'), Tree('2'), Tree('+', [Tree('3'), Tree('4')])])

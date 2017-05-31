@@ -1,5 +1,21 @@
+from dag import *
+
+# HASHVAL: uses depth-first traversal of dag to form
+# value to be used with grouping
+#
 def hashval(trace):
-    "placeholder"
+    #the dag is a tree
+    hashval = ""
+    curr_node = dag(trace)
+ 
+    def add_info(curr_node):
+        if curr_node:
+            hashval.append(curr_node.name + '| ')
+            for child in curr_node.children:
+                add_info(child)
+
+    return hashval
+    
 
 #for trace in tracelist:
 #    hashval = ""
