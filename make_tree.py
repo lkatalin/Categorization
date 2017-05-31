@@ -26,6 +26,8 @@ class Tree(object):
         self.parents.append(parent)
 
 def find_b(tree, elm):
+    if not tree or not elm:
+        return None
     if tree.name == elm:
         #print "found"
         return tree
