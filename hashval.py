@@ -45,9 +45,11 @@ def combine_trees(tree_list):
                 maybe_tree = compare_trees(tree, other_tree, tree_list)
                 if maybe_tree:
                     tree_list.replace(tree, maybe_tree)
-    for tree in tree_list:
-        if tree.name == 'remove':
-            tree_list.remove(tree)
+    tree_list = [t for t in tree_list if t.name != 'remove']
+    #for tree in tree_list:
+    #    if tree.name == 'remove':
+    #        print "we should remove %s" % tree.name
+            #tree_list.remove(tree)
     return tree_list
 
 def dag(trace):

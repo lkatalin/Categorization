@@ -18,5 +18,5 @@ print "our resulting tree list is "
 print result
 
 print "\n and our trees are "
-for tree in lst:
+for tree in result:
     print_tree(tree)
