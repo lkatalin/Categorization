@@ -10,9 +10,9 @@ def trace_test(tracelist):
         print "\ntracename: " + trace.traceName
         print "response: " + trace.response
         print "response time: " + trace.responseTime
-        print "\nlabels: "
-        for label in trace.labels:
-            print label
+        #print "\nlabels: "
+        #for label in trace.labels:
+        #    print label
         print "\nedge labels: " 
         for label in trace.edgeLabels:
             print label
@@ -22,7 +22,7 @@ def trace_test(tracelist):
         print "\nedges:"
         for edge in trace.edges:
             print edge
-        print "hashval: " + trace.hashval
+        print "hashval: TBD \n" + trace.hashval
 
 def tree_test():
     t = Tree('*', [Tree('1'), Tree('2'), Tree('+', [Tree('3'), Tree('4')])])
