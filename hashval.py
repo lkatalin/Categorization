@@ -1,4 +1,4 @@
-from dag import *
+from simple_dag import *
 
 # HASHVAL: uses depth-first traversal of dag to form
 # value to be used with grouping

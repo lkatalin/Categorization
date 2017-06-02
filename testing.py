@@ -1,5 +1,5 @@
 from make_tree import *
-from print_tree import *
+from print_stuff import *
 from hashval import *
 
 def trace_test(tracelist):
@@ -35,11 +35,13 @@ def tree_test():
 
     lst = [t1, t2, t3]
 
-    result = combine_trees(lst)
+    #result = combine_trees(lst)
 
-    print "our resulting tree list is "
-    print result
+    #print "our resulting tree list is "
+    #print result
 
     print "\n and our trees are "
-    for tree in result:
+    for tree in lst:
         print_tree(tree)
+
+tree_test()

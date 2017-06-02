@@ -1,7 +1,8 @@
 from sys import argv
-from dag import *
+from simple_dag import *
 from testing import *
-from extract_trace import *
+from extract_traces import *
+from print_stuff import *
 
 filename = argv[1]
 
@@ -17,15 +18,10 @@ with open(filename) as infile:
 # TESTING
 trace_test(tracelist)
 
-# create dag for each trace
-daglist = []
-print "dags: "
 for trace in tracelist:
-    graph = dag(trace)
-    daglist.append(graph)
+    nodes = dag(trace)
 
-for dag in daglist:
-    print_tree(dag)
+print_dag(nodes)
 
 #first node label is call and end is reply
 # make sure each has a reply
