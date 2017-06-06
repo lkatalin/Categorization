@@ -6,6 +6,8 @@ class Tree(object):
         self.name = name
         self.children = []
         self.parents = []
+        self.visited = 0
+        self.ppath = [self.name]
         if children is not None:
             for child in children:
                 self.add_child(child)
@@ -14,16 +16,29 @@ class Tree(object):
                 self.add_parent(parent)
     def __repr__(self):
         return self.name
+    def __eq__(self, other):
+        return (self.name == other.name)
+    def __hash__(self):
+        return hash(self.name)
+    #    return hash((self.name, self.location))
+    #def __eq__(self, other):
+    #    return (self.name, self.location) == (other.name, other.location)
     def get_children(self):
         return self.children
     def get_parents(self):
         return self.parents
+    def get_rev_children(self):
+        children = self.children[:]
+        children.reverse()
+        return children 
     def add_child(self, child):
         assert isinstance(child, Tree)
         self.children.append(child)
     def add_parent(self, parent):
         assert isinstance(parent, Tree)
         self.parents.append(parent)
+        self.ppath = parent.ppath[:]
+        self.ppath.append(self.name)
 
 def find_b(tree, elm):
     if not tree or not elm:

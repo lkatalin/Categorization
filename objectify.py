@@ -1,5 +1,5 @@
 import re
-from hashval import *
+#from hashval import *
 
 #create the class of trace objects to store trace data
 class Trace(object):
@@ -25,7 +25,8 @@ class Trace(object):
         self.edgeLabels = [ label for label in self.labels if label[0] == 'R' ]
         self.nodeLabels = [ label for label in self.labels if label[0] != 'R' ]
         self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
-        self.hashval = ""
+        self.dag = "" #have a pointer to the start of the tree
+        self.hashval = "TBD" #hashval(self)
 
 def make_trace(trace, traceId):
     trace = Trace(trace, traceId)

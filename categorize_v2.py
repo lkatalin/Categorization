@@ -1,6 +1,5 @@
 from sys import argv
 from simple_dag import *
-from testing import *
 from extract_traces import *
 from print_stuff import *
 
@@ -16,12 +15,14 @@ with open(filename) as infile:
 
 
 # TESTING
-trace_test(tracelist)
+print_trace(tracelist)
 
 for trace in tracelist:
-    nodes = dag(trace)
-
-print_dag(nodes)
+     dirgraph = dag(trace)
+     print dirgraph
+     for key in dirgraph:
+          for item in dirgraph[key]:
+              print item.ppath
 
 #first node label is call and end is reply
 # make sure each has a reply

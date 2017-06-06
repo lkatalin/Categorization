@@ -24,17 +24,17 @@ def trace_test(tracelist):
             print edge
         print "\nhashval: TBD\n"
 
+t = Tree('*', [Tree('1'), Tree('2'), Tree('+', [Tree('3'), Tree('4')])])
+
+t1 = Tree('a', [Tree('b'), Tree('c')])
+
+t2 = Tree('c', [Tree('d')])
+
+t3 = Tree('e', [Tree('f')])
+
+lst = [t1, t2, t3]
+
 def tree_test():
-    t = Tree('*', [Tree('1'), Tree('2'), Tree('+', [Tree('3'), Tree('4')])])
-
-    t1 = Tree('a', [Tree('b'), Tree('c')])
-
-    t2 = Tree('c', [Tree('d')])
-
-    t3 = Tree('e', [Tree('f')])
-
-    lst = [t1, t2, t3]
-
     #result = combine_trees(lst)
 
     #print "our resulting tree list is "
