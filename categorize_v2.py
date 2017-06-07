@@ -2,6 +2,7 @@ from sys import argv
 from simple_dag import *
 from extract_traces import *
 from print_stuff import *
+from group_traces import *
 
 filename = argv[1]
 
@@ -11,18 +12,8 @@ with open(filename) as infile:
 
 
 # GROUP TRACES
-# to do
-
+for trace in tracelist:
+    group_traces(trace)
 
 # TESTING
-print_trace(tracelist)
-
-for trace in tracelist:
-     dirgraph = dag(trace)
-     print dirgraph
-     for key in dirgraph:
-          for item in dirgraph[key]:
-              print item.ppath
-
-#first node label is call and end is reply
-# make sure each has a reply
+print categories

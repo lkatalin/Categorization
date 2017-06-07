@@ -20,9 +20,8 @@ class Tree(object):
         return (self.name == other.name)
     def __hash__(self):
         return hash(self.name)
-    #    return hash((self.name, self.location))
-    #def __eq__(self, other):
-    #    return (self.name, self.location) == (other.name, other.location)
+    def get_name(self):
+        return self.name
     def get_children(self):
         return self.children
     def get_parents(self):

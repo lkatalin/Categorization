@@ -8,62 +8,88 @@ nodes_seen = {}
 #this is given a trace object
 #and returns a dict of parent/children pairs
 def dag(trace):
-    #print "dag has been called from hashval" 
+    #sees if node called "name" is in dict already
+    #returns "k" if already key, "v" if already value
+    #or "x" if already both
     def lookup(dictionary, name):
-        for key, value in dictionary.items():
-            #print "an example key is : "
-            #print key
-            #print "the key, value pair is: "
-            #print (key, value)
-            #print "key name is: " + key.name
+        returnval = None
+        for key, values in dictionary.items():
             if key.name == name:
-                #print "found key"
-                return key
-        #for key in dictionary.keys():
-            #print "the key name is" + key.name + "and its value is: " 
-            #print dictionary[key]
+                returnval = (key, "k")
+	    for value in values:
+		if value.name == name:
+                    if returnval:
+		        returnval = (value, "x")
+                    else:
+                        returnval = (value, "v")
+        if returnval:
+            return returnval
         return False
+  
+    def push_ppath(node):
+        for child in node.children:
+            child.add_parent(node)
+            push_ppath(child)
 
     for edge in trace.edges:
         #extract source and dest nodes as strings
         src = re.search(r'(\d+.\d+) ->', edge).group(1)
         dst = re.search(r'-> (\d+.\d+)', edge).group(1)
 
-        #create new dst_tree
-        dst_tree = Tree(dst)
-        #print "new dst tree created: "
-        #print dst_tree
-        #print "dst tree's children: "
-        #print dst_tree.children
-
         #check whether src in dict already
         src_present = lookup(nodes_seen, src)
+        dst_present = lookup(nodes_seen, dst)
+
         if src_present:
-            #create obj attachments to dst tree
-            src_present.add_child(dst_tree)
-            dst_tree.add_parent(src_present)
-            #add dst as value to src key
-            nodes_seen[src_present].append(dst_tree)
-   
-        else: 
-            #create src obj and update attachments
-            #print "src not yet present. creating src tree"
-            src_tree = Tree(src) 
-            #print src_tree
+            srcnode = src_present[0]
+            srcnodetype = src_present[1]
+
+        if dst_present:
+            #if present as a value == multi-parent scenario
+            dstnode = dst_present[0]
+            dstnodetype = dst_present[1]
+
+        #POSSIBLE COMBINATIONS OF EXISTENCE
+        #both present
+        if src_present and dst_present:
+            #include checks to make sure != cycle
+            #TO DO
+
+            srcnode.add_child(dstnode)
+            dstnode.add_parent(srcnode)
+            push_ppath(dstnode)            
+            nodes_seen[srcnode] = [dstnode]
+ 
+        #only src present
+        if src_present and not dst_present:
+	    #create a dst tree and link them
+	    dst_tree = Tree(dst)
+	    srcnode.add_child(dst_tree)
+	    dst_tree.add_parent(srcnode)
+            push_ppath(dst_tree)
+            #src is already a key
+            if srcnodetype == "k" or srcnodetype == "x":
+                nodes_seen[srcnode].append(dst_tree)
+            
+            #this src is a value/dst somewhere else
+            elif srcnodetype == "v":
+                nodes_seen[srcnode] = [dst_tree]
+           
+        #only dst present
+        if dst_present and not src_present:
+	    src_tree = Tree(src)
+	    src_tree.add_child(dstnode)
+	    dstnode.add_parent(src_tree)
+            push_ppath(dstnode)
+	    nodes_seen[src_tree] = [dstnode] 
+ 
+        #neither present
+        if not dst_present and not src_present:
+            src_tree = Tree(src)
+            dst_tree = Tree(dst)
             src_tree.add_child(dst_tree)
             dst_tree.add_parent(src_tree)
-            #add to dict
-            #print "adding src tree to dict"
+            push_ppath(dst_tree)
             nodes_seen[src_tree] = [dst_tree]
-            #print nodes_seen[src_tree]
-    
-    #print "nodes seen in dag:" 
-    #print nodes_seen
-    #for key, value in nodes_seen.items():
-    #    print (key, value)
-    #    for vals in value:
-    #        print "value: "
-    #        print vals
-    #        print "value's children: "
-    #        print vals.children
+ 
     return nodes_seen
