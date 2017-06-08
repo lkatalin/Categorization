@@ -1,5 +1,6 @@
 categories = {}
 
+
 def group_traces(trace):
     maybe_key = categories.get(trace.hashval)
     if maybe_key:
