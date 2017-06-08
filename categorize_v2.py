@@ -10,14 +10,29 @@ filename = argv[1]
 with open(filename) as infile:
         tracelist = extract_traces(infile)
 
-for trace in tracelist:
-    print trace.hashval
-    print trace.allpaths
-
-
 # GROUP TRACES
 for trace in tracelist:
     group_traces(trace)
 
-# TESTING
-print categories
+# OUTPUT INFO FOR HUMAN
+print "\nInfo dump about current traces: \n"
+
+key_counter = 0
+for key in categories.keys():
+    key_counter += 1
+
+print "Number of traces: %d" % len(tracelist)
+print "Number of categories: %d" % key_counter
+print "Category names: "
+
+for key in categories.keys():
+    print key
+
+print "\nRelevant trace info: \n"
+for trace in tracelist:
+    print "TraceId: %d" % trace.traceId
+    print "Hashval: %s" % trace.hashval
+    print "\nAll paths: " 
+    print trace.allpaths
+
+print "\nEdge latency info: TO DO"
