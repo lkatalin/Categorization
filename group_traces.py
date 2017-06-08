@@ -5,4 +5,4 @@ def group_traces(trace):
     if maybe_key:
         categories[trace.hashval].append(trace.traceId)
     else:
-        categories[trace.hashval] = [trace.traceid]
+        categories[trace.hashval] = [trace.traceId]

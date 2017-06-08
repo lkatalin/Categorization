@@ -11,4 +11,5 @@ def hashval(trace):
         for node in values:
             if node.children == []:
                 all_paths.append(node.ppath)
-    return all_paths
+    lst = ["->".join(x) for x in all_paths]
+    return "||".join(lst)

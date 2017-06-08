@@ -10,6 +10,9 @@ filename = argv[1]
 with open(filename) as infile:
         tracelist = extract_traces(infile)
 
+for trace in tracelist:
+    print trace.hashval
+
 
 # GROUP TRACES
 for trace in tracelist:
