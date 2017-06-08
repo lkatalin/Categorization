@@ -8,6 +8,7 @@ class Tree(object):
         self.parents = []
         self.visited = 0
         self.ppath = [self.name]
+        self.labelinfo = ""
         if children is not None:
             for child in children:
                 self.add_child(child)

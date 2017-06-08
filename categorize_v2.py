@@ -35,4 +35,11 @@ for trace in tracelist:
     print "\nAll paths: " 
     print trace.allpaths
 
-print "\nEdge latency info: TO DO"
+print "\nEdge latency info: \n"
+for trace in tracelist:
+    ctr = 0
+    for edge in trace.edges:
+        print "Edge %d: " % ctr
+        print edge
+        print "Latency: %s" % trace.edgeLabels[ctr]
+        ctr += 1

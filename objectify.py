@@ -25,6 +25,7 @@ class Trace(object):
         self.edgeLabels = [ label for label in self.labels if label[0] == 'R' ]
         self.nodeLabels = [ label for label in self.labels if label[0] != 'R' ]
         self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
+        self.fullEdges = re.findall(r'\d+.\d+ -> .*]', trace)
         self.dag = "" #have a pointer to the start of the tree
         self.allpaths = all_paths(self)
         self.hashval =  hashval(self)

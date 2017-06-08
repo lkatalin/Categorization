@@ -31,10 +31,16 @@ def dag(trace):
             child.add_parent(node)
             push_ppath(child)
 
-    for edge in trace.edges:
+    #for edge in trace.fullEdges:
+    #    print edge
+
+    for edge in trace.fullEdges:
         #extract source and dest nodes as strings
         src = re.search(r'(\d+.\d+) ->', edge).group(1)
         dst = re.search(r'-> (\d+.\d+)', edge).group(1)
+
+        #extract label info to push into dst node
+        label = re.search(r'(R: \d+.\d+ us)', edge).group(1)
 
         #check whether src in dict already
         src_present = lookup(nodes_seen, src)
@@ -54,10 +60,11 @@ def dag(trace):
         if src_present and dst_present:
             #include checks to make sure != cycle
             #TO DO
-
+        
             srcnode.add_child(dstnode)
             dstnode.add_parent(srcnode)
-            push_ppath(dstnode)            
+            push_ppath(dstnode)
+            dstnode.labelinfo = label   
             nodes_seen[srcnode] = [dstnode]
  
         #only src present
@@ -66,6 +73,7 @@ def dag(trace):
 	    dst_tree = Tree(dst)
 	    srcnode.add_child(dst_tree)
 	    dst_tree.add_parent(srcnode)
+            dst_tree.labelinfo = label
             push_ppath(dst_tree)
             #src is already a key
             if srcnodetype == "k" or srcnodetype == "x":
@@ -81,6 +89,7 @@ def dag(trace):
 	    src_tree.add_child(dstnode)
 	    dstnode.add_parent(src_tree)
             push_ppath(dstnode)
+            dstnode.labelinfo = label
 	    nodes_seen[src_tree] = [dstnode] 
  
         #neither present
@@ -90,6 +99,7 @@ def dag(trace):
             src_tree.add_child(dst_tree)
             dst_tree.add_parent(src_tree)
             push_ppath(dst_tree)
+            dst_tree.labelinfo = label
             nodes_seen[src_tree] = [dst_tree]
  
     return nodes_seen
