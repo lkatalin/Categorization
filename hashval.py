@@ -1,9 +1,11 @@
+import re
 from simple_dag import *
 
-# HASHVAL: uses depth-first traversal of dag to form
-# value to be used with grouping
+# ALL_PATHS: finds all paths in DAG based on 
+# ppath pushed from parent to child in each 
+# node object
 #
-def hashval(trace):
+def all_paths(trace):
     all_paths = []
     thegraph = dag(trace)
     #find leaves and dump their path info
@@ -11,5 +13,15 @@ def hashval(trace):
         for node in values:
             if node.children == []:
                 all_paths.append(node.ppath)
-    lst = ["->".join(x) for x in all_paths]
-    return "||".join(lst)
+    all_paths = "||".join(["->".join(x) for x in all_paths])
+    return all_paths 
+
+
+# HASHVAL: forms hash value of all paths in DAG
+# to be used with grouping; currently uses 
+# all_paths function rather than DFT
+#
+def hashval(trace):
+    paths = all_paths(trace)
+    hashval = "".join(re.findall(r'(\d)\.1', paths))
+    return hashval

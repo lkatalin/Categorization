@@ -12,6 +12,7 @@ with open(filename) as infile:
 
 for trace in tracelist:
     print trace.hashval
+    print trace.allpaths
 
 
 # GROUP TRACES
