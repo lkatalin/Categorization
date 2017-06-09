@@ -8,9 +8,8 @@ from simple_dag import *
 
 def all_paths(trace):
     all_paths = []
-    thegraph = dag(trace)
     #find leaves and dump their path info
-    for key, values in thegraph.items():
+    for key, values in trace.dag.items():
         for node in values:
             if node.children == []:
                 all_paths.append(node.ppath)

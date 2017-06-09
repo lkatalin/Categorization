@@ -28,15 +28,20 @@ print "Category names: "
 for key in categories.keys():
     print key
 
-print "\nRelevant trace info: \n"
+print "\n........................"
+print "\n| Relevant trace info: |"
+print "........................\n"
 for trace in tracelist:
     print "TraceId: %d" % trace.traceId
+    print "Trace name: %s" % trace.traceName
     print "Hashval: %s" % trace.hashval
-    print "\nAll paths: " 
+    print "\nAll paths for %s: " % trace.traceName 
     print trace.allpaths
+    print "\n"
 
 print "\nEdge latency info: \n"
 for trace in tracelist:
+    print "\nTrace %d:" % trace.traceId
     ctr = 0
     for edge in trace.edges:
         print "Edge %d: " % ctr
