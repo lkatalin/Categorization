@@ -2,12 +2,12 @@ import re
 from make_tree import *
 from print_tree import *
 
-#parent nodes are keys, children are values (as list)
-nodes_seen = {}
-
-#this is given a trace object
-#and returns a dict of parent/children pairs
+#given trace object, returns dict of parent/children pairs
+#
 def dag(trace):
+    #parent nodes are keys, children are values (as list)
+    nodes_seen = {}
+
     #sees if node called "name" is in dict already
     #returns "k" if already key, "v" if already value
     #or "x" if already both
@@ -30,9 +30,6 @@ def dag(trace):
         for child in node.children:
             child.add_parent(node)
             push_ppath(child)
-
-    #for edge in trace.fullEdges:
-    #    print edge
 
     for edge in trace.fullEdges:
         #extract source and dest nodes as strings
