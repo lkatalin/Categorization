@@ -40,7 +40,7 @@ def dag(trace):
         dst = re.search(r'-> (\d+.\d+)', edge).group(1)
 
         #extract label info to push into dst node
-        label = re.search(r'(R: \d+.\d+ us)', edge).group(1)
+        label = re.search(r'R: (\d+.\d+ us)', edge).group(1)
 
         #check whether src in dict already
         src_present = lookup(nodes_seen, src)

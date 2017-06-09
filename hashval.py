@@ -24,3 +24,21 @@ def all_paths(trace):
 def hashval(trace):
     hashval = "".join(re.findall(r'(\d)\.1', trace.allpaths))
     return hashval
+
+#.........................
+#OTHER POSSIBLE GROUPINGS|
+#.........................
+#by total time between nodes
+#def hashval(trace):
+    hashval = 0
+    for edge in trace.fullEdges:
+        curr = float(re.search(r'R: (\d+.\d+) us', edge).group(1))
+        print "curr is %s" % curr
+        hashval += curr 
+    return hashval
+
+#by number of calls
+
+#by number of nodes
+
+#by R vs. W

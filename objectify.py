@@ -12,6 +12,9 @@ class Trace(object):
     edgeLabels = []
     nodeLabels = []
     edges = []
+    fullEdges = []
+    dag = {}
+    allpaths = []
     hashval = ""
 
     # construct trace class
