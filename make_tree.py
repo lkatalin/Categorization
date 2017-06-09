@@ -7,7 +7,6 @@ class Tree(object):
         self.children = []
         self.parents = []
         self.visited = 0
-        self.ppath = [self.name]
         self.labelinfo = ""
         if children is not None:
             for child in children:
@@ -37,8 +36,6 @@ class Tree(object):
     def add_parent(self, parent):
         assert isinstance(parent, Tree)
         self.parents.append(parent)
-        self.ppath = parent.ppath[:]
-        self.ppath.append(self.name)
 
 def find_b(tree, elm):
     if not tree or not elm:

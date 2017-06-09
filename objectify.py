@@ -1,5 +1,5 @@
 import re
-from hashval import *
+from group_traces import *
 
 #create the class of trace objects to store trace data
 class Trace(object):
@@ -14,7 +14,6 @@ class Trace(object):
     edges = []
     fullEdges = []
     dag = {}
-    allpaths = []
     hashval = ""
 
     # construct trace class
@@ -30,7 +29,6 @@ class Trace(object):
         self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
         self.fullEdges = re.findall(r'\d+.\d+ -> .*]', trace)
         self.dag = dag(self)
-        self.allpaths = all_paths(self)
         self.hashval =  hashval(self)
 
 def make_trace(trace, traceId):
