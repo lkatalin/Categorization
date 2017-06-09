@@ -27,7 +27,7 @@ class Trace(object):
         self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
         self.fullEdges = re.findall(r'\d+.\d+ -> .*]', trace)
         self.dag = "" #have a pointer to the start of the tree
-        self.allpaths = ""
+        self.allpaths = all_paths(self) #updated when hashval is updated
         self.hashval =  hashval(self)
 
 def make_trace(trace, traceId):

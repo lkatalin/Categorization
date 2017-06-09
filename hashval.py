@@ -15,8 +15,6 @@ def all_paths(trace):
             if node.children == []:
                 all_paths.append(node.ppath)
     all_paths = "||".join(["->".join(x) for x in all_paths])
-    #print "all paths from the allpaths fxn: "
-    #print all_paths
     return all_paths 
 
 
@@ -25,9 +23,5 @@ def all_paths(trace):
 # all_paths function rather than DFT
 #
 def hashval(trace):
-    trace.allpaths = all_paths(trace)
-    #print "paths: " 
-    #print trace.allpaths
-    #paths = '2586230574222222.1->2586230574555555.1->2586230574111111.1->2586230574888888.1||2586230574222222.1->2586230574555555.1->2586230574111111.1->2586230574999999.1||2586230574222222.1->2586230574555555.1->2586230574666666.1'
     hashval = "".join(re.findall(r'(\d)\.1', trace.allpaths))
     return hashval
