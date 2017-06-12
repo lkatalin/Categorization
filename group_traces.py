@@ -29,10 +29,12 @@ def depth_first_traversal(trace):
         stack = [root]
         while stack:
             cur_node = stack[0]
-            stack = stack[1:]
-            nodes.append(cur_node.name)        
-            for child in cur_node.get_rev_children():
-                stack.insert(0, child)
+	    stack = stack[1:]
+	    nodes.append(cur_node.name)
+            print "nodes: "
+            print nodes        
+	    for child in cur_node.get_rev_children():
+		stack.insert(0, child)
         return nodes
             
     start = []

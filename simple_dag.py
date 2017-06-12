@@ -12,17 +12,26 @@ def dag(trace):
     #returns "k" if already key, "v" if already value
     #or "x" if already both
     def lookup(dictionary, name):
+        print "doing lookup for " + name
         returnval = None
         for key, values in dictionary.items():
             if key.name == name:
                 returnval = (key, "k")
+                print "found key " + key.name + "for search of " + name
 	    for value in values:
 		if value.name == name:
-                    if returnval:
+                    print "found value " + value.name + "for search of " + name
+                    if returnval and returnval[1] == "k":
+                        print "already have a returnval of "
+                        print returnval
+                        print "so will mark as x"
 		        returnval = (value, "x")
                     else:
+                        print "just value"
                         returnval = (value, "v")
         if returnval:
+            print "returning as" 
+            print returnval
             return returnval
         return False
   
@@ -44,17 +53,20 @@ def dag(trace):
         dst_present = lookup(nodes_seen, dst)
 
         if src_present:
+            print "src present "
             srcnode = src_present[0]
             srcnodetype = src_present[1]
 
         if dst_present:
             #if present as a value == multi-parent scenario
+            print "dst present " 
             dstnode = dst_present[0]
             dstnodetype = dst_present[1]
 
         #POSSIBLE COMBINATIONS OF EXISTENCE
         #both present
         if src_present and dst_present:
+            print "both present"
             #include checks to make sure != cycle
             #TO DO
         
@@ -63,9 +75,13 @@ def dag(trace):
             push_ppath(dstnode)
             dstnode.labelinfo = label   
             nodes_seen[srcnode] = [dstnode]
+
+            print "nodes seen: "
+            print nodes_seen
  
         #only src present
         if src_present and not dst_present:
+            print "src onlt"
 	    #create a dst tree and link them
 	    dst_tree = Tree(dst)
 	    srcnode.add_child(dst_tree)
@@ -73,6 +89,10 @@ def dag(trace):
             dst_tree.labelinfo = label
             push_ppath(dst_tree)
             #src is already a key
+
+            print nodes_seen
+            print "srcnode = " + srcnode.name
+            print "srcnodetype = " + srcnodetype
             if srcnodetype == "k" or srcnodetype == "x":
                 nodes_seen[srcnode].append(dst_tree)
             
@@ -82,6 +102,7 @@ def dag(trace):
            
         #only dst present
         if dst_present and not src_present:
+            print "dst present"
 	    src_tree = Tree(src)
 	    src_tree.add_child(dstnode)
 	    dstnode.add_parent(src_tree)
@@ -91,6 +112,7 @@ def dag(trace):
  
         #neither present
         if not dst_present and not src_present:
+            print "neither present"
             src_tree = Tree(src)
             dst_tree = Tree(dst)
             src_tree.add_child(dst_tree)
