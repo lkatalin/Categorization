@@ -1,4 +1,5 @@
 import re
+import sys
 from make_tree import *
 from print_tree import *
 
@@ -25,16 +26,19 @@ def dag(trace):
         if returnval:
             return returnval
         return False
-  
-    def push_ppath(node):
-        for child in node.children:
-            child.add_parent(node)
-            push_ppath(child)
 
     for edge in trace.fullEdges:
         #extract source and dest nodes as strings
         src = re.search(r'(\d+.\d+) ->', edge).group(1)
         dst = re.search(r'-> (\d+.\d+)', edge).group(1)
+
+        #cannot add same edge twice
+        for key, values in nodes_seen.items():
+            if key.name == src:
+                for value in values:
+                    if value.name == dst:
+                        print "error: attempted addition of edge %s -> %s redundant" % (src, dst)
+                        sys.exit()
 
         #extract label info to push into dst node
         label = re.search(r'R: (\d+.\d+ us)', edge).group(1)
@@ -60,7 +64,6 @@ def dag(trace):
         
             srcnode.add_child(dstnode)
             dstnode.add_parent(srcnode)
-            push_ppath(dstnode)
             dstnode.labelinfo = label   
             nodes_seen[srcnode] = [dstnode]
  
@@ -71,7 +74,6 @@ def dag(trace):
 	    srcnode.add_child(dst_tree)
 	    dst_tree.add_parent(srcnode)
             dst_tree.labelinfo = label
-            push_ppath(dst_tree)
             #src is already a key
 
             if srcnodetype == "k" or srcnodetype == "x":
@@ -86,7 +88,6 @@ def dag(trace):
 	    src_tree = Tree(src)
 	    src_tree.add_child(dstnode)
 	    dstnode.add_parent(src_tree)
-            push_ppath(dstnode)
             dstnode.labelinfo = label
 	    nodes_seen[src_tree] = [dstnode] 
  
@@ -96,7 +97,6 @@ def dag(trace):
             dst_tree = Tree(dst)
             src_tree.add_child(dst_tree)
             dst_tree.add_parent(src_tree)
-            push_ppath(dst_tree)
             dst_tree.labelinfo = label
             nodes_seen[src_tree] = [dst_tree]
  

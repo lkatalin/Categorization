@@ -6,7 +6,6 @@ class Tree(object):
         self.name = name
         self.children = []
         self.parents = []
-        self.visited = 0
         self.labelinfo = ""
         if children is not None:
             for child in children:
