@@ -33,3 +33,8 @@ for trace in tracelist:
     print "TraceId: %d" % trace.traceId
     print "Trace name: %s" % trace.traceName
     print "Hashval: %s\n" % trace.hashval
+
+info = process_groups(categories, tracelist)
+
+for key, value in info.items():
+    print (key, value)

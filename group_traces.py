@@ -65,3 +65,16 @@ def group_traces(trace):
         categories[trace.hashval].append(trace.traceId)
     else:
         categories[trace.hashval] = [trace.traceId]
+
+
+def process_groups(d, tlist):
+    group_info = {}
+    for key, values in d.items():
+        psum = 0
+        for value in values:
+            psum += float(tlist[value - 1].response)
+        avg = psum / (len(values))
+        group_info[key] = {'average' : avg, 'variance': 0}
+    return group_info
+
+
