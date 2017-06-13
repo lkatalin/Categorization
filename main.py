@@ -14,6 +14,9 @@ with open(filename) as infile:
 for trace in tracelist:
     group_traces(trace)
 
+# PROCESS TRACE INFO
+info = process_groups(categories, tracelist)
+
 # OUTPUT INFO FOR HUMAN
 print "\nInfo dump about current traces: \n"
 
@@ -22,19 +25,18 @@ for key in categories.keys():
     key_counter += 1
 
 print "Number of traces: %d" % len(tracelist)
-print "Number of categories: %d" % key_counter
-print "Category names: "
+print "Number of categories: %d \n" % key_counter
 
-for key in categories.keys():
-    print key
+print "Categories: \n"
+for key, values in categories.items():
+    print "Category hashval: " + str(key)
+    print "Number of traces: " + str(len(values))
+    for val in info[key]:
+        print (val + ': ' + str(info[key][val]))
+    print "\n"
 
-print "\n|| Relevant trace info: ||\n"
-for trace in tracelist:
-    print "TraceId: %d" % trace.traceId
-    print "Trace name: %s" % trace.traceName
-    print "Hashval: %s\n" % trace.hashval
-
-info = process_groups(categories, tracelist)
-
-for key, value in info.items():
-    print (key, value)
+#print "\n|| Relevant trace info: ||\n"
+#for trace in tracelist:
+#    print "TraceId: %d" % trace.traceId
+#    print "Trace name: %s" % trace.traceName
+#    print "Hashval: %s\n" % trace.hashval

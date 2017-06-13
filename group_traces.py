@@ -1,5 +1,6 @@
 import re
 from simple_dag import *
+from decimal import *
 
 #this is the dictionary of traces
 #key is structure based on hashval below
@@ -32,8 +33,6 @@ def depth_first_traversal(trace):
 	    stack = stack[1:]
             if cur_node.name not in nodes:
 	        nodes.append(cur_node.name)
-                print "nodes: "
-                print nodes        
 	        for child in cur_node.get_rev_children():
 		    stack.insert(0, child)
         return nodes
@@ -66,15 +65,31 @@ def group_traces(trace):
     else:
         categories[trace.hashval] = [trace.traceId]
 
-
+# PROCESS_GROUPS: calculates avg latency and
+# variance of a group
+#
 def process_groups(d, tlist):
     group_info = {}
     for key, values in d.items():
         psum = 0
+        lst = []
+        l = len(values)
+ 
+        # calculate average
         for value in values:
             psum += float(tlist[value - 1].response)
-        avg = psum / (len(values))
-        group_info[key] = {'average' : avg, 'variance': 0}
+        avg = psum / l
+        
+        # calculate variance
+        psum = 0
+        for value in values:
+            curr = (float(tlist[value - 1].response) - avg) ** 2
+            
+            psum += curr
+        if (l - 1) > 1:
+            var = (1 / float(l - 1)) * psum
+        else:
+            var = 0
+
+        group_info[key] = {'Average' : avg, 'Variance': var}
     return group_info
-
-
