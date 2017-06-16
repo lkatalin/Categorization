@@ -33,15 +33,3 @@ t2 = Tree('c', [Tree('d')])
 t3 = Tree('e', [Tree('f')])
 
 lst = [t1, t2, t3]
-
-def tree_test():
-    #result = combine_trees(lst)
-
-    #print "our resulting tree list is "
-    #print result
-
-    print "\n and our trees are "
-    for tree in lst:
-        print_tree(tree)
-
-tree_test()

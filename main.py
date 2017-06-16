@@ -6,18 +6,18 @@ from group_traces import *
 
 filename = argv[1]
 
-# EXTRACT TRACES
+# extract traces line by line
 with open(filename) as infile:
         tracelist = extract_traces(infile)
 
-# GROUP TRACES
+# group traces based on hashvalue (structure)
 for trace in tracelist:
     group_traces(trace)
 
-# PROCESS TRACE INFO
+# analyze groups for avg latency and variance
 info = process_groups(categories, tracelist)
 
-# OUTPUT INFO FOR HUMAN
+# print human-meaningful info
 print "\nInfo dump about current traces: \n"
 
 key_counter = 0
@@ -34,9 +34,3 @@ for key, values in categories.items():
     for val in info[key]:
         print (val + ': ' + str(info[key][val]))
     print "\n"
-
-#print "\n|| Relevant trace info: ||\n"
-#for trace in tracelist:
-#    print "TraceId: %d" % trace.traceId
-#    print "Trace name: %s" % trace.traceName
-#    print "Hashval: %s\n" % trace.hashval

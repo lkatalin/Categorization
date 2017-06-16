@@ -1,6 +1,13 @@
 #credit: https://stackoverflow.com/questions/2358045/how-can-i-implement-a-tree-in-python-are-there-any-built-in-data-structures-in
-from print_tree import *
+from print_stuff import *
 
+"""
+class of node objects in a doubly linked list to 
+represent DOT edges in a treelike form. source
+nodes are parents and destination nodes are children.
+info from edge labels resides in destination nodes/
+children.
+"""
 class Tree(object):
     def __init__(self, name='root', children=None, parents=None):
         self.name = name
@@ -36,14 +43,13 @@ class Tree(object):
         assert isinstance(parent, Tree)
         self.parents.append(parent)
 
+# breadth first search of tree for element
 def find_b(tree, elm):
     if not tree or not elm:
         return None
     if tree.name == elm:
-        #print "found"
         return tree
     else:
-        #print "not found in node %s" % tree.name
         for child in tree.children:
             find_b(child, elm)
 
@@ -52,6 +58,3 @@ def find_b(tree, elm):
 #                Tree('2'),
 #                Tree('+', [Tree('3'),
 #                           Tree('4')])])
-
-#print_tree(t)
-#find_b(t, "4")

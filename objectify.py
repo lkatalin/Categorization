@@ -1,7 +1,7 @@
 import re
 from group_traces import *
 
-#create the class of trace objects to store trace data
+# each trace object will store data for one trace
 class Trace(object):
     traceId = 0
     traceName = ""
@@ -16,7 +16,6 @@ class Trace(object):
     dag = {}
     hashval = ""
 
-    # construct trace class
     def __init__(self, trace, traceId):
         self.traceId = traceId
         self.traceName = re.search(r'Digraph \w', trace).group(0)

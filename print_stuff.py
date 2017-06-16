@@ -1,5 +1,4 @@
 # coding: utf-8
-
 # credit for print tree: https://stackoverflow.com/questions/30893895/how-to-print-a-tree-in-python
 
 def print_trace(tracelist):
