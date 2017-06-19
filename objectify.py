@@ -26,9 +26,10 @@ class Trace(object):
         self.edgeLabels = [ label for label in self.labels if label[0] == 'R' ]
         self.nodeLabels = [ label for label in self.labels if label[0] != 'R' ]
         self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
+        self.fullNodes = re.findall(r'\d+.\d+ \[label="(?!R\:).*"\]', trace)
         self.fullEdges = re.findall(r'\d+.\d+ -> .*]', trace)
         self.dag = dag(self)
-        self.hashval =  hashval(self)
+        self.hashval = "" # hashval(self)
 
 def make_trace(trace, traceId):
     trace = Trace(trace, traceId)

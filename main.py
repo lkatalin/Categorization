@@ -11,11 +11,11 @@ with open(filename) as infile:
         tracelist = extract_traces(infile)
 
 # group traces based on hashvalue (structure)
-for trace in tracelist:
-    group_traces(trace)
+#for trace in tracelist:
+#    group_traces(trace)
 
 # analyze groups for avg latency and variance
-info = process_groups(categories, tracelist)
+#info = process_groups(categories, tracelist)
 
 # print human-meaningful info
 print "\nInfo dump about current traces: \n"
