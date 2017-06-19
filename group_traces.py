@@ -1,5 +1,5 @@
 import re
-from simple_dag import *
+from make_dag import *
 from decimal import *
 
 # groups of traces based on structure

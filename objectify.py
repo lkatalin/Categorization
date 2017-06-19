@@ -16,8 +16,8 @@ class Trace(object):
     dag = {}
     hashval = ""
 
-    def __init__(self, trace, traceId):
-        self.traceId = traceId
+    def __init__(self, trace):
+        self.traceId = int(re.search(r'# (\d) R', trace).group(1))
         self.traceName = re.search(r'Digraph \w', trace).group(0)
         self.mainText = trace
         self.response = re.search(r'R: (.*?) usecs', trace).group(1)
@@ -31,6 +31,6 @@ class Trace(object):
         self.dag = dag(self)
         self.hashval = hashval(self)
 
-def make_trace(trace, traceId):
-    trace = Trace(trace, traceId)
-    return trace
+def make_trace(trace):
+    t = Trace(trace)
+    return t

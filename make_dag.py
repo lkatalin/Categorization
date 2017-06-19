@@ -1,6 +1,6 @@
 import re
 import sys
-from make_node import *
+from make_nodes import *
 from print_stuff import *
 
 def dag(trace):
@@ -42,8 +42,9 @@ def dag(trace):
             sys.exit()
  
     if len(root) == 1:
-	print "tree is: "
+	print "Trace structure for Trace %s: " % trace.traceId
 	print_tree(root[0])
+        print "\n\n"
         return root[0]
     else: 
         print "error: multiple root nodes detected in trace"
