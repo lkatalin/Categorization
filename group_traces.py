@@ -5,8 +5,6 @@ from decimal import *
 # groups of traces based on structure
 categories = {}
 
-# DFT of trace's DAG structure (lossy)
-#
 def depth_first_traversal(trace):
     """
     the DFT traverses DAG dict starting with 
@@ -48,7 +46,6 @@ def group_traces(trace):
     else:
         categories[trace.hashval] = [trace.traceId]
 
-
 def process_groups(d, tlist):
     """
     calculates the average completion time of
@@ -79,3 +76,49 @@ def process_groups(d, tlist):
 
         group_info[key] = {'Average' : avg, 'Variance': var}
     return group_info
+
+def edge_latencies(group, tlist):
+    """
+    assumes all traces in group have exact same structure
+    """
+    traces = categories[group]
+    edge_latencies = {}
+    edge_averages = {}
+    edge_variance = {}
+    for traceid in traces:
+        for full_edge in tlist[traceid - 1].fullEdges:
+            edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
+            time = re.search(r'(\d+.\d+) us', full_edge).group(1)
+            if edge in edge_latencies:
+                 edge_latencies[edge].append(time)
+            else: 
+                edge_latencies[edge] = [time]
+
+    # calculate averages
+    for key, values in edge_latencies.items():
+        psum = 0
+        numvals = len(values)
+        for value in values:
+            psum += float(value)
+        edge_averages[key] = psum / numvals
+
+    # calculate variance
+    for key, values in edge_latencies.items():
+	if numvals <= 2:
+	    edge_variance[key] = 0
+	else:
+	    psum = 0
+	    for value in values:
+		avg = edge_averages[key]
+		curr = (float(value) - avg) ** 2
+		psum += curr
+            edge_variance[key] = (1 / float(numvals - 1)) * psum
+
+    print "edges: "
+    print edge_latencies
+
+    print "edge averages: "
+    print edge_averages
+
+    print "edge variances: "
+    print edge_variance
