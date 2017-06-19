@@ -29,7 +29,7 @@ class Trace(object):
         self.fullNodes = re.findall(r'\d+.\d+ \[label="(?!R\:).*"\]', trace)
         self.fullEdges = re.findall(r'\d+.\d+ -> .*]', trace)
         self.dag = dag(self)
-        self.hashval = "" # hashval(self)
+        self.hashval = hashval(self)
 
 def make_trace(trace, traceId):
     trace = Trace(trace, traceId)

@@ -6,7 +6,7 @@ from print_stuff import *
 def dag(trace):
     """
     creates treelike structure of nodes in trace linked to
-    their parents and children. keeps track of root.
+    their parents and children. returns root node of structure.
     """
     name_to_obj = {}
     root = []

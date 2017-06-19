@@ -15,29 +15,16 @@ def depth_first_traversal(trace):
     kept in case of sync and full paths are 
     not kept.
     """
-    def dft_helper(root):
-        nodes = []
-        stack = [root]
-        while stack:
-            cur_node = stack[0]
-	    stack = stack[1:]
-            if cur_node.name not in nodes: #do not duplicate in case of sync
-	        nodes.append(cur_node.name)
-	        for child in cur_node.get_rev_children():
-		    stack.insert(0, child)
-        return nodes
-            
-    start = []
-    for node in trace.dag:
-        if node.parents == []:
-            start.append(node)
-
-    if len(start) > 1:
-        print "ERROR: more than one start node: "
-        print start
-
-    return dft_helper(start[0]) 
-
+    nodes = []
+    stack = [trace.dag]
+    while stack:
+	cur_node = stack[0]
+	stack = stack[1:]
+	if cur_node.name not in nodes: #do not duplicate in case of sync
+	    nodes.append(cur_node.name)
+	for child in cur_node.get_rev_children():
+	    stack.insert(0, child)
+    return nodes 
 
 def hashval(trace):
     """
@@ -47,7 +34,6 @@ def hashval(trace):
     """
     hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
     return hashval
-
 
 def group_traces(trace):
     """
