@@ -23,31 +23,43 @@ def json_parser(file):
                 span_parser(v[i])
 
 
+#def info_parser(info):
+#    print "::INFO::"
+#
+#    for k, v in info.iteritems():
+#        if k == "name":
+#            print "name:  " + v
+#        if k == "started":
+#            print  v
+#        if k == "finished":
+#            print v
+#        if k == "meta.raw_payload.wsgi-start":
+#            print "wsgi-start: "
+#            wsgi_parser(v)
+#        if k == "meta.raw_payload.wsgi-stop":
+#            print "wsgi-stop: "
+#            wsgi_parser(v)
+#        if k == "host":
+#            print "host" + v
+#        if k == "project":
+#            print v
+#
+
+
 def info_parser(info):
-    print "info"
+    print "::INFO::"
 
     for k, v in info.iteritems():
-        if k == "name":
-            print "name:  " + v
-        if k == "started":
-            print  v
-        if k == "finished":
-            print v
-        if k == "meta.raw_payload.wsgi-start":
-            print "wsgi-start: "
-            wsgi_parser(v)
-        if k == "meta.raw_payload.wsgi-stop":
-            print "wsgi-stop: "
-            wsgi_parser(v)
-        if k == "host":
-            print "host" + v
-        if k == "project":
-            print v
+        print str(k) + " : " + str(v)
 
 
 def stats_parser(stats):
-    print "stats"
-    print stats
+    print "\n::STATS::"
+    
+    for k, v in stats.iteritems():
+        print k + ": "
+        for k2, v2 in v.iteritems():
+            print k2 + " : " + str(v2) + "\n"
 
 
 def wsgi_parser(wsgi):
