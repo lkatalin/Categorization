@@ -1,4 +1,5 @@
 import re
+import numpy as np
 from make_dag import *
 from decimal import *
 
@@ -104,7 +105,7 @@ def edge_latencies(group, tlist):
 
     # calculate variance
     for key, values in edge_latencies.items():
-	if numvals <= 2:
+	if numvals < 2:
 	    edge_variance[key] = 0
 	else:
 	    psum = 0
