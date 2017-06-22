@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 
-# This code is written in the middle of the night, so it definately need some
-# refactoring to make it pythonic.
-#                                   -- Jethro
-
 import json
-
+import re
 
 def json_parser(file):
     """
@@ -22,68 +18,37 @@ def json_parser(file):
             for i in range(len(v)):
                 span_parser(v[i])
 
-
-#def info_parser(info):
-#    print "::INFO::"
-#
-#    for k, v in info.iteritems():
-#        if k == "name":
-#            print "name:  " + v
-#        if k == "started":
-#            print  v
-#        if k == "finished":
-#            print v
-#        if k == "meta.raw_payload.wsgi-start":
-#            print "wsgi-start: "
-#            wsgi_parser(v)
-#        if k == "meta.raw_payload.wsgi-stop":
-#            print "wsgi-stop: "
-#            wsgi_parser(v)
-#        if k == "host":
-#            print "host" + v
-#        if k == "project":
-#            print v
-#
-
+def request_parser(request):
+    print "::REQUEST::"
+    for k, v in request.iteritems():
+        print str(k) + " : " + str(v)
 
 def info_parser(info):
     print "::INFO::"
-
     for k, v in info.iteritems():
-        print str(k) + " : " + str(v)
-
+        if re.search(r'wsgi', k) is not None:
+            wsgi_parser(v)
+        if k == "request":
+            request_parser(v)
+        else:
+            print str(k) + " : " + str(v)
 
 def stats_parser(stats):
     print "\n::STATS::"
-    
     for k, v in stats.iteritems():
         print k + ": "
         for k2, v2 in v.iteritems():
-            print k2 + " : " + str(v2) + "\n"
-
+            print k2 + " : " + str(v2)
 
 def wsgi_parser(wsgi):
-    print "wsgi"
+    print "::WSGI::"
     for k, v in wsgi.iteritems():
-        if k == "wsgi":
-            print v
         if k == "info":
             info_parser(v)
-        if k == "name":
-            print v
-        if k == "service":
-            print v
-        if k == "timestamp":
-            print v
-        if k == "trace_id":
-            print v
-        if k == "project:":
-            print v
-        if k == "parent_id":
-            print v
-        if k == "base_id":
-            print v
-
+        elif re.search(r'wsgi', k) is not None:
+            wsgi_parser(v)
+        else:
+            print k + ": " + v
 
 def span_parser(span):
     """
@@ -94,21 +59,16 @@ def span_parser(span):
     for k, v in span.iteritems():
         #print k
         if k == "info":
-            info = info_parser(v)
-        if k == "parent_id":
-            print "parent_id is: " + v
-        if k == "trace_id":
-            print "trace_id is: " + v
-        if k == "children":
+            info_parser(v)
+        elif re.search(r'wsgi', k) is not None:
+            wsgi_parser(v)
+        elif k == "children":
             if len(v) == 0:
                 return
             else:
-                print "parse children"
-    #print span['info']
-
-
+                print "\n::BEGINNING CHILDREN::"
+        else:
+            print k + " is: " + v
 
 if __name__ == '__main__':
     json_parser("dataset/test.json")
-
-
