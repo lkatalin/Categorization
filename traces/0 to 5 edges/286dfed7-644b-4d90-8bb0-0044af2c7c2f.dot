@@ -1,0 +1,5 @@
+digraph {
+	0 [label="total - 466 ms"]
+	1 [label="osapi_volume:wsgi - 466 ms\nGET /v2/419e907bd7e64abd9dcfffbe78.."]
+		0 -> 1
+}
