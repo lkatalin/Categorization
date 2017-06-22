@@ -1,7 +1,0 @@
-digraph {
-	0 [label="total - 478 ms"]
-	1 [label="osapi_compute:wsgi - 478 ms\nGET /v2.1/419e907bd7e64abd9dcfffbe.."]
-	2 [label="osapi_compute:compute_api - 430 ms"]
-		1 -> 2
-		0 -> 1
-}
