@@ -8,7 +8,7 @@ def json_parser(file):
     Each Json file will be parsed into one trace.
     """
     with open(file, 'r') as data_file:
-        edge_list = []       
+        edge_list = []
  
         # make a dict
         json_data = json.load(data_file)
@@ -29,6 +29,7 @@ def json_parser(file):
     actual_nodes = json_data["children"]
  
     for node in actual_nodes:
+        edge_list.append(("root", node["info"]["name"]))
         parser(node)
 
     print "edges: "
