@@ -11,7 +11,7 @@ def json_parser(file):
         # edge list as [(start time -> start time)]
         edge_list = []
  
-        # node list as [(start time, name service)]
+        # node list as [(start time, name, service)]
         node_list = [(0, 'root', 'caller')]
  
         def extract_timestamp(data):
@@ -32,10 +32,6 @@ def json_parser(file):
             keystart = k_time[0]
             keystop = k_time[1]
             
-            print "key values:" 
-            print keyname 
-            print keyservice
-            print keystart
             node_list.append((keystart, keyname, keyservice))
 
 	    for key, value in data.iteritems():
@@ -53,9 +49,14 @@ def json_parser(file):
                         print "    val name :" + valname
                         edge_list.append((keystart, valstart, edge_latency))
                         parser(v)
-    
-    actual_nodes = json_data["children"]
  
+    # begin parsing after full-trace metadata   
+    actual_nodes = json_data["children"]
+
+    # extract full-trace metadata
+    total_time = json_data["info"]["finished"]
+ 
+    # add edges from the fake 'root' to beginning nodes
     for node in actual_nodes:
         n_info = node["info"]
         n_time = extract_timestamp(n_info)
@@ -65,10 +66,13 @@ def json_parser(file):
         edge_list.append(('0', nodestart, '0'))
         parser(node)
 
-#    print "edges: "
-#    print edge_list
-#    print "nodes: "
-#    print node_list
+    # print DOT format
+    print "' # 1 R: %d usecs RT: 0.000000 usecs Digraph X {" % total_time
+    for node in node_list:
+        print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
+    for edge in edge_list:
+        print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
+    print "}'"
 
 if __name__ == '__main__':
     json_parser("traces/rightfile.json")
