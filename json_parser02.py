@@ -101,5 +101,8 @@ def json_parser(file):
         print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
     print "}'"
 
-if __name__ == '__main__':
-    json_parser("traces/rightfile.json")
+filename = sys.argv[1]
+json_parser(filename)
+
+#if __name__ == '__main__':
+#    json_parser("traces/rightfile.json")
