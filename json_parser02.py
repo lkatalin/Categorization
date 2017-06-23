@@ -92,7 +92,7 @@ def json_parser(file):
 
 
     # print DOT format to file
-    sys.stdout = open('trace.txt', 'w')
+    sys.stdout = open('%s.dot' % trace_id, 'w')
  
     print "' # %s R: %d usecs RT: 0.000000 usecs Digraph X {" % (trace_id, total_time)
     for node in node_list:
