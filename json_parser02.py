@@ -1,5 +1,25 @@
 #!/usr/bin/env python
 import json
+import sys
+
+"""
+NOTE: this creates a DOT file in the correct format of the 
+spectroscope DOTs from OSprofiler's JSON format. however,
+some of the formatting is not meaningful. ex:
+
+- traces do not have names in OSprofiler, so 
+  they are all hard-coded to be called 'Digraph X'
+- 'RT' field is preserved even though we do not know what
+  it means and it is always 0.000000
+- a fake "root" is kept with data for the entire trace, 
+  instead of being a real service or process
+- etc.
+
+broader questions: 
+1. how to uniquely identify nodes from the OSP JSON output?
+2. what data should be kept? aside from: name, service, 
+   start/stop times
+"""
 
 def json_parser(file):
     """ 
@@ -26,29 +46,36 @@ def json_parser(file):
         def collect_data(data):
             name = data["info"]["name"]
             service = data["info"]["service"]
+            start = data["info"]["started"]
+            stop = data["info"]["finished"]
             time = extract_timestamp(data["info"])
-            start = time[0]
-            stop = time[1]
-            return (name, service, start, stop)
+            start_stamp = time[0]
+            stop_stamp = time[1]
+            return (name, service, start, stop, start_stamp, stop_stamp)
 
         def parser(data):
             # node data 
-            (kname, kservice, kstart, kstop) = collect_data(data)
-            node_list.append((kstart, kname, kservice))
+            (kname, kservice, kstart, kstop, kstart_stamp, 
+                                       kstop_stamp) = collect_data(data)
+            node_list.append((kstart_stamp, kname, kservice))
 
 	    for key, value in data.iteritems():
 		if key == "children" and len(value) != 0:
                     for v in value:
                         # edge data
-                        (vname, vservice, vstart, vstop) = collect_data(v)
-                        edge_latency = 0
-                        edge_list.append((kstart, vstart, edge_latency))
+                        (vname, vservice, vstart, vstop, vstart_stamp, 
+                                           vstop_stamp) = collect_data(v)
+
+                        edge_latency = float(vstart) - float(kstop)
+                        edge_list.append((kstart_stamp, vstart_stamp, 
+                                                            edge_latency))
 
                         # find nested nodes
                         parser(v)
  
     # extract full-trace metadata
     total_time = json_data["info"]["finished"]
+    trace_id = json_data["children"][0]["parent_id"]
  
     # begins data only for nodes/edges
     actual_nodes = json_data["children"]
@@ -64,8 +91,10 @@ def json_parser(file):
         parser(node)
 
 
-    # print DOT format
-    print "' # 1 R: %d usecs RT: 0.000000 usecs Digraph X {" % total_time
+    # print DOT format to file
+    sys.stdout = open('trace.txt', 'w')
+ 
+    print "' # %s R: %d usecs RT: 0.000000 usecs Digraph X {" % (trace_id, total_time)
     for node in node_list:
         print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
     for edge in edge_list:
