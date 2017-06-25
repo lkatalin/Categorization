@@ -25,8 +25,10 @@ def dag(trace):
     for edge in trace.fullEdges:
         # extract source and dest nodes as strings
         src_str = re.search(r'(\d+.\d+) ->', edge).group(1)
+        print src_str
         dst_str = re.search(r'-> (\d+.\d+)', edge).group(1)
-
+        print dst_str
+ 
         # update both node object fields, if nodes exist
         try:
 	    srcnode = name_to_obj[src_str]
