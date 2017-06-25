@@ -7,7 +7,7 @@ The current status of this code is as mock-up, with useful functionality still b
 # Components
 
 MAIN.py processes a DOT file containing potentially many traces as input. It calls the following modules:
-1. **EXTRACT_TRACEs.py**, which captures the data from the DOT input, creating a series of trace objects containing metadata. A graph (tree) of nodes and edges is created based on the data read in, and a hash value is calculated for each trace that is a short form of its basic structure.
+1. **EXTRACT_TRACES.py**, which captures the data from the DOT input, creating a series of trace objects containing metadata. A graph (tree) of nodes and edges is created based on the data read in, and a hash value is calculated for each trace that is a short form of its basic structure.
 2. **GROUP_TRACES.py**, which creates a dict based on each trace's hash value from above.
 3. **PROCESS_TRACES**, which analyses the variance per group as well as per edge across traces in a group. This value will be used to trigger further automated action. 
 
