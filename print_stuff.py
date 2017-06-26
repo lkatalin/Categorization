@@ -21,6 +21,9 @@ def print_trace(tracelist):
         print "\nfull nodes: "
         for node in trace.fullNodes:
             print node
+        print "\nfull edges: "
+        for edge in trace.fullEdges:
+            print edge
         print "\nedges:"
         for edge in trace.edges:
             print edge

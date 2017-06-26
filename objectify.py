@@ -25,11 +25,12 @@ class Trace(object):
         self.labels = re.findall(r'\"(.*?)\"', trace)
         self.edgeLabels = [ label for label in self.labels if (label[0].isdigit() or label[0] == '-')]
         self.nodeLabels = [ label for label in self.labels if not (label[0].isdigit() or label[0] == '-')]
-        self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
-        self.fullNodes = re.findall(r'.*(?!->).*\[.*\]', trace) #2017-05-31T00:31:20.334916
+        self.fullNodes = re.findall(r'.+ (?:(?!->).) .+', trace)
         self.fullEdges = re.findall(r'.+ -> .+', trace)
+        self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
         self.dag = "" #dag(self)
         self.hashval = "" #hashval(self)
+        #self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
         #self.edgeLabels = [ label for label in self.labels if label[0] == 'R' ]
         #self.nodeLabels = [ label for label in self.labels if label[0] != 'R' ]
         #self.fullNodes = re.findall(r'\d+.\d+ \[label="(?!R\:).*"\]', trace)
