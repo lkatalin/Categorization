@@ -10,7 +10,7 @@ filename = argv[1]
 with open(filename) as infile:
         tracelist = extract_traces(infile)
 
-print_trace(tracelist)
+#print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:

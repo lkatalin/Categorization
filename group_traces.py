@@ -19,10 +19,17 @@ def depth_first_traversal(trace):
     while stack:
 	cur_node = stack[0]
 	stack = stack[1:]
-	if cur_node.name not in nodes: #do not duplicate in case of sync
-	    nodes.append(cur_node.name)
+	if cur_node.id not in nodes: #do not duplicate in case of sync
+	    nodes.append(cur_node.id)
 	for child in cur_node.get_rev_children():
 	    stack.insert(0, child)
+    print "nodes from dft are "
+    for node in nodes:
+        print node
+        hsh = re.search(r'.(\d+)', node)
+        print hsh
+    print "those have been all the nodes"
+    
     return nodes 
 
 def hashval(trace):
@@ -31,7 +38,9 @@ def hashval(trace):
     creates a meaningful string for the hash value
     of each trace (stored in trace object).
     """
-    hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
+    #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
+    hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
+    print "hashval is " + hashval
     return hashval
 
 def group_traces(trace):
@@ -46,6 +55,16 @@ def group_traces(trace):
         categories[trace.hashval].append(trace.traceId)
     else:
         categories[trace.hashval] = [trace.traceId]
+
+    print "categories: "
+    for key, values in categories.iteritems():
+        print (key, values)
+
+def trace_lookup(tid, tlist):
+    for trace in tlist:
+        if trace.traceId == tid:
+            return trace
+    return none
 
 def process_groups(d, tlist):
     """
@@ -62,13 +81,15 @@ def process_groups(d, tlist):
  
         # calculate average
         for value in values:
-            psum += float(tlist[value - 1].response)
+            t = trace_lookup(value, tlist)
+            psum += float(t.response)
         avg = psum / numvals
         
         # calculate variance
         psum = 0
         for value in values:
-            curr = (float(tlist[value - 1].response) - avg) ** 2            
+            t = trace_lookup(value, tlist)
+            curr = (float(t.response) - avg) ** 2            
             psum += curr
         if (numvals - 1) > 1:
             var = (1 / float(numvals - 1)) * psum
@@ -87,9 +108,14 @@ def edge_latencies(group, tlist):
     edge_averages = {}
     edge_variance = {}
     for traceid in traces:
-        for full_edge in tlist[traceid - 1].fullEdges:
-            edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
-            time = re.search(r'(\d+.\d+) us', full_edge).group(1)
+        t = trace_lookup(traceid, tlist)
+        for full_edge in t.fullEdges:
+            edge = re.search(r'(\d+.* -> \d+.*)', full_edge).group(0)
+            print "edge: " + edge
+            time = re.search(r'label="(.*)"', full_edge).group(1)
+            print "time: " + time
+            #edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
+            #time = re.search(r'(\d+.\d+) us', full_edge).group(1)
             if edge in edge_latencies:
                  edge_latencies[edge].append(time)
             else: 
