@@ -5,6 +5,7 @@ from print_stuff import *
 from group_traces import *
 import fileinput
 
+# open file from arg or use piped input from stdin
 try:
     filename = sys.argv[1]
     with open(filename) as infile:
