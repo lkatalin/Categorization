@@ -30,6 +30,8 @@ class Trace(object):
         self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
         self.dag = dag(self)
         self.hashval = hashval(self)
+
+        # FOR SPECTROSCOPE VERSION
         #self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)
         #self.edgeLabels = [ label for label in self.labels if label[0] == 'R' ]
         #self.nodeLabels = [ label for label in self.labels if label[0] != 'R' ]
