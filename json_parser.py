@@ -23,7 +23,9 @@ broader questions:
 
 def json_parser(file):
     """ 
-    each json file is parsed into one trace
+    usage: 
+    python json_parser.py file.json -> prints to stdout
+    python json_parser.py file.json to-file -> prints to file [trace_id].dot
     """
     with open(file, 'r') as data_file:
         json_data = json.load(data_file)
@@ -92,7 +94,8 @@ def json_parser(file):
 
 
     # print DOT format to file
-    sys.stdout = open('%s.dot' % trace_id, 'w')
+    if len(sys.argv) > 2 and sys.argv[2] == "to-file":
+        sys.stdout = open('%s.dot' % trace_id, 'w')
  
     print "' # %s R: %d usecs RT: 0.000000 usecs Digraph X {" % (trace_id, total_time)
     for node in node_list:

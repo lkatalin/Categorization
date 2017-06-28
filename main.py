@@ -1,14 +1,19 @@
-from sys import argv
+import sys
 from make_dag import *
 from extract_traces import *
+from extract_stdin_traces import *
 from print_stuff import *
 from group_traces import *
+import fileinput
 
-filename = argv[1]
-
-# extract traces line by line
-with open(filename) as infile:
+try:
+    filename = sys.argv[1]
+    with open(filename) as infile:
         tracelist = extract_traces(infile)
+except IndexError:
+    #import pdb; pdb.set_trace()
+    stream = sys.stdin.readlines()
+    tracelist = extract_stdin_traces(stream)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
