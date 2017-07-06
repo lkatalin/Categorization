@@ -23,6 +23,8 @@ info = process_groups(categories, tracelist)
 for key in categories.keys():
     latencies = edge_latencies(key, tracelist)
 
+info2 = group_cov(categories, tracelist)
+
 # print human-meaningful info
 print "\nInfo dump about current traces: \n"
 

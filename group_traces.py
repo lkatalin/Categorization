@@ -87,6 +87,21 @@ def process_groups(d, tlist):
         group_info[hashv] = {'Average' : avg, 'Variance': var}
     return group_info
 
+def group_cov(dictn, tlist):
+"""
+returns covariance matrix of total time of each trace with total 
+time of every other trace, by group. this shows whether overall trace 
+times in one group are covarying with those in another.
+"""
+    t_time_bygroup = np.array([[trace_lookup(v, tlist).response 
+                         for v in dictn[k]] 
+                         for k in dictn]).astype(np.float)
+    cov = np.cov(t_time_bygroup)
+    print cov
+    return cov
+
+
+
 def edge_latencies(group, tlist):
     """
     assumes all traces in group have exact same structure
