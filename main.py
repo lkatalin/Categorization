@@ -21,9 +21,11 @@ for trace in tracelist:
 info = process_groups(categories, tracelist)
 
 for key in categories.keys():
+    # fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
+    cov_matrix(latencies[0])
 
-info2 = group_cov(categories, tracelist)
+#info2 = group_cov(categories, tracelist)
 
 # print human-meaningful info
 print "\nInfo dump about current traces: \n"

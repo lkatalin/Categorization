@@ -87,19 +87,7 @@ def process_groups(d, tlist):
         group_info[hashv] = {'Average' : avg, 'Variance': var}
     return group_info
 
-def group_cov(dictn, tlist):
-"""
-returns covariance matrix of total time of each trace with total 
-time of every other trace, by group. this shows whether overall trace 
-times in one group are covarying with those in another.
-"""
-    t_time_bygroup = np.array([[trace_lookup(v, tlist).response 
-                         for v in dictn[k]] 
-                         for k in dictn]).astype(np.float)
-    cov = np.cov(t_time_bygroup)
-    print cov
-    return cov
-
+        
 
 
 def edge_latencies(group, tlist):
@@ -142,11 +130,27 @@ def edge_latencies(group, tlist):
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-#    print "edges: "
-#    print edge_latencies
+    print "edges in group: "
+    print edge_latencies
+
+    return (edge_latencies, edge_averages, edge_variance)
 
 #    print "edge averages: "
 #    print edge_averages
 
 #    print "edge variances: "
 #    print edge_variance
+
+
+def cov_matrix(e_lat_dict):
+    """
+    returns covariance matrix for each pair of edges within a group.
+    """
+    lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
+    print "\n array of latencies in group per edge: \n" 
+    print  lat_array
+    matrix = np.cov(lat_array)
+    print "\n covariance matrix for group: \n"
+    print matrix
+    print "\n"
+    return matrix
