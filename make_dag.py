@@ -16,24 +16,26 @@ def dag(trace):
         # on the label, the hash map keys are the idnums because
         # this will make lookup easy when processing edges
 
-        idnum = re.search(r'(\d+.*) \[', node_text).group(1)
+        #idnum = re.search(r'(\d+.*) \[', node_text).group(1)
         label = re.search(r'\[label="(.*)"\]', node_text).group(1)
+        
+        # OLD
+        idnum = re.search(r'\d+.\d+', node_text).group(0)
+        
         new_node = Node(label)
         new_node.id = idnum
         name_to_obj[idnum] = new_node
         root.append(new_node)
   
-        # OLD
-        #idnum = re.search(r'\d+.\d+', node_text).group(0)
 
     for edge in trace.fullEdges:
         # extract source and dest nodes as strings
-        src_str = re.search(r'(\d+.*) ->', edge).group(1)
-        dst_str = re.search(r'-> (\d+.*) \[', edge).group(1)
+        #src_str = re.search(r'(\d+.*) ->', edge).group(1)
+        #dst_str = re.search(r'-> (\d+.*) \[', edge).group(1)
 
         # OLD
-        #dst_str = re.search(r'-> (\d+.\d+)', edge).group(1) 
-        #src_str = re.search(r'(\d+.\d+) ->', edge).group(1)
+        dst_str = re.search(r'-> (\d+.\d+)', edge).group(1) 
+        src_str = re.search(r'(\d+.\d+) ->', edge).group(1)
 
         # update both node object fields, if nodes exist
         try:
@@ -41,10 +43,10 @@ def dag(trace):
 	    dstnode = name_to_obj[dst_str]
 	    srcnode.add_child(dstnode)
 	    dstnode.add_parent(srcnode)
-            dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
+            #dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
 
             # OLD
-	    #dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
+	    dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
 	    
             # keep track of potential root nodes
 	    root.remove(dstnode)

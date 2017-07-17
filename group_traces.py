@@ -31,8 +31,8 @@ def hashval(trace):
     creates a meaningful string for the hash value
     of each trace (stored in trace object).
     """
-    #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
-    hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
+    hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
+    #hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
     return hashval
 
 def group_traces(trace):
@@ -104,10 +104,10 @@ def edge_latencies(group, tlist):
     for traceid in traces:
         t = trace_lookup(traceid, tlist)
         for full_edge in t.fullEdges:
-            edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
-            time = re.search(r'label="(.*)"', full_edge).group(1)
-            #edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
-            #time = re.search(r'(\d+.\d+) us', full_edge).group(1)
+            #edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
+            #time = re.search(r'label="(.*)"', full_edge).group(1)
+            edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
+            time = re.search(r'(\d+.\d+) us', full_edge).group(1)
             if edge in edge_latencies:
                 edge_latencies[edge].append(time)
             else: 
