@@ -93,6 +93,9 @@ def process_groups(d, tlist):
 def edge_latencies(group, tlist):
     """
     assumes all traces in group have exact same structure
+    ...
+    possibly, we could group the edges by label instead of tid -> tid,
+    which would give us more data per edge
     """
     traces = categories[group]
     edge_latencies = {}

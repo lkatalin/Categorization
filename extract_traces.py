@@ -4,7 +4,7 @@ from objectify import *
 def extract_traces(infile):
     # collects text until complete trace is read in
     buff = []
-    # list of all traces read in from file
+    # list of all traces read in from file - why is this a list??
     tracelist = []
    
     for line in infile:
