@@ -24,8 +24,17 @@ def dag(trace):
         
         new_node = Node(label)
         new_node.id = idnum
+
         name_to_obj[idnum] = new_node
         root.append(new_node)
+
+ 
+        #print "printing name to obj..."
+        #for key, value in name_to_obj.iteritems():
+        #    print (key, value)
+
+        #print "printing root..."
+        #print root
   
 
     for edge in trace.fullEdges:
@@ -49,7 +58,16 @@ def dag(trace):
 	    dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
 	    
             # keep track of potential root nodes
-	    root.remove(dstnode)
+            #import pdb; pdb.set_trace()
+
+            #sometimes dstnode may already be removed if it showed up before as the dst for something else
+            #but should switch to looking these up by ID instead of name...
+            if dstnode in root:
+	        root.remove(dstnode)
+
+            #print "removing %s..." % dstnode.name
+            #print "root is: "
+            #print root
         except KeyError:
             print "error: source or destination node of edge not in node group"
             sys.exit()

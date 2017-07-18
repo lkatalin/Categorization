@@ -133,8 +133,8 @@ def edge_latencies(group, tlist):
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-    print "edges in group: "
-    print edge_latencies
+    #print "edges in group: "
+    #print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
@@ -145,15 +145,18 @@ def edge_latencies(group, tlist):
 #    print edge_variance
 
 
-def cov_matrix(e_lat_dict):
+def cov_matrix(e_lat_dict, tlist):
     """
     returns covariance matrix for each pair of edges within a group.
     """
-    lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
-    print "\n array of latencies in group per edge: \n" 
-    print  lat_array
-    matrix = np.cov(lat_array)
-    print "\n covariance matrix for group: \n"
-    print matrix
-    print "\n"
-    return matrix
+    if len(tlist) == 1:
+        print "\ntoo few data points to create covariance matrix \n"
+    else:
+        lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
+        print "\n array of latencies in group per edge: \n" 
+        print  lat_array
+	matrix = np.cov(lat_array)
+        print "\n covariance matrix for group: \n"
+	print matrix
+	print "\n"
+        return matrix

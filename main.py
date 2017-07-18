@@ -16,7 +16,7 @@ except IndexError:
     print "index error"
     tracelist = extract_traces(sys.stdin.readlines())
 
-print_trace(tracelist)
+#print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
@@ -28,7 +28,7 @@ info = process_groups(categories, tracelist)
 for key in categories.keys():
     # fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
-    cov_matrix(latencies[0])
+    cov_matrix(latencies[0], tracelist)
 
 
 # print human-meaningful info
