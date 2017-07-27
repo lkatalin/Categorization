@@ -9,18 +9,22 @@ def json_dag(file):
         dag = []
 
         def extract_timestamp(element):
+            #print "element name is " + element["info"]["name"]
             for key in element["info"].keys():
                 if 'meta.raw_payload' in key:
                     if 'start' in key:
                         start = element["info"][key]["timestamp"]
                     elif 'stop' in key:
                         stop = element["info"][key]["timestamp"]
+            #import pdb; pdb.set_trace()
+            #print "start stop is " + start + stop
             return(start, stop)
 
         def is_earlier(fst, snd):
+            #import pdb; pdb.set_trace()
             t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
             t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
-            return(min((t1, t2)) == t1)
+            return(t1 < t2)
         
         def find_earliest(elements):
             # earliest = (element, its start time)
@@ -32,11 +36,13 @@ def json_dag(file):
             return earliest
 
         def find_concurr(curr, rest):
-            #import pdb; pdb.set_trace()
+            import pdb; pdb.set_trace()
             concurr = []
             #to do: don't do this twice **************
+            if curr is None:
+                print "curr is none"
             curr_end = extract_timestamp(curr)[1]
-            if rest is not None:
+            if rest is not None: # also fix this *******
 		for elm in rest:
 		    elm_start = extract_timestamp(elm)[0]
 		    if is_earlier(elm_start, curr_end):
@@ -44,25 +50,31 @@ def json_dag(file):
             return concurr
             
         def iterate(lst):
-            curr = find_earliest(lst)[0]
+            if len(lst) == 0:
+                return
+            if len(lst) == 1:
+                curr = lst[0]
+            else:
+                curr = find_earliest(lst)[0]
             #import pdb; pdb.set_trace()
-            rest = lst.remove(curr)
+            rest = [x for x in lst if x != curr]
 
             concurrent_elms = find_concurr(curr, rest)
             # if we have concurrenct elements
             if len(concurrent_elms) > 0:
-                # deal with it
-                pass
+                # deal with it ***********************
+                for elm in concurrent_elms:
+                    dag.append(elm["info"]["name"])
 
             # no concurrency, everything normal
             else:
-                dag.append(curr)
+                dag.append(curr["info"]["name"])
 
                 # if it has children, add those next ** DFT **
                 if len(curr["children"]) > 0:
                     iterate(curr["children"]) 
                 # else process rest of current level
-                elif rest is not None:
+                elif rest != None:
                     iterate(rest)
                 # or come back up
                 else:
