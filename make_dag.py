@@ -26,16 +26,7 @@ def dag(trace):
         new_node.id = idnum
 
         name_to_obj[idnum] = new_node
-        root.append(new_node)
-
- 
-        #print "printing name to obj..."
-        #for key, value in name_to_obj.iteritems():
-        #    print (key, value)
-
-        #print "printing root..."
-        #print root
-  
+        root.append(new_node) 
 
     for edge in trace.fullEdges:
         # extract source and dest nodes as strings
@@ -65,9 +56,6 @@ def dag(trace):
             if dstnode in root:
 	        root.remove(dstnode)
 
-            #print "removing %s..." % dstnode.name
-            #print "root is: "
-            #print root
         except KeyError:
             print "error: source or destination node of edge not in node group"
             sys.exit()
@@ -77,6 +65,7 @@ def dag(trace):
 	#print_tree(root[0])
         #print "\n\n"
         return root[0]
-    else: 
-        print "error: multiple root nodes detected in trace"
-        sys.exit()
+    else:
+        return root[0] 
+        #print "error: multiple root nodes detected in trace"
+        #sys.exit()

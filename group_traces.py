@@ -14,15 +14,18 @@ def depth_first_traversal(trace):
     kept in case of sync and full paths are 
     not kept.
     """
+    from timer import Timer
     nodes = []
     stack = [trace.dag]
     while stack:
-	cur_node = stack[0]
-	stack = stack[1:]
-	if cur_node.id not in nodes: #do not duplicate in case of sync
-	    nodes.append(cur_node.id)
-	for child in cur_node.get_rev_children():
-	    stack.insert(0, child) 
+	with Timer() as t:
+	    cur_node = stack[0]
+	    stack = stack[1:]
+	    if cur_node.id not in nodes: #do not duplicate in case of sync
+		nodes.append(cur_node.id)
+	    for child in cur_node.get_rev_children():
+		stack.insert(0, child)
+	    #print "=> time of start: %s" % t.start
     return nodes 
 
 def hashval(trace):
