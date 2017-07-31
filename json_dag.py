@@ -56,7 +56,6 @@ def json_dag(file):
             
         def iterate(lst):
             global ctr
-            print "we are on level %d" % ctr
             if len(lst) == 0:
                 return
             if len(lst) == 1:
@@ -68,27 +67,33 @@ def json_dag(file):
 
             # maybe don't do this check for a one-item list... ***
             concurrent_elms = find_concurr(curr, rest)
-            # if we have concurrenct elements
+
+            dag.append(curr["info"]["name"])
+            print "appended %s" % str(curr["info"]["name"])
+
+            # add branches of concurrent elements
             if len(concurrent_elms) > 0:
-                # deal with it ***********************
+                print "concur elm found"
                 for elm in concurrent_elms:
                     dag.append(elm["info"]["name"])
+                    rest.remove(elm)
+                    if len(elm["children"]) > 0:
+                        iterate(elm["children"])
 
-            # no concurrency, everything normal
-            else:
-                dag.append(curr["info"]["name"])
+            # check if end of branch
+	    if len(curr["children"]) == 0 and len(rest) == 0:
+                print "returning from end of branch"
+		return
 
-                if len(curr["children"]) == 0 and len(rest) == 0:
-                    return
+            # traverse children
+	    if len(curr["children"]) > 0:
+		print "iterating over children"
+		iterate(curr["children"])
 
-                elif len(curr["children"]) > 0:
-                    print "iterating over children"
-                    iterate(curr["children"])
-
-                if len(rest) > 0:
-                    print "iterating over rest of this level"
-                    iterate(rest)
-
+            # traverse rest of level
+	    if len(rest) > 0:
+		print "iterating over rest of this level"
+		iterate(rest)
 
     iterate(json_data["children"])
     return dag
