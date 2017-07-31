@@ -83,11 +83,11 @@ def json_dag(file):
                 edges = []
                 for (elm, time) in branch_end_times:
                     if is_earlier(time, extract_timestamp(curr)[0]):
-                        edges.append(elm["info"]["name"])
+                        edges.append(elm)
                         #add edge to DAG from elm to curr ************
                         pass
                 if len(edges) < 1:
-                    print "ERROR: join cannot be created for %s" % str(elm["info"]["name"])
+                    print "ERROR: join cannot be created for %s" % str(curr["info"]["name"])
 
                 # then reset check_join
                 check_join = False
@@ -113,7 +113,7 @@ def json_dag(file):
                 # get through the concurrent elements, we should check if the next
                 # item on this level is a join
                 check_join = True
-                join_ctr += 1
+                #join_ctr += 1
 
             # check if end of branch
 	    if len(curr["children"]) == 0 and len(rest) == 0:
