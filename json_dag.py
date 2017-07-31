@@ -4,23 +4,30 @@ from datetime import datetime
 
 def json_dag(file):
     with open(file, 'r') as data_file:
-        #import pdb; pdb.set_trace()
         json_data = json.load(data_file)
 
+        # the graph we are making
         dag = []
+
+        # default for whether to check branch end times; 
+        # set to true when coming out of concurrent branches;
+        # determines the existence / properties of a join
         check_join = False
+
+        # tracker for branch end times in concurrent cases;
+        # this info necessary for joins
         branch_end_times = []
+
+        # for testing
+        join_ctr = 0
  
         def extract_timestamp(element):
-            #print "element name is " + element["info"]["name"]
             for key in element["info"].keys():
                 if 'meta.raw_payload' in key:
                     if 'start' in key:
                         start = element["info"][key]["timestamp"]
                     elif 'stop' in key:
                         stop = element["info"][key]["timestamp"]
-            #import pdb; pdb.set_trace()
-            #print "start stop is " + start + stop
             return(start, stop)
 
         def extract_traceid(element):
@@ -31,12 +38,8 @@ def json_dag(file):
             return None
 
         def is_earlier(fst, snd):
-            #import pdb; pdb.set_trace()
             t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
             t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
-
-            #print "t1 is %s and t2 is %s." % (str(t1), str(t2))
-            #print "it is %s that t1 is earlier than t2" % (str(t1 < t2))
             return(t1 < t2)
         
         def find_earliest(elements):
@@ -49,7 +52,6 @@ def json_dag(file):
             return earliest
 
         def find_concurr(curr, rest):
-            #import pdb; pdb.set_trace()
             concurr = []
             #to do: don't do this twice **************
             if curr is None:
@@ -78,10 +80,14 @@ def json_dag(file):
             # check if this may be a join
             if check_join == True:
                 # check where to append the thing
+                edges = []
                 for (elm, time) in branch_end_times:
                     if is_earlier(time, extract_timestamp(curr)[0]):
-                        #add edge to DAG from elm to curr *************
+                        edges.append(elm["info"]["name"])
+                        #add edge to DAG from elm to curr ************
                         pass
+                if len(edges) < 1:
+                    print "ERROR: join cannot be created for %s" % str(elm["info"]["name"])
 
                 # then reset check_join
                 check_join = False
@@ -107,6 +113,7 @@ def json_dag(file):
                 # get through the concurrent elements, we should check if the next
                 # item on this level is a join
                 check_join = True
+                join_ctr += 1
 
             # check if end of branch
 	    if len(curr["children"]) == 0 and len(rest) == 0:
