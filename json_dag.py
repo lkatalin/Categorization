@@ -2,13 +2,14 @@ import json
 import sys
 from datetime import datetime
 
-ctr = 1
-
 def json_dag(file):
     with open(file, 'r') as data_file:
         #import pdb; pdb.set_trace()
         json_data = json.load(data_file)
+
         dag = []
+        check_join = False
+        branch_end_times = []
  
         def extract_timestamp(element):
             #print "element name is " + element["info"]["name"]
@@ -21,6 +22,13 @@ def json_dag(file):
             #import pdb; pdb.set_trace()
             #print "start stop is " + start + stop
             return(start, stop)
+
+        def extract_traceid(element):
+            for key in element["info"].keys():
+                if 'meta.raw_payload' in key:
+                    traceid = element["info"][key]["trace_id"]
+                    return traceid
+            return None
 
         def is_earlier(fst, snd):
             #import pdb; pdb.set_trace()
@@ -47,17 +55,14 @@ def json_dag(file):
             if curr is None:
                 print "curr is none"
             curr_end = extract_timestamp(curr)[1]
-            if rest is not None: # also fix this *******
+            if rest is not None: # take this out bc now there's a check
 		for elm in rest:
 		    elm_start = extract_timestamp(elm)[0]
 		    if is_earlier(elm_start, curr_end):
 			concurr.append(elm)
             return concurr
             
-        def iterate(lst):
-            global ctr
-            if len(lst) == 0:
-                return
+        def iterate(lst, check_join):
             if len(lst) == 1:
                 curr = lst[0]
             else:
@@ -65,8 +70,21 @@ def json_dag(file):
             #import pdb; pdb.set_trace()
             rest = [x for x in lst if x != curr]
 
-            # maybe don't do this check for a one-item list... ***
-            concurrent_elms = find_concurr(curr, rest)
+            if len(rest) == 0:
+                concurrent_elms = []
+            else:
+                concurrent_elms = find_concurr(curr, rest)
+
+            # check if this may be a join
+            if check_join == True:
+                # check where to append the thing
+                for (elm, time) in branch_end_times:
+                    if is_earlier(time, extract_timestamp(curr)[0]):
+                        #add edge to DAG from elm to curr *************
+                        pass
+
+                # then reset check_join
+                check_join = False
 
             dag.append(curr["info"]["name"])
             print "appended %s" % str(curr["info"]["name"])
@@ -74,28 +92,41 @@ def json_dag(file):
             # add branches of concurrent elements
             if len(concurrent_elms) > 0:
                 print "concur elm found"
+ 
+
                 for elm in concurrent_elms:
                     dag.append(elm["info"]["name"])
                     rest.remove(elm)
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"])
+                        iterate(elm["children"], check_join)
+
+                # create a marker that first elm of "rest" is potential join
+                # concurrent elms have been removed from "rest" at this point
+                #
+                # if on this level, we have concurrent elements, then when we
+                # get through the concurrent elements, we should check if the next
+                # item on this level is a join
+                check_join = True
 
             # check if end of branch
 	    if len(curr["children"]) == 0 and len(rest) == 0:
+                # keep track of ending times and elements for potential joins
+                branch_end_times.append((extract_traceid(curr), extract_timestamp(curr)[1]))
+
                 print "returning from end of branch"
 		return
 
             # traverse children
 	    if len(curr["children"]) > 0:
 		print "iterating over children"
-		iterate(curr["children"])
+		iterate(curr["children"], check_join)
 
             # traverse rest of level
 	    if len(rest) > 0:
 		print "iterating over rest of this level"
-		iterate(rest)
+		iterate(rest, check_join)
 
-    iterate(json_data["children"])
+    iterate(json_data["children"], check_join)
     return dag
 
 filename = sys.argv[1]
