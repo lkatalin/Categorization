@@ -2,12 +2,14 @@ import json
 import sys
 from datetime import datetime
 
+ctr = 1
+
 def json_dag(file):
     with open(file, 'r') as data_file:
         #import pdb; pdb.set_trace()
         json_data = json.load(data_file)
         dag = []
-
+ 
         def extract_timestamp(element):
             #print "element name is " + element["info"]["name"]
             for key in element["info"].keys():
@@ -24,6 +26,9 @@ def json_dag(file):
             #import pdb; pdb.set_trace()
             t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
             t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
+
+            #print "t1 is %s and t2 is %s." % (str(t1), str(t2))
+            #print "it is %s that t1 is earlier than t2" % (str(t1 < t2))
             return(t1 < t2)
         
         def find_earliest(elements):
@@ -36,7 +41,7 @@ def json_dag(file):
             return earliest
 
         def find_concurr(curr, rest):
-            import pdb; pdb.set_trace()
+            #import pdb; pdb.set_trace()
             concurr = []
             #to do: don't do this twice **************
             if curr is None:
@@ -50,6 +55,8 @@ def json_dag(file):
             return concurr
             
         def iterate(lst):
+            global ctr
+            print "we are on level %d" % ctr
             if len(lst) == 0:
                 return
             if len(lst) == 1:
@@ -59,6 +66,7 @@ def json_dag(file):
             #import pdb; pdb.set_trace()
             rest = [x for x in lst if x != curr]
 
+            # maybe don't do this check for a one-item list... ***
             concurrent_elms = find_concurr(curr, rest)
             # if we have concurrenct elements
             if len(concurrent_elms) > 0:
@@ -70,15 +78,17 @@ def json_dag(file):
             else:
                 dag.append(curr["info"]["name"])
 
-                # if it has children, add those next ** DFT **
-                if len(curr["children"]) > 0:
-                    iterate(curr["children"]) 
-                # else process rest of current level
-                elif rest != None:
-                    iterate(rest)
-                # or come back up
-                else:
+                if len(curr["children"]) == 0 and len(rest) == 0:
                     return
+
+                elif len(curr["children"]) > 0:
+                    print "iterating over children"
+                    iterate(curr["children"])
+
+                if len(rest) > 0:
+                    print "iterating over rest of this level"
+                    iterate(rest)
+
 
     iterate(json_data["children"])
     return dag
