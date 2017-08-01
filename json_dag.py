@@ -16,6 +16,7 @@ def json_dag(file):
 
         # tracker for branch end times in concurrent cases;
         # this info necessary for joins
+        # ... maybe put this into "iterate" instead? *************
         branch_end_times = []
 
         # for testing
@@ -89,8 +90,9 @@ def json_dag(file):
                 if len(edges) < 1:
                     print "ERROR: join cannot be created for %s" % str(curr["info"]["name"])
 
-                # then reset check_join
+                # then reset check_join and branch_end_times
                 check_join = False
+                branch_end_times = []
 
             dag.append(curr["info"]["name"])
             print "appended %s" % str(curr["info"]["name"])
@@ -118,6 +120,8 @@ def json_dag(file):
             # check if end of branch
 	    if len(curr["children"]) == 0 and len(rest) == 0:
                 # keep track of ending times and elements for potential joins
+
+                # this should be local to a level and needs to get reset **************
                 branch_end_times.append((extract_traceid(curr), extract_timestamp(curr)[1]))
 
                 print "returning from end of branch"
