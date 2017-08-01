@@ -11,7 +11,7 @@ def json_dag(file):
 
         # default for whether to check branch end times; 
         # set to true when coming out of concurrent branches;
-        # determines the existence / properties of a join
+        # use when last elements on same level were concurrent batch
         check_join = False
 
         # tracker for branch end times in concurrent cases;
