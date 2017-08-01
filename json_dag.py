@@ -106,12 +106,12 @@ def json_dag(file):
                     if len(elm["children"]) > 0:
                         iterate(elm["children"], check_join)
 
-                # create a marker that first elm of "rest" is potential join
-                # concurrent elms have been removed from "rest" at this point
+                # important: concurrent elms have been removed from "rest" at this point
                 #
-                # if on this level, we have concurrent elements, then when we
-                # get through the concurrent elements, we should check if the next
-                # item on this level is a join
+                # check_join is true if next "earliest" item on this level
+                # potentially needs to be joined to several branches
+                # depending on happens-before relationship (determined by timestamp)
+
                 check_join = True
                 #join_ctr += 1
 
