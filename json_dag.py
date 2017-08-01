@@ -11,9 +11,6 @@ def json_dag(file):
 
         # node list as [(traceid, name, service)]
         node_list = []
-
-        # for testing
-        join_ctr = 0
  
         def extract_timestamp(element):
             for key in element["info"].keys():
@@ -45,37 +42,26 @@ def json_dag(file):
                     earliest = (elm, start)
             return earliest
 
-        def find_concurr(curr, rest):
+        def find_concurr(curr, rest): # move this into collect data?? ****
+            if rest is None or curr is None:  # handle this error better ****
+                return None
             concurr = []
             #to do: don't do this twice **************
-            if curr is None:
-                print "curr is none"
             curr_end = extract_timestamp(curr)[1]
-            if rest is not None: # take this out bc now there's a check
-		for elm in rest:
-		    elm_start = extract_timestamp(elm)[0]
-		    if is_earlier(elm_start, curr_end):
-			concurr.append(elm)
+            for elm in rest:
+                elm_start = extract_timestamp(elm)[0]
+		if is_earlier(elm_start, curr_end):
+		    concurr.append(elm)
             return concurr
             
-        def collect_data(data):
-            #import pdb; pdb.set_trace()
-            name = data["info"]["name"]
-            service = data["info"]["service"]
-            start = data["info"]["started"]
-            stop = data["info"]["finished"]
-            time = extract_timestamp(data)
-            start_stamp = time[0]
-            stop_stamp = time[1]
-            return (name, service, start, stop, start_stamp, stop_stamp)
-
-        # default for whether to check branch end times; 
-        # set to true when coming out of concurrent branches;
-        # use when last elements on same level were concurrent batch
-
-        # tracker for branch end times in concurrent cases;
+        def collect_data(curr):
+            name = curr["info"]["name"]
+            service = curr["info"]["service"]
+            traceid = extract_traceid(curr)
+            (start, stop) = extract_timestamp(curr)
+            return (name, service, start, stop, traceid)
         
-        def iterate(lst, check_join, branch_end_times):
+        def iterate(lst, check_join, branch_end_times, prev_traceid=0):
 	    '''
 	    lst = elements left to process on current level (where a level is a group
 		  of spans that share a parent in the span model)
@@ -95,75 +81,72 @@ def json_dag(file):
                 rest = [x for x in lst if x != curr]
                 concurrent_elms = find_concurr(curr, rest)
 
+            # current node data
+            (curr_name, curr_service, curr_start, curr_stop, curr_traceid) = collect_data(curr)
+            node_list.append((curr_traceid, curr_name, curr_service))
+            
+            # ------------------ CURRENT NODE ------------------------------------
+            # SYNCH CASE
+            # if previous is concurrent, check where to add edges
+            # maybe pass this as prev_traceid?? *********************************
             if check_join == True:
-                for (elm, time) in branch_end_times:
+                for (b_elm, b_time) in branch_end_times:
                     # if this branch ended earlier than current elm started
                     # then add an edge
-                    if is_earlier(time, extract_timestamp(curr)[0]):
-                        (vname, vservice, vstart, vstop, vstart_stamp, 
-                                           vstop_stamp) = collect_data(elm)
+                    if is_earlier(b_time, extract_timestamp(curr)[0]):
+                        (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(elm)
                         edge_latency = 1.0 #float(vstart) - float(kstop)
-                        edge_list.append((kstart_stamp, vstart_stamp, 
-                                                            edge_latency))
+                        edge_list.append((b_traceid, curr_traceid, edge_latency))
 
                 # then reset check_join and branch_end_times
+                # control for two sequential concurrent batches? ****************
                 check_join = False
                 branch_end_times = []
 
-            # node data 
-            (kname, kservice, kstart, kstop, kstart_stamp, 
-                                       kstop_stamp) = collect_data(curr)
-            node_list.append((kstart_stamp, kname, kservice))
+            # LINEAR CASE
+            # only add an edge if it's not the first node
+            else:
+                if prev_traceid != 0:
+                    edge_latency = 1.0 #float(vstart) - float(kstop) ********************
+                    edge_list.append((prev_traceid, curr_traceid, edge_latency))
 
-            # add curr into edges
-            (vname, vservice, vstart, vstop, vstart_stamp, 
-                                           vstop_stamp) = collect_data(curr)
-
-            edge_latency = 1.0 #float(vstart) - float(kstop) ********************
-            edge_list.append((kstart_stamp, vstart_stamp, edge_latency))
-
-            print "appended %s" % str(curr["info"]["name"])
-
-            # add branches of concurrent elements
+            # -------------------- OTHER SAME-LEVEL NODES -------------------------------
+            # FAN OUT CASE
             if len(concurrent_elms) > 0:
-                print "concur elm found"
- 
-
                 for elm in concurrent_elms:
-                    dag.append(elm["info"]["name"])
+                    # add edges of concurrent elements
+                    (e_name, e_service, e_start, e_stop, e_traceid) = collect_data(elm)
+                    edge_list.append((prev_traceid, elm_traceid, 1.0))
+
+                    # don't include these on the level anymore
                     rest.remove(elm)
+
+                    # take care of concurrent branch's children
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"], check_join)
-
-                # important: concurrent elms have been removed from "rest" at this point
-                #
-                # check_join is true if next "earliest" item on this level
-                # potentially needs to be joined to several branches
-                # depending on happens-before relationship (determined by timestamp)
-
+                        iterate(elm["children"], check_join, branch_end_times, curr_traceid)
+                
+                # when processing next nodes on this level, check the join relationship
+                # maybe don't toggle this & just pass it? ***************************
                 check_join = True
-                #join_ctr += 1
 
+            # ------------------- NEXT RECURSIVE ITERATION --------------------------------
             # check if end of branch
 	    if len(curr["children"]) == 0 and len(rest) == 0:
                 # keep track of ending times and elements for potential joins
-
-                # this should be local to a level and needs to get reset **************
-                branch_end_times.append((extract_traceid(curr), extract_timestamp(curr)[1]))
-
-                print "returning from end of branch"
+                # make sure this is local to a level and gets reset **************
+                branch_end_times.append((curr, extract_timestamp(curr)[1]))
 		return
 
             # traverse children
 	    if len(curr["children"]) > 0:
-		print "iterating over children"
-		iterate(curr["children"], check_join, branch_end_times)
+		iterate(curr["children"], check_join, branch_end_times, curr_traceid)
 
             # traverse rest of level
 	    if len(rest) > 0:
-		print "iterating over rest of this level"
-		iterate(rest, check_join, branch_end_times)
+		iterate(rest, check_join, branch_end_times, prev_traceid)
 
+
+    # ------------  OVERALL STRUCTURE BEGINS HERE -------------------------------------------
     iterate(json_data["children"], False, [])
 
     # print DOT format to file
@@ -177,5 +160,6 @@ def json_dag(file):
         print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
     print "}'"
 
+# ----- CALL FUNCTION -------------------
 filename = sys.argv[1]
 json_dag(filename)
