@@ -34,11 +34,10 @@ def json_dag(file):
             return(t1 < t2)
         
         def find_earliest(elements):
-            # earliest = (element, its start time)
-            earliest = (None, None)
+            earliest = None
             for elm in elements:
                 start = extract_timestamp(elm)[0]
-                if (earliest == (None, None)) or is_earlier(start, earliest[1]): 
+                if (earliest == None or is_earlier(start, earliest[1])): 
                     earliest = (elm, start)
             return earliest
 
@@ -64,7 +63,8 @@ def json_dag(file):
         def dot_friendlify(traceid):
             return "a" + traceid.replace("-", "")
         
-        def iterate(lst, check_join, branch_end_times, prev_traceid=0):
+        # either pass this stuff or define it here but not both ***********
+        def iterate(lst, check_join, branch_end_times, prev_traceid=None):
 	    '''
 	    lst = elements left to process on current level (where a level is a group
 		  of spans that share a parent in the span model)
@@ -102,6 +102,7 @@ def json_dag(file):
                         (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(b_elm)
                         edge_latency = 1.0 #float(vstart) - float(kstop)
                         edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
+                        print "appended node to a multi-branch: %s -> %s" % (str(dot_friendlify(b_traceid)), str(dcurr_traceid))
 
                 # then reset check_join and branch_end_times
                 # control for two sequential concurrent batches? ****************
@@ -111,9 +112,10 @@ def json_dag(file):
             # LINEAR CASE
             # only add an edge if it's not the first node
             else:
-                if prev_traceid != 0:
-                    edge_latency = 1.0 #float(vstart) - float(kstop) ********************
+                if prev_traceid != None:
+                    edge_latency = 3.0 #float(vstart) - float(kstop) ********************
                     edge_list.append((prev_traceid, dcurr_traceid, edge_latency))
+                    #print "just appended %s -> %s" % (str(prev_traceid), str(dcurr_traceid))
 
             # -------------------- OTHER SAME-LEVEL NODES -------------------------------
             # FAN OUT CASE
@@ -121,7 +123,8 @@ def json_dag(file):
                 for elm in concurrent_elms:
                     # add edges of concurrent elements
                     (e_name, e_service, e_start, e_stop, e_traceid) = collect_data(elm)
-                    edge_list.append((prev_traceid, dot_friendlify(e_traceid), 1.0))
+                    node_list.append((dot_friendlify(e_traceid), e_name, e_service))
+                    edge_list.append((prev_traceid, dot_friendlify(e_traceid), 2.0))
 
                     # don't include these on the level anymore
                     rest.remove(elm)
@@ -148,7 +151,7 @@ def json_dag(file):
 
             # traverse rest of level
 	    if len(rest) > 0:
-		iterate(rest, check_join, branch_end_times, prev_traceid)
+		iterate(rest, check_join, branch_end_times, dcurr_traceid)
 
 
     # ------------  OVERALL STRUCTURE BEGINS HERE -------------------------------------------
