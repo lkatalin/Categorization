@@ -60,6 +60,9 @@ def json_dag(file):
             traceid = extract_traceid(curr)
             (start, stop) = extract_timestamp(curr)
             return (name, service, start, stop, traceid)
+
+        def dot_friendlify(traceid):
+            return "a" + traceid.replace("-", "")
         
         def iterate(lst, check_join, branch_end_times, prev_traceid=0):
 	    '''
@@ -83,7 +86,9 @@ def json_dag(file):
 
             # current node data
             (curr_name, curr_service, curr_start, curr_stop, curr_traceid) = collect_data(curr)
-            node_list.append((curr_traceid, curr_name, curr_service))
+
+            dcurr_traceid = dot_friendlify(curr_traceid)
+            node_list.append((dcurr_traceid, curr_name, curr_service))
             
             # ------------------ CURRENT NODE ------------------------------------
             # SYNCH CASE
@@ -94,9 +99,9 @@ def json_dag(file):
                     # if this branch ended earlier than current elm started
                     # then add an edge
                     if is_earlier(b_time, extract_timestamp(curr)[0]):
-                        (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(elm)
+                        (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(b_elm)
                         edge_latency = 1.0 #float(vstart) - float(kstop)
-                        edge_list.append((b_traceid, curr_traceid, edge_latency))
+                        edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
 
                 # then reset check_join and branch_end_times
                 # control for two sequential concurrent batches? ****************
@@ -108,7 +113,7 @@ def json_dag(file):
             else:
                 if prev_traceid != 0:
                     edge_latency = 1.0 #float(vstart) - float(kstop) ********************
-                    edge_list.append((prev_traceid, curr_traceid, edge_latency))
+                    edge_list.append((prev_traceid, dcurr_traceid, edge_latency))
 
             # -------------------- OTHER SAME-LEVEL NODES -------------------------------
             # FAN OUT CASE
@@ -116,14 +121,14 @@ def json_dag(file):
                 for elm in concurrent_elms:
                     # add edges of concurrent elements
                     (e_name, e_service, e_start, e_stop, e_traceid) = collect_data(elm)
-                    edge_list.append((prev_traceid, elm_traceid, 1.0))
+                    edge_list.append((prev_traceid, dot_friendlify(e_traceid), 1.0))
 
                     # don't include these on the level anymore
                     rest.remove(elm)
 
                     # take care of concurrent branch's children
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"], check_join, branch_end_times, curr_traceid)
+                        iterate(elm["children"], check_join, branch_end_times, dcurr_traceid)
                 
                 # when processing next nodes on this level, check the join relationship
                 # maybe don't toggle this & just pass it? ***************************
@@ -139,7 +144,7 @@ def json_dag(file):
 
             # traverse children
 	    if len(curr["children"]) > 0:
-		iterate(curr["children"], check_join, branch_end_times, curr_traceid)
+		iterate(curr["children"], check_join, branch_end_times, dcurr_traceid)
 
             # traverse rest of level
 	    if len(rest) > 0:
@@ -151,14 +156,14 @@ def json_dag(file):
 
     # print DOT format to file
     if len(sys.argv) > 2 and sys.argv[2] == "to-file":
-        sys.stdout = open('%s.dot' % trace_id, 'w')
+        sys.stdout = open('%s.dot' % json_data["children"][0]["parent_id"], 'w')
  
-    print "' # RT: 0.000000 usecs Digraph X {"
+    print " # 1 R: 0.000000 usecs \nDigraph X {"
     for node in node_list:
         print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
     for edge in edge_list:
         print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
-    print "}'"
+    print "}"
 
 # ----- CALL FUNCTION -------------------
 filename = sys.argv[1]
