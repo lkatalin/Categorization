@@ -6,18 +6,11 @@ def json_dag(file):
     with open(file, 'r') as data_file:
         json_data = json.load(data_file)
 
-        # the graph we are making
-        dag = []
+        # edge list as [traceid -> traceid]
+        edge_list = []
 
-        # default for whether to check branch end times; 
-        # set to true when coming out of concurrent branches;
-        # use when last elements on same level were concurrent batch
-        check_join = False
-
-        # tracker for branch end times in concurrent cases;
-        # this info necessary for joins
-        # ... maybe put this into "iterate" instead? *************
-        branch_end_times = []
+        # node list as [(traceid, name, service)]
+        node_list = []
 
         # for testing
         join_ctr = 0
@@ -29,7 +22,7 @@ def json_dag(file):
                         start = element["info"][key]["timestamp"]
                     elif 'stop' in key:
                         stop = element["info"][key]["timestamp"]
-            return(start, stop)
+            return(start, stop) # optimize to return immediately if it has both of these ******
 
         def extract_traceid(element):
             for key in element["info"].keys():
@@ -65,36 +58,70 @@ def json_dag(file):
 			concurr.append(elm)
             return concurr
             
-        def iterate(lst, check_join):
+        def collect_data(data):
+            #import pdb; pdb.set_trace()
+            name = data["info"]["name"]
+            service = data["info"]["service"]
+            start = data["info"]["started"]
+            stop = data["info"]["finished"]
+            time = extract_timestamp(data)
+            start_stamp = time[0]
+            stop_stamp = time[1]
+            return (name, service, start, stop, start_stamp, stop_stamp)
+
+        # default for whether to check branch end times; 
+        # set to true when coming out of concurrent branches;
+        # use when last elements on same level were concurrent batch
+
+        # tracker for branch end times in concurrent cases;
+        
+        def iterate(lst, check_join, branch_end_times):
+	    '''
+	    lst = elements left to process on current level (where a level is a group
+		  of spans that share a parent in the span model)
+	    check_join = True or False indicating whether to check which branches
+			 to append current item to; default is False unless previous 
+			 elements on the level were concurrent
+	    branch_end_times = keeps track of end timestamps of all end nodes in case
+			 of concurrency, to be used when checking join relationships
+	    '''
             if len(lst) == 1:
                 curr = lst[0]
+                rest = []
+                concurrent_elms = []
+
             else:
                 curr = find_earliest(lst)[0]
-            #import pdb; pdb.set_trace()
-            rest = [x for x in lst if x != curr]
-
-            if len(rest) == 0:
-                concurrent_elms = []
-            else:
+                rest = [x for x in lst if x != curr]
                 concurrent_elms = find_concurr(curr, rest)
 
-            # check if this may be a join
             if check_join == True:
-                # check where to append the thing
-                edges = []
                 for (elm, time) in branch_end_times:
+                    # if this branch ended earlier than current elm started
+                    # then add an edge
                     if is_earlier(time, extract_timestamp(curr)[0]):
-                        edges.append(elm)
-                        #add edge to DAG from elm to curr ************
-                        pass
-                if len(edges) < 1:
-                    print "ERROR: join cannot be created for %s" % str(curr["info"]["name"])
+                        (vname, vservice, vstart, vstop, vstart_stamp, 
+                                           vstop_stamp) = collect_data(elm)
+                        edge_latency = 1.0 #float(vstart) - float(kstop)
+                        edge_list.append((kstart_stamp, vstart_stamp, 
+                                                            edge_latency))
 
                 # then reset check_join and branch_end_times
                 check_join = False
                 branch_end_times = []
 
-            dag.append(curr["info"]["name"])
+            # node data 
+            (kname, kservice, kstart, kstop, kstart_stamp, 
+                                       kstop_stamp) = collect_data(curr)
+            node_list.append((kstart_stamp, kname, kservice))
+
+            # add curr into edges
+            (vname, vservice, vstart, vstop, vstart_stamp, 
+                                           vstop_stamp) = collect_data(curr)
+
+            edge_latency = 1.0 #float(vstart) - float(kstop) ********************
+            edge_list.append((kstart_stamp, vstart_stamp, edge_latency))
+
             print "appended %s" % str(curr["info"]["name"])
 
             # add branches of concurrent elements
@@ -130,15 +157,25 @@ def json_dag(file):
             # traverse children
 	    if len(curr["children"]) > 0:
 		print "iterating over children"
-		iterate(curr["children"], check_join)
+		iterate(curr["children"], check_join, branch_end_times)
 
             # traverse rest of level
 	    if len(rest) > 0:
 		print "iterating over rest of this level"
-		iterate(rest, check_join)
+		iterate(rest, check_join, branch_end_times)
 
-    iterate(json_data["children"], check_join)
-    return dag
+    iterate(json_data["children"], False, [])
+
+    # print DOT format to file
+    if len(sys.argv) > 2 and sys.argv[2] == "to-file":
+        sys.stdout = open('%s.dot' % trace_id, 'w')
+ 
+    print "' # RT: 0.000000 usecs Digraph X {"
+    for node in node_list:
+        print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
+    for edge in edge_list:
+        print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
+    print "}'"
 
 filename = sys.argv[1]
-print json_dag(filename)
+json_dag(filename)
