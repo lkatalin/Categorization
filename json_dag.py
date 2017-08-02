@@ -22,11 +22,8 @@ def json_dag(file):
             return(start, stop) # optimize to return immediately if it has both of these ******
 
         def extract_traceid(element):
-            for key in element["info"].keys():
-                if 'meta.raw_payload' in key:
-                    traceid = element["info"][key]["trace_id"]
-                    return traceid
-            return None
+            traceid = element["trace_id"]
+            return traceid
 
         def is_earlier(fst, snd):
             t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
@@ -51,7 +48,6 @@ def json_dag(file):
                 elm_start = extract_timestamp(elm)[0]
 		if is_earlier(elm_start, curr_end):
 		    concurr.append(elm)
-            print "concur elm found"
             return concurr
             
         def collect_data(curr):
@@ -76,6 +72,7 @@ def json_dag(file):
 			 of concurrency, to be used when checking join relationships
 	    '''
             if len(lst) == 1:
+                print "just one elm on this level: %s" % lst[0]["info"]["name"] 
                 curr = lst[0]
                 rest = []
                 concurrent_elms = []
@@ -84,6 +81,13 @@ def json_dag(file):
                 curr = find_earliest(lst)[0]
                 rest = [x for x in lst if x != curr]
                 concurrent_elms = find_concurr(curr, rest)
+
+                print "earliest is %s" % curr["info"]["name"]
+
+            if len(concurrent_elms) > 0:
+                print "concur elms:"
+                for e in concurrent_elms:
+                    print e["info"]["name"]
 
             # track curren branch end time for later synch
             if len(concurrent_elms) > 0 and len(curr["children"]) == 0:
@@ -109,7 +113,7 @@ def json_dag(file):
                         (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(b_elm)
                         edge_latency = 1.0 #float(vstart) - float(kstop)
                         edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
-                        print "appended node to a multi-branch: %s -> %s" % (str(dot_friendlify(b_traceid)), str(dcurr_traceid))
+                        print "appended node to a multi-branch: %s -> %s" % (b_name, curr_name)
 
                 # then reset check_join and branch_end_times
                 # control for two sequential concurrent batches? ****************
@@ -122,7 +126,7 @@ def json_dag(file):
                 if prev_traceid != None:
                     edge_latency = 3.0 #float(vstart) - float(kstop) ********************
                     edge_list.append((prev_traceid, dcurr_traceid, edge_latency))
-                    print "appended node to linear branch: %s -> %s" % (str(prev_traceid), str(dcurr_traceid))
+                    print "appended node to linear branch: %s -> %s" % (str(prev_traceid), curr_name)
 
             # -------------------- OTHER SAME-LEVEL NODES -------------------------------
             # FAN OUT CASE
@@ -131,17 +135,24 @@ def json_dag(file):
                     # add edges of concurrent elements
                     (e_name, e_service, e_start, e_stop, e_traceid) = collect_data(elm)
                     node_list.append((dot_friendlify(e_traceid), e_name, e_service))
+
+                    print "fan out info for element is:"
+                    print e_name + e_service + e_start + e_stop + e_traceid
                     
+                    print "adding concurrent elm: %s-%s" % (e_name, e_service)
+
                     if prev_traceid != None:
                         edge_list.append((prev_traceid, dot_friendlify(e_traceid), 2.0))
-                        print "appended node in fan out: %s -> %s" % (prev_traceid, str(dot_friendlify(e_traceid)))
+                        print "appended node in fan out: %s -> %s" % (prev_traceid, e_name)
 
                     # don't include these on the level anymore
                     rest.remove(elm)
 
                     # take care of concurrent branch's children
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"], check_join, branch_end_times, dcurr_traceid)
+                        print "going down concur branch children for %s-%s" % (e_name, e_service)
+                        print "the traceid passed down is!: %s" % e_traceid
+                        iterate(elm["children"], check_join, branch_end_times, dot_friendlify(e_traceid))
 
                     else:
                         branch_end_times.append((elm, extract_timestamp(elm)[1]))
@@ -156,14 +167,17 @@ def json_dag(file):
                 # keep track of ending times and elements for potential joins
                 # make sure this is local to a level and gets reset **************
                 branch_end_times.append((curr, extract_timestamp(curr)[1]))
+                print "returning from end of branch"
 		return
 
             # traverse children
 	    if len(curr["children"]) > 0:
+                print "traversing children of current element"
 		iterate(curr["children"], check_join, branch_end_times, dcurr_traceid)
 
             # traverse rest of level
 	    if len(rest) > 0:
+                print "now traversing rest of level"
 		iterate(rest, check_join, branch_end_times, dcurr_traceid)
 
 
