@@ -6,12 +6,17 @@ from group_traces import *
 import fileinput
 
 # open file from arg or use piped input from stdin
+# to be used if piping from json_parser
 try:
+    #import pdb; pdb.set_trace()
     filename = sys.argv[1]
     with open(filename) as infile:
         tracelist = extract_traces(infile)
 except IndexError:
+    print "index error"
     tracelist = extract_traces(sys.stdin.readlines())
+
+#print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
@@ -23,9 +28,8 @@ info = process_groups(categories, tracelist)
 for key in categories.keys():
     # fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
-    cov_matrix(latencies[0])
+    cov_matrix(latencies[0], tracelist)
 
-#info2 = group_cov(categories, tracelist)
 
 # print human-meaningful info
 print "\nInfo dump about current traces: \n"

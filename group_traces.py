@@ -14,15 +14,18 @@ def depth_first_traversal(trace):
     kept in case of sync and full paths are 
     not kept.
     """
+    from timer import Timer
     nodes = []
     stack = [trace.dag]
     while stack:
-	cur_node = stack[0]
-	stack = stack[1:]
-	if cur_node.id not in nodes: #do not duplicate in case of sync
-	    nodes.append(cur_node.id)
-	for child in cur_node.get_rev_children():
-	    stack.insert(0, child) 
+	with Timer() as t:
+	    cur_node = stack[0]
+	    stack = stack[1:]
+	    if cur_node.id not in nodes: #do not duplicate in case of sync
+		nodes.append(cur_node.id)
+	    for child in cur_node.get_rev_children():
+		stack.insert(0, child)
+	    #print "=> time of start: %s" % t.start
     return nodes 
 
 def hashval(trace):
@@ -31,8 +34,8 @@ def hashval(trace):
     creates a meaningful string for the hash value
     of each trace (stored in trace object).
     """
-    #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
-    hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
+    hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
+    #hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
     return hashval
 
 def group_traces(trace):
@@ -93,6 +96,9 @@ def process_groups(d, tlist):
 def edge_latencies(group, tlist):
     """
     assumes all traces in group have exact same structure
+    ...
+    possibly, we could group the edges by label instead of tid -> tid,
+    which would give us more data per edge
     """
     traces = categories[group]
     edge_latencies = {}
@@ -101,10 +107,10 @@ def edge_latencies(group, tlist):
     for traceid in traces:
         t = trace_lookup(traceid, tlist)
         for full_edge in t.fullEdges:
-            edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
-            time = re.search(r'label="(.*)"', full_edge).group(1)
-            #edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
-            #time = re.search(r'(\d+.\d+) us', full_edge).group(1)
+            #edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
+            #time = re.search(r'label="(.*)"', full_edge).group(1)
+            edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
+            time = re.search(r'(\d+.\d+) us', full_edge).group(1)
             if edge in edge_latencies:
                 edge_latencies[edge].append(time)
             else: 
@@ -130,8 +136,8 @@ def edge_latencies(group, tlist):
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-    print "edges in group: "
-    print edge_latencies
+    #print "edges in group: "
+    #print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
@@ -142,15 +148,18 @@ def edge_latencies(group, tlist):
 #    print edge_variance
 
 
-def cov_matrix(e_lat_dict):
+def cov_matrix(e_lat_dict, tlist):
     """
     returns covariance matrix for each pair of edges within a group.
     """
-    lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
-    print "\n array of latencies in group per edge: \n" 
-    print  lat_array
-    matrix = np.cov(lat_array)
-    print "\n covariance matrix for group: \n"
-    print matrix
-    print "\n"
-    return matrix
+    if len(tlist) == 1:
+        print "\ntoo few data points to create covariance matrix \n"
+    else:
+        lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
+        print "\n array of latencies in group per edge: \n" 
+        print  lat_array
+	matrix = np.cov(lat_array)
+        print "\n covariance matrix for group: \n"
+	print matrix
+	print "\n"
+        return matrix
