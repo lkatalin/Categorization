@@ -38,6 +38,11 @@ def json_dag(file):
             t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
             return(t1 < t2)
         
+        def find_latency(fst, snd):
+            t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
+            t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
+            return(t2 - t1)
+
         def find_earliest(elements):
             for elm in elements:
                 start = extract_timestamp(elm)[0]
@@ -64,7 +69,7 @@ def json_dag(file):
             return "a" + traceid.replace("-", "")
         
         # either pass this stuff or define it here but not both ***********
-        def iterate(lst, check_join, branch_ends, prev_traceid=None):
+        def iterate(lst, check_join, branch_ends, prev_traceid=None, prev_stop=None):
 	    '''
 	    lst = elements left to process on current level
 	    check_join = False unless prev elements on this level were concurrent
@@ -103,7 +108,7 @@ def json_dag(file):
                     # add edge if branch ended before curr started
                     if is_earlier(b_end, extract_timestamp(curr)[0]):
                         (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(b_elm)
-                        edge_latency = 1.0 #float(vstart) - float(kstop)
+                        edge_latency = find_latency(b_end, curr_start)
                         edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
 
                 # reset params
@@ -112,8 +117,8 @@ def json_dag(file):
 
             # LINEAR CASE : only add edge if curr is not first / base node
             else:
-                if prev_traceid != None:
-                    edge_latency = 3.0 #float(vstart) - float(kstop) ********************
+                if prev_traceid != None and prev_stop != None:
+                    edge_latency = find_latency(prev_stop, curr_start)
                     edge_list.append((prev_traceid, dcurr_traceid, edge_latency))
 
             # -------------------- CHECK FOR FAN OUT  -------------------------------
@@ -126,14 +131,15 @@ def json_dag(file):
 
                     # add edge if not first / base node
                     if prev_traceid != None:
-                        edge_list.append((prev_traceid, dot_friendlify(e_traceid), 2.0))
+                        edge_latency = find_latency(prev_stop, e_start)
+                        edge_list.append((prev_traceid, dot_friendlify(e_traceid), edge_latency))
 
                     # don't process concurrent elements twice
                     rest.remove(elm)
 
                     # traverse concurrent branch's children
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"], check_join, branch_ends, dot_friendlify(e_traceid))
+                        iterate(elm["children"], check_join, branch_ends, dot_friendlify(e_traceid), e_stop)
 
                     # or track end time for future synch
                     else:
@@ -150,11 +156,11 @@ def json_dag(file):
 
             # traverse any children
 	    if len(curr["children"]) > 0:
-		iterate(curr["children"], check_join, branch_ends, dcurr_traceid)
+		iterate(curr["children"], check_join, branch_ends, dcurr_traceid, curr_stop)
 
             # traverse rest of level
 	    if len(rest) > 0:
-		iterate(rest, check_join, branch_ends, dcurr_traceid)
+		iterate(rest, check_join, branch_ends, dcurr_traceid, curr_stop)
 
 
     # BEGIN CALL
