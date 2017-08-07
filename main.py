@@ -16,20 +16,20 @@ except IndexError:
     print "index error"
     tracelist = extract_traces(sys.stdin.readlines())
 
-print_trace(tracelist)
+#print_trace(tracelist)
 
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
     group_traces(trace)
 
-# analyze groups for avg latency and variance
-#info = process_groups(categories, tracelist)
+#analyze groups for avg latency and variance
+info = process_groups(categories, tracelist)
 
-#for key in categories.keys():
-#    # fix this because latencies will keep getting updated
-#    latencies = edge_latencies(key, tracelist)
-#    cov_matrix(latencies[0], tracelist)
+for key in categories.keys():
+    # fix this because latencies will keep getting updated
+    latencies = edge_latencies(key, tracelist)
+    cov_matrix(latencies[0], tracelist)
 
 
 # print human-meaningful info
@@ -42,10 +42,10 @@ for key in categories.keys():
 print "Number of traces: %d" % len(tracelist)
 print "Number of categories: %d \n" % key_counter
 
-print "Categories: \n"
+print "---Categories--- \n"
 for key, values in categories.items():
     print "Category hashval: " + str(key)
     print "Number of traces: " + str(len(values))
-    #for val in info[key]:
-    #    print (val + ': ' + str(info[key][val]))
+    for val in info[key]:
+        print (val + ': ' + str(info[key][val]))
     print "\n"

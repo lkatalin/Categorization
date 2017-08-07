@@ -40,7 +40,6 @@ def hashval(trace):
     hashval = "".join(trunc)
     #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
     #hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
-    print "hashval is: " + str(hashval)
     return hashval
 
 def group_traces(trace):
@@ -126,9 +125,14 @@ def edge_latencies(group, tlist):
         psum = 0
         numvals = len(values)
         for value in values:
-            dval = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-            psum += dval
-        edge_averages[key] = psum / numvals
+            print value
+            dateval = datetime.strptime(value, "%H:%M:%S.%f")
+            # this doesn't account for date changes, i guess
+            psum += dateval.second + 60*dateval.minute + 3600*dateval.hour
+        psum /= numvals
+        convert = str(psum/3600) + ' ' + str((psum%3600)/60) + ' ' + str(psum%60)
+        edge_averages[key] = datetime.strptime(convert, "%H %M %S")
+        print "edge latency is: " + str(edge_averages[key])
 
     # calculate variance
     for key, values in edge_latencies.items():
