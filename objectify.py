@@ -21,15 +21,18 @@ class Trace(object):
         self.traceName = re.search(r'Digraph \w', trace).group(0)
         self.mainText = trace
         self.response = re.search(r'R: (.*?) usecs', trace).group(1)
-        self.responseTime = re.search(r'RT: (.*?) usecs', trace).group(1)
+        #self.responseTime = re.search(r'RT: (.*?) usecs', trace).group(1)
         self.labels = re.findall(r'\"(.*?)\"', trace)
         self.edgeLabels = [ label for label in self.labels if (label[0].isdigit() or label[0] == '-')]
         self.nodeLabels = [ label for label in self.labels if not (label[0].isdigit() or label[0] == '-')]
-        self.fullNodes = re.findall(r'[^(\d+ -> \w*)](\d+[-*:*\w*\.*]*\s\[.+\])', trace)
+        #self.fullNodes = re.findall(r'[^(\d+ -> \w*)](\d+[-*:*\w*\.*]*\s\[.+\])', trace)
         self.fullEdges = re.findall(r'\d+.* -> .+', trace)
         self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
-        self.dag = dag(self)
-        self.hashval = hashval(self)
+        #self.dag = dag(self)
+        #self.hashval = hashval(self)
+
+        # for DOTs that came out of OSP span JSONs
+        self.fullNodes = re.findall(r'^\s*((?!.* -> .*).*\[.*\])$', trace, re.MULTILINE)
 
         # FOR SPECTROSCOPE VERSION
         #self.edges = re.findall(r'\d+\.\d+ -> \d+\.\d+', trace)

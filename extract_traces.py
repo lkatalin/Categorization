@@ -9,7 +9,7 @@ def extract_traces(infile):
    
     for line in infile:
         #parse line to see if end of trace
-        completeTrace = re.search(r'(.*?}.)(.*?)$', line)
+        completeTrace = re.search(r'(.*?})(.*?)$', line)
 
         #if end, add last part to buffer and create trace object
         if completeTrace:

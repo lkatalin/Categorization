@@ -6,6 +6,7 @@ from datetime import datetime
 # - control for two sequential concurrent batches
 # - handle two starting elements (fan out at beginning)
 # - only toggle or only pass check_join?
+# - what's up with negative latencies?
 
 def json_dag(file):
     '''

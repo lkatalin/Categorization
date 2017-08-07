@@ -8,7 +8,7 @@ def print_trace(tracelist):
         print trace.mainText
         print "\ntracename: " + trace.traceName
         print "response: " + trace.response
-        print "response time: " + trace.responseTime
+        #print "response time: " + trace.responseTime
         #print "\nlabels: "
         #for label in trace.labels:
         #    print label

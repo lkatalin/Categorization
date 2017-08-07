@@ -16,7 +16,10 @@ except IndexError:
     print "index error"
     tracelist = extract_traces(sys.stdin.readlines())
 
-#print_trace(tracelist)
+print "tracelist:"
+print tracelist
+print_trace(tracelist)
+
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
