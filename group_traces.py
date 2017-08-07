@@ -3,6 +3,7 @@ import numpy as np
 from make_dag import *
 from decimal import *
 from datetime import datetime
+from datetime import timedelta
 
 # groups of traces based on structure
 categories = {}
@@ -126,13 +127,15 @@ def edge_latencies(group, tlist):
         numvals = len(values)
         for value in values:
             print value
-            dateval = datetime.strptime(value, "%H:%M:%S.%f")
-            # this doesn't account for date changes, i guess
-            psum += dateval.second + 60*dateval.minute + 3600*dateval.hour
-        psum /= numvals
-        convert = str(psum/3600) + ' ' + str((psum%3600)/60) + ' ' + str(psum%60)
-        edge_averages[key] = datetime.strptime(convert, "%H %M %S")
-        print "edge latency is: " + str(edge_averages[key])
+            dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
+            print dateval
+            psum += timedelta(dateval)
+            print psum
+            #psum += 1000000*dateval.second + (1000000*60)*dateval.minute + (1000000*3600)*dateval.hour + dateval.microsecond
+        #psum /= numvals
+        #convert = str(psum/(3600*1000000)) + ' ' + str((psum%(3600)/60) + ' ' + str(psum%60) + ' ' + str(psum)
+        #edge_averages[key] = datetime.strptime(convert, "%H %M %S")
+        print "edge average is: " + str(edge_averages[key])
 
     # calculate variance
     for key, values in edge_latencies.items():
@@ -146,16 +149,16 @@ def edge_latencies(group, tlist):
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-    #print "edges in group: "
-    #print edge_latencies
+    print "edges in group: "
+    print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
-#    print "edge averages: "
-#    print edge_averages
+    #print "edge averages: "
+    #print edge_averages
 
-#    print "edge variances: "
-#    print edge_variance
+    #print "edge variances: "
+    #print edge_variance
 
 
 def cov_matrix(e_lat_dict, tlist):
