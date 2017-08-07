@@ -17,16 +17,21 @@ def dag(trace):
         # on the label, the hash map keys are the idnums because
         # this will make lookup easy when processing edges
 
-        #idnum = re.search(r'(\d+.*) \[', node_text).group(1)
+        idnum = re.search(r'(.*) \[', node_text).group(1)
         label = re.search(r'\[label="(.*)"\]', node_text).group(1)
         
         # OLD
-        idnum = re.search(r'\d+.\d+', node_text).group(0)
-        
+        #idnum = re.search(r'\d+.\d+', node_text).group(0)
+  
+        print label + " " + idnum
+ 
         new_node = Node(label)
         new_node.id = idnum
 
+        # to find node object by its idnum
         name_to_obj[idnum] = new_node
+
+        # node considered a root until dst for other node
         root.append(new_node) 
 
     for edge in trace.fullEdges:
@@ -42,16 +47,18 @@ def dag(trace):
         dst_str = re.search(r'-> (.+) \[', edge).group(1)
         src_str = re.search(r'(.+) ->', edge).group(0)
 
+        print "source: %s, dest: %s" % (src_str, dst_str)
+
         # update both node object fields, if nodes exist
         try:
 	    srcnode = name_to_obj[src_str]
 	    dstnode = name_to_obj[dst_str]
 	    srcnode.add_child(dstnode)
 	    dstnode.add_parent(srcnode)
-            #dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
+            dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
 
             # OLD
-	    dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
+	    #dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
 	    
             # keep track of potential root nodes
             #import pdb; pdb.set_trace()
