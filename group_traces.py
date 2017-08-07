@@ -2,6 +2,7 @@ import re
 import numpy as np
 from make_dag import *
 from decimal import *
+from datetime import datetime
 
 # groups of traces based on structure
 categories = {}
@@ -34,8 +35,12 @@ def hashval(trace):
     creates a meaningful string for the hash value
     of each trace (stored in trace object).
     """
-    hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
+    lst = depth_first_traversal(trace)
+    trunc = [re.search(r'....$', x).group(0) for x in lst]
+    hashval = "".join(trunc)
+    #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
     #hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
+    print "hashval is: " + str(hashval)
     return hashval
 
 def group_traces(trace):
@@ -109,8 +114,8 @@ def edge_latencies(group, tlist):
         for full_edge in t.fullEdges:
             #edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
             #time = re.search(r'label="(.*)"', full_edge).group(1)
-            edge = re.search(r'\d+.\d+ -> \d+.\d+', full_edge).group(0)
-            time = re.search(r'(\d+.\d+) us', full_edge).group(1)
+            edge = re.search(r'.* -> .*', full_edge).group(0)
+            time = re.search(r'label=\"(.+)\"', full_edge).group(1)
             if edge in edge_latencies:
                 edge_latencies[edge].append(time)
             else: 
@@ -121,7 +126,8 @@ def edge_latencies(group, tlist):
         psum = 0
         numvals = len(values)
         for value in values:
-            psum += float(value)
+            dval = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+            psum += dval
         edge_averages[key] = psum / numvals
 
     # calculate variance

@@ -30,8 +30,8 @@ class Trace(object):
         self.fullNodes = re.findall(r'^\s*((?!.* -> .*).*\[.*\])$', trace, re.MULTILINE)
         self.fullEdges = re.findall(r'\S+ -> .+', trace)
         self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
-        #self.dag = dag(self)
-        #self.hashval = hashval(self)
+        self.dag = dag(self)
+        self.hashval = hashval(self)
 
 
         # FOR SPECTROSCOPE VERSION

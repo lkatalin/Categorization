@@ -22,8 +22,6 @@ def dag(trace):
         
         # OLD
         #idnum = re.search(r'\d+.\d+', node_text).group(0)
-  
-        print label + " " + idnum
  
         new_node = Node(label)
         new_node.id = idnum
@@ -45,17 +43,32 @@ def dag(trace):
 
         # for DOT output from json_dag.py (span -> DAG)
         dst_str = re.search(r'-> (.+) \[', edge).group(1)
-        src_str = re.search(r'(.+) ->', edge).group(0)
+        src_str = re.search(r'(.+) ->', edge).group(1)
 
-        print "source: %s, dest: %s" % (src_str, dst_str)
 
         # update both node object fields, if nodes exist
         try:
 	    srcnode = name_to_obj[src_str]
+        except KeyError:
+            print "error: source node %s of edge not in node group" % src_str
+            for n in name_to_obj.iteritems():
+                print n
+            sys.exit()
+        try:
 	    dstnode = name_to_obj[dst_str]
-	    srcnode.add_child(dstnode)
-	    dstnode.add_parent(srcnode)
-            dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
+        except KeyError:
+            print "error: dest node of edge not in node group" % dst_str
+            for n in name_to_obj.iteritems():
+                print n
+            sys.exit()
+
+	srcnode.add_child(dstnode)
+	dstnode.add_parent(srcnode)
+        dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
+
+            #print "srcnode: %s" % srcnode.name
+            #print "srcnode children:"
+            #print srcnode.children
 
             # OLD
 	    #dstnode.latency = re.search(r'R: (\d+.\d+ us)', edge).group(1)
@@ -65,12 +78,12 @@ def dag(trace):
 
             #sometimes dstnode may already be removed if it showed up before as the dst for something else
             #but should switch to looking these up by ID instead of name...
-            if dstnode in root:
-	        root.remove(dstnode)
+        if dstnode in root:
+            root.remove(dstnode)
 
-        except KeyError:
-            print "error: source or destination node of edge not in node group"
-            sys.exit()
+#        except KeyError:
+#            print "error: source or destination node of edge not in node group"
+#            sys.exit()
  
     if len(root) == 1:
 	#print "Trace structure for Trace %s: " % trace.traceId
