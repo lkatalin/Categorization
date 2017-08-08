@@ -15,5 +15,5 @@ MAIN.py processes a DOT file containing potentially many traces as input. It cal
 Other helper files include:
 * **OBJECTIFY.py** - creates a list of trace objects and their metadata.
 * **MAKE_DAG.py** and **MAKE_NODES.py** - work together to create a linked list of node objects (supposedly a directed acyclic graph), each pointing to child and parent nodes, representing system interactions / RPCs. The parentless root node is associated with a trace object and the root node's tree represents the structure of that trace.
-* **JSON_PARSER.py** - parses a JSON file (such as the output of OSprofiler) into a DOT file for intake by MAIN.py.
+* **JSON_PARSER.py (deprecated - use JSON_DAG.py)** - parses a JSON file (such as the output of OSprofiler) into a DOT file for intake by MAIN.py. Should work as input for main.py, but does not control for concurrency or other important time relationships.
 * **JSON_DAG.py** - translates a span-model, JSON-format trace file into a DAG-model, DOT-format trace file.
