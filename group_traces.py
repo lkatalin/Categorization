@@ -39,8 +39,6 @@ def hashval(trace):
     lst = depth_first_traversal(trace)
     trunc = [re.search(r'....$', x).group(0) for x in lst]
     hashval = "".join(trunc)
-    #hashval = "".join(re.findall(r'(\d)\.1', "".join(depth_first_traversal(trace))))
-    #hashval = "".join(re.findall(r'.(\d+)', "".join(depth_first_traversal(trace))))
     return hashval
 
 def group_traces(trace):

@@ -3,16 +3,11 @@
 
 def print_trace(tracelist):
     for trace in tracelist:
-        print "trace id: "
-        print trace.traceId
-        print "trace raw text: "
+        print "\n\ntrace id: " + trace.traceId
+        print "\ntrace raw text: \n"
         print trace.mainText
         print "\ntracename: " + trace.traceName
-        print "response: " + trace.response
-        #print "response time: " + trace.responseTime
-        #print "\nlabels: "
-        #for label in trace.labels:
-        #    print label
+        print "\ntotal response time: " + trace.response
         print "\nedge labels: "
         for label in trace.edgeLabels:
             print label
@@ -28,9 +23,7 @@ def print_trace(tracelist):
         print "\nedges:"
         for edge in trace.edges:
             print edge
-        print "\nhashval: ~~~~"
-        print trace.hashval 
-        print "~~~~"
+        print "\nhashval: " + trace.hashval
 
 def print_tree(current_node, indent="", last='updown'):
     nb_children = lambda node: sum(nb_children(child) for child in node.children) + 1
