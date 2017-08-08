@@ -166,12 +166,14 @@ def edge_latencies(group, tlist):
                 print "avg turns into " + str(favg)
 		curr = (fval - favg) ** 2
 		psum += curr
-            edge_variance[key] = (1 / float(numvals - 1)) * psum
+                print "total is..." + str(psum)
+            #edge_variance[key] = (1 / float(numvals - 1)) * psum
+            edge_variance[key] = (1 / float(numvals)) * psum
 
-        print "edge variance is: " + str(edge_variance[key]) + "\n"
+        print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
-    print "edges in group: "
-    print edge_latencies
+    #print "edges in group: "
+    #print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
