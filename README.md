@@ -23,7 +23,7 @@ Other helper files include:
 
 ### Option 1: JSON
 1. Generate a span-style JSON file with OSProfiler, named `file.json`. (All OSProfiler outputs will be span-style.)
-2. Run `python json_dag.py file.json' to output a DAG-style DOT file to stdout, or run 'python json_dag.py file.json to-file' to output the same to a file. The file will be named `base\_id.dot` where 'base\_id` is the base\_id of the trace, and the file will be generated in the same directory as `main.py` resides.
+2. Run `python json_dag.py file.json` to output a DAG-style DOT file to stdout, or run 'python json_dag.py file.json to-file' to output the same to a file. The file will be named `base\_id.dot` where 'base\_id` is the base\_id of the trace, and the file will be generated in the same directory as `main.py` resides.
 3. Run 'python main.py base\_id.dot' on the file generated in Step 2.
 
 Alternatively: Combine steps 2 and 3 above by running `python json_dag.py file.json | python main.py`
