@@ -95,8 +95,36 @@ def process_groups(d, tlist):
         group_info[hashv] = {'Average' : avg, 'Variance': var}
     return group_info
 
-        
+# ----------- time helpers ------------------------------------------------
 
+def str_to_time(string):
+    '''
+    casts formatted string into datetime's time type
+    '''
+    return datetime.strptime(string, "%H:%M:%S.%f").time()
+
+def time_to_float(time):
+    '''
+    casts datetime type into float in microseconds
+    '''
+    return float((time.hour * 3600000000) + (time.minute * 60000000) + 
+		 (time.second * 1000000) + time.microsecond)
+
+def timedelta_to_float(td):
+    '''
+    casts timedelta to float in microseconds. timedelta does not have
+    hour or minute methods like time does
+    '''
+    return float((td.seconds * 1000000) + td.microseconds)
+
+def time_to_timedelta(time):
+    '''
+    casts time to timedelta
+    '''
+    return timedelta(hours=time.hour, minutes=time.minute, seconds=time.second, 
+		     microseconds=time.microsecond)
+        
+# --------------------------------------------------------------------------
 
 def edge_latencies(group, tlist):
     """
@@ -135,10 +163,9 @@ def edge_latencies(group, tlist):
         numvals = len(values)
 
         for value in values:
-            # sum up all latencies in this group
-            dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
-            deltaval = timedelta(hours=dateval.hour, minutes=dateval.minute, 
-                       seconds=dateval.second, microseconds=dateval.microsecond)
+            # sum up all latencies in this group as timedelta values
+            dateval = str_to_time(value)
+            deltaval = time_to_timedelta(dateval)
             psum += deltaval
 
         avg = psum / numvals
@@ -157,12 +184,12 @@ def edge_latencies(group, tlist):
             print "now on edge " + str(key)
 	    for value in values:
                 print "value: " + str(value)
-                dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
+                dateval = str_to_time(value)
 		avg = edge_averages[key]
                 print "avg:" + str(avg)
-                fval = float((dateval.hour * 3600000000) + (dateval.minute * 60000000) + (dateval.second * 1000000) + dateval.microsecond)
+                fval = time_to_float(dateval) 
                 print "value turns into " + str(fval)
-                favg = float((avg.seconds * 1000000) + avg.microseconds)
+                favg = timedelta_to_float(avg)
                 print "avg turns into " + str(favg)
 		curr = (fval - favg) ** 2
 		psum += curr
