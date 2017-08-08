@@ -9,14 +9,13 @@ from edge_data import *
 # open file from arg or use piped input from stdin
 # to be used if piping from json_parser
 try:
-    #import pdb; pdb.set_trace()
     filename = sys.argv[1]
     with open(filename) as infile:
         tracelist = extract_traces(infile)
 except IndexError:
-    print "index error"
     tracelist = extract_traces(sys.stdin.readlines())
 
+# uncomment below to get verbose dump of all trace-object data
 #print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
@@ -24,7 +23,7 @@ for trace in tracelist:
     group_traces(trace)
 
 #analyze groups for avg latency and variance
-info = process_groups(categories, tracelist)
+group_data = process_groups(categories, tracelist)
 
 # print human-meaningful info
 print "\n----------------------------SUMMARY OF TRACE DATA------------------------------ \n"
@@ -40,13 +39,13 @@ print "INFO BY CATEGORY: \n"
 for key, values in categories.items():
     print "Category hashval: " + str(key)
     print "Number of traces: " + str(len(values))
-    for val in info[key]:
-        print (val + ': ' + str(info[key][val]))
+    for val in group_data[key]:
+        print (val + ': ' + str(group_data[key][val]))
     print "\n"
 
 group_ctr = 1
 for key in categories.keys():
-    # fix this because latencies will keep getting updated
+    # to do: fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
     cov_matrix(latencies[0], tracelist, group_ctr)
     group_ctr += 1
