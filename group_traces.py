@@ -172,20 +172,30 @@ def edge_latencies(group, tlist):
 
         print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
-    #print "edges in group: "
-    #print edge_latencies
+    print "edges in group: "
+    print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
 
 def cov_matrix(e_lat_dict, tlist):
     """
+    takes an edge latency dict (such as from above) and a tracelist as args;
     returns covariance matrix for each pair of edges within a group.
     """
     if len(tlist) == 1:
         print "\ntoo few data points to create covariance matrix \n"
     else:
-        lat_array = np.array([e_lat_dict[k] for k in e_lat_dict]).astype(np.float)
+        def to_float(time_list):
+            ftime_list = []
+            for time in time_list:
+                dtime = datetime.strptime(time, "%H:%M:%S.%f")
+                ftime = float((dtime.hour * 3600000000) + (dtime.minute * 60000000) + (dtime. second * 1000000) + dtime.microsecond)
+                ftime_list.append(ftime)
+            return ftime_list
+
+        float_list = [to_float(e_lat_dict[k]) for k in e_lat_dict]
+        lat_array = np.array([f for f in float_list]).astype(np.float)
         print "\n array of latencies in group per edge: \n" 
         print  lat_array
 	matrix = np.cov(lat_array)
