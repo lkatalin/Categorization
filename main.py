@@ -4,6 +4,7 @@ from extract_traces import *
 from print_stuff import *
 from group_traces import *
 import fileinput
+from edge_data import *
 
 # open file from arg or use piped input from stdin
 # to be used if piping from json_parser
@@ -18,7 +19,6 @@ except IndexError:
 
 #print_trace(tracelist)
 
-
 # group traces based on hashvalue (structure)
 for trace in tracelist:
     group_traces(trace)
@@ -26,14 +26,8 @@ for trace in tracelist:
 #analyze groups for avg latency and variance
 info = process_groups(categories, tracelist)
 
-for key in categories.keys():
-    # fix this because latencies will keep getting updated
-    latencies = edge_latencies(key, tracelist)
-    cov_matrix(latencies[0], tracelist)
-
-
 # print human-meaningful info
-print "\nInfo dump about current traces: \n"
+print "\n----------------------------SUMMARY OF TRACE DATA------------------------------ \n"
 
 key_counter = 0
 for key in categories.keys():
@@ -42,10 +36,17 @@ for key in categories.keys():
 print "Number of traces: %d" % len(tracelist)
 print "Number of categories: %d \n" % key_counter
 
-print "---Categories--- \n"
+print "INFO BY CATEGORY: \n"
 for key, values in categories.items():
     print "Category hashval: " + str(key)
     print "Number of traces: " + str(len(values))
     for val in info[key]:
         print (val + ': ' + str(info[key][val]))
     print "\n"
+
+group_ctr = 1
+for key in categories.keys():
+    # fix this because latencies will keep getting updated
+    latencies = edge_latencies(key, tracelist)
+    cov_matrix(latencies[0], tracelist, group_ctr)
+    group_ctr += 1
