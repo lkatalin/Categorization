@@ -92,5 +92,5 @@ def process_groups(d, tlist):
         else:
             var = 0
 
-        group_info[hashv] = {'Average' : avg, 'Variance': var}
+        group_info[hashv] = {'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info
