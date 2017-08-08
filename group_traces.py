@@ -100,7 +100,12 @@ def process_groups(d, tlist):
 
 def edge_latencies(group, tlist):
     """
-    assumes all traces in group have exact same structure
+    creates key-value pairs of edge : [list of latencies found for edge]
+    in one group;
+    returns this list, a list of average latencies per edge, and a list 
+    of variance per edge
+    ...
+    ** assumes all traces in group have exact same structure **
     ...
     possibly, we could group the edges by label instead of tid -> tid,
     which would give us more data per edge
@@ -123,24 +128,20 @@ def edge_latencies(group, tlist):
 
     # calculate averages
     for key, values in edge_latencies.items():
+
+        # baseline
         psum = timedelta(hours=0, minutes=0, seconds=0, microseconds=0)
         numvals = len(values)
-        for value in values:
-            print value
-            dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
-            print dateval
-            deltaval = timedelta(hours=dateval.hour, minutes=dateval.minute, seconds=dateval.second, microseconds=dateval.microsecond)
-            psum += deltaval
-            print psum
-            psum += timedelta(hours=1)
-            print "new psum:"
-            print psum
-        
-        avg = psum / (numvals + 1)
-        print "avg:"
-        print avg
 
-        #edge_averages[key] = datetime.strptime(convert, "%H %M %S")
+        for value in values:
+            # sum up all latencies in this group
+            dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
+            deltaval = timedelta(hours=dateval.hour, minutes=dateval.minute, 
+                       seconds=dateval.second, microseconds=dateval.microsecond)
+            psum += deltaval
+
+        avg = psum / numvals
+        edge_averages[key] = avg
         #print "edge average is: " + str(edge_averages[key])
 
     # calculate variance
@@ -155,16 +156,12 @@ def edge_latencies(group, tlist):
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-    print "edges in group: "
-    print edge_latencies
+        #print "edge variance is: " + str(edge_variance[key])
+
+    #print "edges in group: "
+    #print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
-
-    #print "edge averages: "
-    #print edge_averages
-
-    #print "edge variances: "
-    #print edge_variance
 
 
 def cov_matrix(e_lat_dict, tlist):
