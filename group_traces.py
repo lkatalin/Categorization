@@ -216,8 +216,10 @@ def cov_matrix(e_lat_dict, tlist):
         def to_float(time_list):
             ftime_list = []
             for time in time_list:
-                dtime = datetime.strptime(time, "%H:%M:%S.%f")
-                ftime = float((dtime.hour * 3600000000) + (dtime.minute * 60000000) + (dtime. second * 1000000) + dtime.microsecond)
+                t = str_to_time(time)
+                ftime = time_to_float(t)
+                #dtime = datetime.strptime(time, "%H:%M:%S.%f")
+                #ftime = float((dtime.hour * 3600000000) + (dtime.minute * 60000000) + (dtime. second * 1000000) + dtime.microsecond)
                 ftime_list.append(ftime)
             return ftime_list
 
