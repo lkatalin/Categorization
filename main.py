@@ -16,7 +16,7 @@ except IndexError:
     tracelist = extract_traces(sys.stdin.readlines())
 
 # uncomment below to get verbose dump of all trace-object data
-#print_trace(tracelist)
+print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:

@@ -2,13 +2,15 @@ import re
 from group_traces import *
 
 ids_used = []
-ctr = 0
+ctr = 1
 
 def gen_traceid(base):
+    global ctr
     if base in ids_used:
-        ids_used.append(base + "_" + ctr)
+        new_base = base + "_%03d" % ctr
+        ids_used.append(new_base)
         ctr += 1
-        return base + "_" + ctr
+        return new_base
     else:
         ids_used.append(base)
         return base
@@ -29,7 +31,7 @@ class Trace(object):
     hashval = ""
 
     def __init__(self, trace):
-        self.traceId = gen_traceid(re.search(r'# (.*) R:', trace).group(1))
+        #self.traceId = gen_traceid(re.search(r'# (.*) R:', trace).group(1))
         self.traceName = re.search(r'Digraph \w*', trace).group(0)
         self.mainText = trace
         self.response = re.search(r'R: (.*?) usecs', trace).group(1)
@@ -43,6 +45,7 @@ class Trace(object):
         self.fullEdges = re.findall(r'\S+ -> .+', trace)
         self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
         self.dag = dag(self)
+        self.traceId = gen_traceid(self.dag.id)
         self.hashval = hashval(self)
 
 

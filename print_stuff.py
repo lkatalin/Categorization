@@ -3,8 +3,9 @@
 
 def print_trace(tracelist):
     for trace in tracelist:
+        print "trace id: "
         print trace.traceId
-        print "trace: "
+        print "trace raw text: "
         print trace.mainText
         print "\ntracename: " + trace.traceName
         print "response: " + trace.response
