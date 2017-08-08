@@ -9,7 +9,7 @@ def dag(trace):
     their parents and children. returns root node of structure.
     """
     # mapping of node names to actual node objects
-    name_to_obj = {}
+    id_to_obj = {}
     # root node for a trace's DAG structure
     root = []
 
@@ -65,8 +65,8 @@ def dag(trace):
             root.remove(dstnode.id)
  
     if len(root) == 1:
-        return name_to_obj[root[0]]
+        return id_to_obj[root[0]]
     else:
-        return name_to_obj[root[0]]
+        return id_to_obj[root[0]]
         #print "error: multiple root nodes detected in trace"
         #sys.exit()

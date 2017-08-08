@@ -2,8 +2,7 @@ import re
 import numpy as np
 from make_dag import *
 from decimal import *
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from group_traces import *
 
 # ----------- time conversion helpers --------------------------------------------
