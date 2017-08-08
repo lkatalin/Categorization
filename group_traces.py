@@ -103,7 +103,8 @@ def edge_latencies(group, tlist):
     creates key-value pairs of edge : [list of latencies found for edge]
     in one group;
     returns this list, a list of average latencies per edge, and a list 
-    of variance per edge
+    of variance per edge;
+    variance calculated in microseconds
     ...
     ** assumes all traces in group have exact same structure **
     ...
@@ -119,7 +120,7 @@ def edge_latencies(group, tlist):
         for full_edge in t.fullEdges:
             #edge = re.search(r'(\d+.* -> \d+.*) \[', full_edge).group(1)
             #time = re.search(r'label="(.*)"', full_edge).group(1)
-            edge = re.search(r'.* -> .*', full_edge).group(0)
+            edge = re.search(r'(.* -> .*) \[', full_edge).group(1)
             time = re.search(r'label=\"(.+)\"', full_edge).group(1)
             if edge in edge_latencies:
                 edge_latencies[edge].append(time)
@@ -145,21 +146,32 @@ def edge_latencies(group, tlist):
         #print "edge average is: " + str(edge_averages[key])
 
     # calculate variance
+    '''
+    in microseconds
+    '''
     for key, values in edge_latencies.items():
 	if numvals < 2:
 	    edge_variance[key] = 0
 	else:
 	    psum = 0
+            print "now on edge " + str(key)
 	    for value in values:
+                print "value: " + str(value)
+                dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
 		avg = edge_averages[key]
-		curr = (float(value) - avg) ** 2
+                print "avg:" + str(avg)
+                fval = float((dateval.hour * 3600000000) + (dateval.minute * 60000000) + (dateval.second * 1000000) + dateval.microsecond)
+                print "value turns into " + str(fval)
+                favg = float((avg.seconds * 1000000) + avg.microseconds)
+                print "avg turns into " + str(favg)
+		curr = (fval - favg) ** 2
 		psum += curr
             edge_variance[key] = (1 / float(numvals - 1)) * psum
 
-        #print "edge variance is: " + str(edge_variance[key])
+        print "edge variance is: " + str(edge_variance[key]) + "\n"
 
-    #print "edges in group: "
-    #print edge_latencies
+    print "edges in group: "
+    print edge_latencies
 
     return (edge_latencies, edge_averages, edge_variance)
 
