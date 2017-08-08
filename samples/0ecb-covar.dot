@@ -1,0 +1,23 @@
+ # 1 R: 12.000000 usecs 
+Digraph X {
+	ae10fbb8536eb4c1fa2938d04d4e466aa [label="wsgi-root - osapi_volume"]
+	a9889cc223cb54c0192f749a0151b5d57 [label="wsgi-concur1 - osapi_volume"]
+	ad09455c56efc4225b311fd9d6225e355 [label="wsgi-concur2 - osapi_volume"]
+	ad8eaf330c3f148a1859ec2ac637be38b [label="wsgi-other - osapi_volume"]
+	ae10fbb8536eb4c1fa2938d04d4e466aa -> a9889cc223cb54c0192f749a0151b5d57 [label="0:00:00.01"]
+	ae10fbb8536eb4c1fa2938d04d4e466aa -> ad09455c56efc4225b311fd9d6225e355 [label="0:00:00.02"]
+	a9889cc223cb54c0192f749a0151b5d57 -> ad8eaf330c3f148a1859ec2ac637be38b [label="0:00:00.01"]
+	ad09455c56efc4225b311fd9d6225e355 -> ad8eaf330c3f148a1859ec2ac637be38b [label="0:00:00.01"]
+}
+
+ # 2 R: 15.000000 usecs 
+Digraph X {
+	ae10fbb8536eb4c1fa2938d04d4e466aa [label="wsgi-root - osapi_volume"]
+	a9889cc223cb54c0192f749a0151b5d57 [label="wsgi-concur1 - osapi_volume"]
+	ad09455c56efc4225b311fd9d6225e355 [label="wsgi-concur2 - osapi_volume"]
+	ad8eaf330c3f148a1859ec2ac637be38b [label="wsgi-other - osapi_volume"]
+	ae10fbb8536eb4c1fa2938d04d4e466aa -> a9889cc223cb54c0192f749a0151b5d57 [label="0:00:00.03"]
+	ae10fbb8536eb4c1fa2938d04d4e466aa -> ad09455c56efc4225b311fd9d6225e355 [label="0:00:00.04"]
+	a9889cc223cb54c0192f749a0151b5d57 -> ad8eaf330c3f148a1859ec2ac637be38b [label="0:00:00.09"]
+	ad09455c56efc4225b311fd9d6225e355 -> ad8eaf330c3f148a1859ec2ac637be38b [label="0:00:00.03"]
+}
