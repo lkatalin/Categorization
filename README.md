@@ -26,7 +26,7 @@ Other helper files include:
 2. Run `python json_dag.py file.json` to output a DAG-style DOT file to stdout, or run `python json_dag.py file.json to-file` to output the same to a file. The file will be named `base_id.dot` where `base_id` is the base ID of the trace, and the file will be generated in the same directory as the one in which `main.py` resides.
 3. Run `python main.py base_id.dot` on the file generated in Step 2.
 
-Alternatively: Combine steps 2 and 3 above by running `python json_dag.py file.json | python main.py`
+Alternatively: Combine steps 2 and 3 above by running `python json_dag.py file.json | python main.py`.
 
 ### Option 2: DOT
 If you already have a DAG-style DOT file, skip to Step 3 above by running `python main.py yourfile.dot`.
