@@ -123,19 +123,25 @@ def edge_latencies(group, tlist):
 
     # calculate averages
     for key, values in edge_latencies.items():
-        psum = 0
+        psum = timedelta(hours=0, minutes=0, seconds=0, microseconds=0)
         numvals = len(values)
         for value in values:
             print value
             dateval = datetime.strptime(value, "%H:%M:%S.%f").time()
             print dateval
-            psum += timedelta(dateval)
+            deltaval = timedelta(hours=dateval.hour, minutes=dateval.minute, seconds=dateval.second, microseconds=dateval.microsecond)
+            psum += deltaval
             print psum
-            #psum += 1000000*dateval.second + (1000000*60)*dateval.minute + (1000000*3600)*dateval.hour + dateval.microsecond
-        #psum /= numvals
-        #convert = str(psum/(3600*1000000)) + ' ' + str((psum%(3600)/60) + ' ' + str(psum%60) + ' ' + str(psum)
+            psum += timedelta(hours=1)
+            print "new psum:"
+            print psum
+        
+        avg = psum / (numvals + 1)
+        print "avg:"
+        print avg
+
         #edge_averages[key] = datetime.strptime(convert, "%H %M %S")
-        print "edge average is: " + str(edge_averages[key])
+        #print "edge average is: " + str(edge_averages[key])
 
     # calculate variance
     for key, values in edge_latencies.items():
