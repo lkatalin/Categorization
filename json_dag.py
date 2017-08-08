@@ -165,6 +165,7 @@ def json_dag(file):
 
 
     # BEGIN CALL
+    total_time = json_data["info"]["finished"]
     iterate(json_data["children"], False, [])
 
     # OUTPUT 
@@ -172,7 +173,7 @@ def json_dag(file):
     if len(sys.argv) > 2 and sys.argv[2] == "to-file":
         sys.stdout = open('%s.dot' % json_data["children"][0]["parent_id"], 'w')
  
-    print " # 1 R: 0.000000 usecs \nDigraph X {"
+    print " # 1 R: %d usecs \nDigraph {" % total_time
     for node in node_list:
         print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
     for edge in edge_list:

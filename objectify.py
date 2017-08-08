@@ -18,7 +18,7 @@ class Trace(object):
 
     def __init__(self, trace):
         self.traceId = re.search(r'# (.*) R:', trace).group(1)
-        self.traceName = re.search(r'Digraph \w', trace).group(0)
+        self.traceName = re.search(r'Digraph \w*', trace).group(0)
         self.mainText = trace
         self.response = re.search(r'R: (.*?) usecs', trace).group(1)
         #self.responseTime = re.search(r'RT: (.*?) usecs', trace).group(1)
