@@ -59,14 +59,12 @@ def dag(trace):
 	dstnode.add_parent(srcnode)
         dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
 
-        #sometimes dstnode may already be removed if it showed up before as the dst for something else
-        #but should switch to looking these up by ID instead of name...
+        # remove from root if is dst
         if dstnode.id in root:
             root.remove(dstnode.id)
  
     if len(root) == 1:
         return id_to_obj[root[0]]
     else:
-        return id_to_obj[root[0]]
-        #print "error: multiple root nodes detected in trace"
-        #sys.exit()
+        print "error: multiple root nodes detected in trace"
+        sys.exit()

@@ -3,7 +3,6 @@ from make_dag import *
 from extract_traces import *
 from print_stuff import *
 from group_traces import *
-import fileinput
 from edge_data import *
 
 # open file from arg or use piped input from stdin
