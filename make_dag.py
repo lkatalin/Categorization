@@ -8,6 +8,7 @@ def dag(trace):
     creates treelike structure of nodes in trace linked to
     their parents and children. returns root node of structure.
     """
+    print "beginning to make dag"
     # mapping of node names to actual node objects
     id_to_obj = {}
     # root node for a trace's DAG structure
@@ -64,6 +65,7 @@ def dag(trace):
             root.remove(dstnode.id)
  
     if len(root) == 1:
+        print "dag is complete"
         return id_to_obj[root[0]]
     else:
         print "error: multiple root nodes detected in trace"

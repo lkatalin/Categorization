@@ -1,16 +1,34 @@
 import numpy as np
-from datetime import datetime, timedelta
+import re
+from datetime import time, datetime, timedelta
 from make_dag import *
 from decimal import *
 from group_traces import *
 
 # ----------- time conversion helpers --------------------------------------------
 
+def convert_microsec(string):
+    '''
+    for strings incompatible with datetime format
+    ex. 'R: 47.363121 us'
+    '''
+    raw_time = re.search(r'\d+(.\d+)*', string).group(0)
+    if raw_time > 1000000:
+        secs = int(float(raw_time) / 1000000)
+        msecs = int(float(raw_time) % 1000000)
+    else:
+        msecs = float(raw_time.split("."))
+    return time(0, 0, secs, msecs)
+    
+
 def str_to_time(string):
     '''
     casts formatted string into datetime's time type
     '''
-    return datetime.strptime(string, "%H:%M:%S.%f").time()
+    try:
+        return datetime.strptime(string, "%H:%M:%S.%f").time()
+    except ValueError:
+        return convert_microsec(string)
 
 def time_to_float(time):
     '''

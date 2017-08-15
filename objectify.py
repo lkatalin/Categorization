@@ -31,9 +31,12 @@ class Trace(object):
     hashval = ""
 
     def __init__(self, trace):
-        self.traceName = re.search(r'Digraph \w*', trace).group(0)
+        self.traceName = re.search(r'[D|d]igraph \w*', trace).group(0)
         self.mainText = trace
-        self.response = re.search(r'R: (.*?) usecs', trace).group(1)
+        if re.search(r'R: (.*?) usecs', trace) is not None:
+            self.response = re.search(r'R: (.*?) usecs', trace).group(1)
+        else:
+            self.response = '0'
         self.labels = re.findall(r'\"(.*?)\"', trace)
         self.edgeLabels = [ label for label in self.labels if (label[0].isdigit() or label[0] == '-')]
         self.nodeLabels = [ label for label in self.labels if not (label[0].isdigit() or label[0] == '-')]
