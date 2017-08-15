@@ -8,7 +8,6 @@ def dag(trace):
     creates treelike structure of nodes in trace linked to
     their parents and children. returns root node of structure.
     """
-    print "beginning to make dag"
     # mapping of node names to actual node objects
     id_to_obj = {}
     # root node for a trace's DAG structure
@@ -36,7 +35,10 @@ def dag(trace):
     for edge in trace.fullEdges:
         # extract source and dest nodes as strings
         # below works for DOT output from json_dag.py (span -> DAG)
-        dst_str = re.search(r'-> (.+) \[', edge).group(1)
+        try:
+            dst_str = re.search(r'-> (.+) \[', edge).group(1)
+        except AttributeError:
+            dst_str = re.search(r'\d+ -> (\d+)', edge).group(1)
         src_str = re.search(r'(.+) ->', edge).group(1)
 
         # update both node object fields, if nodes successfully created
@@ -65,7 +67,6 @@ def dag(trace):
             root.remove(dstnode.id)
  
     if len(root) == 1:
-        print "dag is complete"
         return id_to_obj[root[0]]
     else:
         print "error: multiple root nodes detected in trace"

@@ -25,7 +25,7 @@ def depth_first_traversal(trace):
 		nodes.append(cur_node.id)
 	    for child in cur_node.get_rev_children():
 		stack.insert(0, child)
-	    print "=> time of start: %s" % t.start
+	    #print "=> time of start: %s" % t.start
     return nodes 
 
 def hashval(trace):
