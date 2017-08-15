@@ -34,4 +34,4 @@ If you already have a DAG-style DOT file, skip to Step 3 above by running `pytho
 Note: Currently, `main.py` does not output to a file, only to stdout.
 
 ## Try it
-Download this code and run `python main.py` on the DOT files in /samples or run `python json\_dag.py [filename.json] | python main.py` on the JSON files in /samples.
+Download this code and run `python main.py` on the DOT files in /samples or run `python json_dag.py [filename.json] | python main.py` on the JSON files in /samples.
