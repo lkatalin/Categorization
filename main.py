@@ -1,4 +1,5 @@
 import sys
+from def_color import *
 from make_dag import *
 from extract_traces import *
 from print_stuff import *
@@ -34,17 +35,17 @@ for key in categories.keys():
 print "Number of traces: %d" % len(tracelist)
 print "Number of categories: %d \n" % key_counter
 
-print "INFO BY CATEGORY: \n"
-for key, values in categories.items():
-    print "Category hashval: " + str(key)
-    print "Number of traces: " + str(len(values))
-    for val in group_data[key]:
-        print (val + ': ' + str(group_data[key][val]))
-    print "\n"
+#print "INFO BY CATEGORY: \n"
+#for key, values in categories.items():
+#    print "Category hashval: " + str(key)
+#    print "Number of traces: " + str(len(values))
+#    for val in group_data[key]:
+#        print (val + ': ' + str(group_data[key][val]))
+#    print "\n"
 
-group_ctr = 1
+#group_ctr = 1
 for key in categories.keys():
     # to do: fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
-    cov_matrix(latencies[0], tracelist, group_ctr)
-    group_ctr += 1
+    cov_matrix(key, latencies[0], tracelist)
+    #group_ctr += 1

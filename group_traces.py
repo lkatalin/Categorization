@@ -75,23 +75,36 @@ def process_groups(d, tlist):
         # count edges
         t = trace_lookup(traceids[0], tlist)
         num_edges = len(t.edges)
- 
+
         # calculate average
         for tid in traceids:
             t = trace_lookup(tid, tlist)
             psum += float(t.response)
-        avg = psum / numvals
-        
-        # calculate variance
-        psum = 0
-        for tid in traceids:
-            t = trace_lookup(tid, tlist)
-            curr = (float(t.response) - avg) ** 2            
-            psum += curr
-        if (numvals - 1) > 1:
-            var = (1 / float(numvals - 1)) * psum
+        if numvals != 0:
+            avg = psum / numvals
         else:
+            print "numvals is zero"
+            avg = 9999
+        #print "average done"       
+ 
+        # calculate variance
+        #print "beginning variance"
+        psum = 0
+        if numvals < 2:
             var = 0
+        else: 
+	    for tid in traceids:
+       	        t = trace_lookup(tid, tlist)
+        	curr = (float(t.response) - avg) ** 2
+		print "curr is " + str(curr)            
+		psum += curr
+		print "psum is " + str(psum)
+            if numvals != 1:
+                var = (1 / float(numvals - 1)) * psum
+            else:
+                print "the number of vals was 1..."
+                var = 9999
+        #print "variance done"
 
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info

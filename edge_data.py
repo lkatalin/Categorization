@@ -1,6 +1,7 @@
 import numpy as np
 import re
 from datetime import time, datetime, timedelta
+from def_color import *
 from make_dag import *
 from decimal import *
 from group_traces import *
@@ -103,7 +104,7 @@ def edge_latencies(group, tlist):
     '''
     in microseconds
     '''
-    print "\n--------------------------- EDGE VARIANCE DATA -------------------------------\n"
+    #print "\n--------------------------- EDGE VARIANCE DATA -------------------------------\n"
     for key, values in edge_latencies.items():
 	if numvals < 2:
 	    edge_variance[key] = 0
@@ -112,13 +113,13 @@ def edge_latencies(group, tlist):
             print "Calculating variance for edge: " + str(key)
 	    for value in values:
                 dateval = str_to_time(value)
-		avg = edge_averages[key]
+       	        avg = edge_averages[key]
                 print "current value: %s, avg: %s" % (str(value), str(avg))
                 float_val = time_to_float(dateval) 
                 float_avg = timedelta_to_float(avg)
-		psum += ((float_val - float_avg) ** 2)
+                psum += ((float_val - float_avg) ** 2)
             edge_variance[key] = (1 / float(numvals)) * psum
-        print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
+        #print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
     #print "edges in group: "
     #print edge_latencies
@@ -126,7 +127,7 @@ def edge_latencies(group, tlist):
     return (edge_latencies, edge_averages, edge_variance)
 
 
-def cov_matrix(e_lat_dict, tlist, ctr):
+def cov_matrix(group, e_lat_dict, tlist):
     """
     takes an edge latency dict (such as from above) and a tracelist as args;
     returns covariance matrix for each pair of edges within a group.
@@ -145,10 +146,10 @@ def cov_matrix(e_lat_dict, tlist, ctr):
     else:
         float_list = [to_float(e_lat_dict[k]) for k in e_lat_dict]
         lat_array = np.array([f for f in float_list]).astype(np.float)
-        print "\narray of latencies in group %d per edge (one edge per row): \n" % ctr
+        print "\narray of latencies for group {}%s{} per edge (one edge per row): \n".format(G, W) % group
         print  lat_array
 	matrix = np.cov(lat_array)
-        print "\ncovariance matrix for edges of group %d: \n" % ctr
+        print "\ncovariance matrix for edges of group {}%s{}: \n".format(G, W) % group
 	print matrix
 	print "\n"
         return matrix
