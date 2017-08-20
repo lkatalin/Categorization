@@ -21,6 +21,7 @@ def dag(trace):
         '''
 
         idnum = re.search(r'(.*) \[', node_text).group(1)
+        print "idnum is " + str(idnum)
         label = re.search(r'\[label="(.*)"\]', node_text).group(1)
          
         new_node = Node(label)
@@ -67,6 +68,8 @@ def dag(trace):
             root.remove(dstnode.id)
  
     if len(root) == 1:
+        print "returning this from dag " + str(id_to_obj[root[0]])
+        print "its id is " + str(id_to_obj[root[0]].id)
         return id_to_obj[root[0]]
     else:
         print "error: multiple root nodes detected in trace"

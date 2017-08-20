@@ -96,9 +96,9 @@ def process_groups(d, tlist):
 	    for tid in traceids:
        	        t = trace_lookup(tid, tlist)
         	curr = (float(t.response) - avg) ** 2
-		print "curr is " + str(curr)            
+		#print "curr is " + str(curr)            
 		psum += curr
-		print "psum is " + str(psum)
+		#print "psum is " + str(psum)
             if numvals != 1:
                 var = (1 / float(numvals - 1)) * psum
             else:

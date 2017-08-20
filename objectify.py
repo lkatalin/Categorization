@@ -5,14 +5,19 @@ ids_used = []
 ctr = 1
 
 def gen_traceid(base):
+    print "starting with base " + str(base)
     global ctr
     if base in ids_used:
         new_base = base + "_%03d" % ctr
         ids_used.append(new_base)
         ctr += 1
+        print "current id is" + str(new_base)
+        print "ids used are..." + str(ids_used)
         return new_base
     else:
         ids_used.append(base)
+        print "current id is" + str(base)
+        print "ids used are..." + str(ids_used)
         return base
 
 # each trace object will store data for one trace
