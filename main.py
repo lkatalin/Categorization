@@ -16,7 +16,7 @@ except IndexError:
     tracelist = extract_traces(sys.stdin.readlines())
 
 # uncomment below to get verbose dump of all trace-object data per trace
-#print_trace(tracelist, str(7951795279537954795579567957795879599510951195129513951495159516951795189519952095219522952395249525952695279528952995309531953295339534))
+#print_trace(tracelist)
 
 # group traces based on hashvalue (structure)
 for trace in tracelist:
@@ -39,14 +39,12 @@ print "INFO BY CATEGORY: \n"
 for key, values in categories.items():
     print "Category hashval: " + str(key)
     print "Number of traces: " + str(len(values))
-    print "The traces are..." 
-    print values
+    print "The traces are: " + str (values) 
     for val in group_data[key]:
         print (val + ': ' + str(group_data[key][val]))
     print "\n"
 
 for key in categories.keys():
-    # to do: fix this because latencies will keep getting updated
     latencies = edge_latencies(key, tracelist)
     if len(categories[key]) > 1:
         cov_matrix(key, latencies[0], tracelist)

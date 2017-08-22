@@ -10,8 +10,8 @@ from group_traces import *
 
 def convert_microsec(string):
     '''
-    for strings incompatible with datetime format
-    ex. 'R: 47.363121 us'
+    converts strings incompatible with datetime format
+    ex. 'R: 47.363121 us' to datetime
     '''
     raw_time = re.search(r'\d+(.\d+)*', string).group(0)
     if raw_time > 1000000:
@@ -47,7 +47,7 @@ def timedelta_to_float(td):
 
 def time_to_timedelta(time):
     '''
-    casts time to timedelta
+    casts time to timedelta for adding / accumulating time
     '''
     return timedelta(hours=time.hour, minutes=time.minute, seconds=time.second, 
 		     microseconds=time.microsecond)
@@ -78,6 +78,7 @@ def edge_latencies(group, tlist):
             #time = re.search(r'label="(.*)"', full_edge).group(1)
             edge = re.search(r'(.* -> .*) \[', full_edge).group(1)
             time = re.search(r'label=\"(.+)\"', full_edge).group(1)
+  
             if edge in edge_latencies:
                 edge_latencies[edge].append(time)
             else: 
@@ -110,15 +111,14 @@ def edge_latencies(group, tlist):
 	    edge_variance[key] = 0
 	else:
 	    psum = 0
-            print "Calculating variance for edge: " + str(key)
 	    for value in values:
                 dateval = str_to_time(value)
        	        avg = edge_averages[key]
-                print "current value: %s, avg: %s" % (str(value), str(avg))
                 float_val = time_to_float(dateval) 
                 float_avg = timedelta_to_float(avg)
                 psum += ((float_val - float_avg) ** 2)
             edge_variance[key] = (1 / float(numvals)) * psum
+        #only print if interesting
         #print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
     #print "edges in group: "

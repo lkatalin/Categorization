@@ -5,19 +5,14 @@ ids_used = []
 ctr = 1
 
 def gen_traceid(base):
-    print "starting with base " + str(base)
     global ctr
     if base in ids_used:
         new_base = base + "_%03d" % ctr
         ids_used.append(new_base)
         ctr += 1
-        print "current id is" + str(new_base)
-        print "ids used are..." + str(ids_used)
         return new_base
     else:
         ids_used.append(base)
-        print "current id is" + str(base)
-        print "ids used are..." + str(ids_used)
         return base
 
 # each trace object will store data for one trace
@@ -42,12 +37,12 @@ class Trace(object):
             self.response = re.search(r'R: (.*?) usecs', trace).group(1)
         else:
             self.response = '0'
-        self.labels = re.findall(r'\"(.*?)\"', trace)
-        self.edgeLabels = [ label for label in self.labels if (label[0].isdigit() or label[0] == '-')]
-        self.nodeLabels = [ label for label in self.labels if not (label[0].isdigit() or label[0] == '-')]
+        #self.labels = re.findall(r'\"(.*?)\"', trace)
+        #self.edgeLabels = [ label for label in self.labels if (label[0].isdigit() or label[0] == '-')]
+        #self.nodeLabels = [ label for label in self.labels if not (label[0].isdigit() or label[0] == '-')]
         self.fullNodes = re.findall(r'^\s*((?!.* -> .*).*\[.*\])$', trace, re.MULTILINE)
         self.fullEdges = re.findall(r'\S+ -> .+', trace)
-        self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
+        #self.edges = re.findall(r'.+ -> .+ ([^\s]*).*', trace)
         self.dag = dag(self)
         self.hashval = hashval(self)
         self.traceId = gen_traceid(self.dag.id)

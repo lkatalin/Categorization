@@ -3,33 +3,20 @@
 
 import sys
 
-def print_trace(tracelist, target):
+def print_trace(tracelist):
     for trace in tracelist:
-        if trace.hashval == target:
-	    print "\n\ntrace id: " + trace.traceId
-	    print "\ntrace raw text: \n"
-	    print trace.mainText
-	    print "\ntracename: " + trace.traceName
-	    print "\ntotal response time: " + trace.response
-	    print "\nedge labels: "
-	    for label in trace.edgeLabels:
-		print label
-	    print "\nnode labels: "
-	    for label in trace.nodeLabels:
-		print label
-	    print "\nfull nodes: "
-	    for node in trace.fullNodes:
-		print node
-	    print "\nfull edges: "
-	    for edge in trace.fullEdges:
-		print edge
-	    print "\nedges:"
-	    for edge in trace.edges:
-		print edge
-	    print "\nhashval: " + trace.hashval
-            sys.exit()
-    print "nothing found"
-    sys.exit()
+	print "\n\ntrace id: " + trace.traceId
+	print "\ntrace raw text: \n"
+	print trace.mainText
+	print "\ntracename: " + trace.traceName
+	print "\ntotal response time: " + trace.response
+	print "\nfull nodes: "
+	for node in trace.fullNodes:
+	    print node
+	print "\nfull edges: "
+	for edge in trace.fullEdges:
+	    print edge
+	print "\nhashval: " + trace.hashval
 
 def print_tree(current_node, indent="", last='updown'):
     nb_children = lambda node: sum(nb_children(child) for child in node.children) + 1
