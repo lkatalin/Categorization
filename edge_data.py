@@ -6,6 +6,9 @@ from make_dag import *
 from decimal import *
 from group_traces import *
 
+anomalous_edges = {}
+high_covar_edges = {}
+
 # ----------- time conversion helpers --------------------------------------------
 
 def convert_microsec(string):
@@ -118,7 +121,12 @@ def edge_latencies(group, tlist):
                 float_avg = timedelta_to_float(avg)
                 psum += ((float_val - float_avg) ** 2)
             edge_variance[key] = (1 / float(numvals)) * psum
-        #only print if interesting
+        #arbitrary threshold
+        if edge_variance[key] > 5:
+            if anomalous_edges.get(group) is not None:
+                anomalous_edges[group].append(key)
+            else:
+                anomalous_edges[group] = [key]
         #print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
     #print "edges in group: "
@@ -152,4 +160,12 @@ def cov_matrix(group, e_lat_dict, tlist):
         print "\ncovariance matrix for edges of group {}%s{}: \n".format(G, W) % group
 	print matrix
 	print "\n"
+        for i, j in enumerate(matrix):
+            for val in j:
+                # arbitrary threshold
+                if val > 3000000000:
+                    if high_covar_edges.get(group) is not None:
+                        high_covar_edges[group].append(val)
+                    else:
+                        high_covar_edges[group] = [val]
         return matrix

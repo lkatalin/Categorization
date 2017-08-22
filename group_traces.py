@@ -5,6 +5,7 @@ from decimal import *
 
 # groups of traces based on structure
 categories = {}
+anomalous_groups = []
 
 def depth_first_traversal(trace):
     """
@@ -72,7 +73,7 @@ def process_groups(d, tlist):
         lst = []
         numvals = len(traceids)
 
-        # count edges
+        # count edges (uses first trace in group as representative)
         t = trace_lookup(traceids[0], tlist)
         num_edges = len(t.fullEdges)
 
@@ -100,6 +101,9 @@ def process_groups(d, tlist):
             else:
                 #throw an error
                 pass
-
+        # random value, can be changed
+        if var > 5:
+            anomalous_groups.append(hashv)
+            
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info

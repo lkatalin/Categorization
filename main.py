@@ -48,3 +48,28 @@ for key in categories.keys():
     latencies = edge_latencies(key, tracelist)
     if len(categories[key]) > 1:
         cov_matrix(key, latencies[0], tracelist)
+
+
+print "VARIANCE RESULTS:\n"
+if len(anomalous_groups) == 0:
+    print "{}---> No anomalous groups found (var > 20).{}\n".format(G, W)
+else:
+    print "{}---> Anomalous groups found (var > 20):{} ".format(R, W) + str(anomalous_groups) + "\n"
+if len(anomalous_edges) == 0:
+    print "\n{}---> No anomalous edges found (var > 5).{}\n".format(G, W)
+else:
+    print "\n{}---> Anomalous edges found (var > 5):{}\n".format(R, W)
+    for group, edges in anomalous_edges.iteritems():
+        print "     Group: " + str(group)
+        print "     Edges: "
+        for edge in edges:
+            print "            " + str(edge)
+if len(high_covar_edges) == 0:
+    print "\n{}---> No high covariance edges found (var > 3000000000).{}\n".format(G, W)
+else:
+    print "\n{}---> High covariance edges found (var > 3000000000):{}\n".format(R, W)
+    for group, var in high_covar_edges.iteritems():
+        print "     Group: " + str(group)
+        print "     Edges: "
+        for v in var:
+            print "            " + str(v)
