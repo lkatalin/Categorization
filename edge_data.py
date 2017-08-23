@@ -160,12 +160,24 @@ def cov_matrix(group, e_lat_dict, tlist):
         print "\ncovariance matrix for edges of group {}%s{}: \n".format(G, W) % group
 	print matrix
 	print "\n"
+        row_ctr = 1
         for i, j in enumerate(matrix):
-            for val in j:
+            col_ctr = 1
+            for covar in j:
                 # arbitrary threshold
-                if val > 3000000000:
+                if covar > 3000000000:
+                    # find which edges produced the anomaly
+                    cell_no = (row_ctr, col_ctr)
+                    edge_val1 = lat_array[row_ctr - 1]
+                    edge_val2 = lat_array[col_ctr - 1]
+
+                    edge1 = e_lat_dict.keys()[row_ctr - 1]
+                    edge2 = e_lat_dict.keys()[col_ctr - 1]
+
                     if high_covar_edges.get(group) is not None:
-                        high_covar_edges[group].append(val)
+                        high_covar_edges[group].append((edge1, edge2, edge_val1, edge_val2, covar))
                     else:
-                        high_covar_edges[group] = [val]
+                        high_covar_edges[group] = [(edge1, edge2, edge_val1, edge_val2, covar)]
+                col_ctr += 1
+            row_ctr += 1
         return matrix

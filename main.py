@@ -72,4 +72,8 @@ else:
         print "     Group: " + str(group)
         print "     Edges: "
         for v in var:
-            print "            " + str(v)
+            print "            " + str(v[0])
+            print "            " + "with"
+            print "            " + str(v[1])
+            print "            " + "Observation values: " + str(v[2]) + " " + str(v[3])
+            print "            " + "Covar: " + str(v[4]) + "\n\n"
