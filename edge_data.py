@@ -6,8 +6,8 @@ from make_dag import *
 from decimal import *
 from group_traces import *
 
-anomalous_edges = {}
-high_covar_edges = {}
+#anomalous_edges = {}
+#high_covar_edges = {}
 
 # ----------- time conversion helpers --------------------------------------------
 
@@ -57,6 +57,7 @@ def time_to_timedelta(time):
         
 # --------------------------------------------------------------------------
 
+
 def edge_latencies(group, tlist):
     """
     creates key-value pairs of edge : [list of latencies found for edge]
@@ -70,6 +71,8 @@ def edge_latencies(group, tlist):
     possibly, we could group the edges by label instead of tid -> tid,
     which would give us more data per edge
     """
+    global anomaly_types
+
     traces = categories[group]
     edge_latencies = {}
     edge_averages = {}
@@ -123,10 +126,10 @@ def edge_latencies(group, tlist):
             edge_variance[key] = (1 / float(numvals)) * psum
         #arbitrary threshold
         if edge_variance[key] > 5:
-            if anomalous_edges.get(group) is not None:
-                anomalous_edges[group].append(key)
+            if anomaly_types['anomalous_edges'].get(group) is not None:
+                anomaly_types['anomalous_edges'][group].append(key)
             else:
-                anomalous_edges[group] = [key]
+                anomaly_types['anomalous_edges'][group] = [key]
         #print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
 
     #print "edges in group: "
@@ -140,6 +143,8 @@ def cov_matrix(group, e_lat_dict, tlist):
     takes an edge latency dict (such as from above) and a tracelist as args;
     returns covariance matrix for each pair of edges within a group.
     """
+    global anomaly_types
+
     def to_float(time_list):
 	ftime_list = []
 	for time in time_list:
@@ -148,7 +153,7 @@ def cov_matrix(group, e_lat_dict, tlist):
 	    ftime_list.append(ftime)
 	return ftime_list
 
-    print "--------------------------- COVARIANCE DATA -----------------------------------"
+    print "------------------------------- COVARIANCE DATA --------------------------------"
     if len(tlist) == 1:
         print "\ncannot create covariance matrix from one trace... skipping \n"
     else:
@@ -174,10 +179,10 @@ def cov_matrix(group, e_lat_dict, tlist):
                     edge1 = e_lat_dict.keys()[row_ctr - 1]
                     edge2 = e_lat_dict.keys()[col_ctr - 1]
 
-                    if high_covar_edges.get(group) is not None:
-                        high_covar_edges[group].append((edge1, edge2, edge_val1, edge_val2, covar))
+                    if anomaly_types['high_covar_edges'].get(group) is not None:
+                        anomaly_types['high_covar_edges'][group].append((edge1, edge2, edge_val1, edge_val2, covar))
                     else:
-                        high_covar_edges[group] = [(edge1, edge2, edge_val1, edge_val2, covar)]
+                        anomaly_types['high_covar_edges'][group] = [(edge1, edge2, edge_val1, edge_val2, covar)]
                 col_ctr += 1
             row_ctr += 1
         return matrix

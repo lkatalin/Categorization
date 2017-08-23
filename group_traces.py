@@ -5,7 +5,7 @@ from decimal import *
 
 # groups of traces based on structure
 categories = {}
-anomalous_groups = []
+anomaly_types = {'anomalous_groups': {}, 'anomalous_edges': {}, 'high_covar_edges': {}}
 
 def depth_first_traversal(trace):
     """
@@ -103,7 +103,10 @@ def process_groups(d, tlist):
                 pass
         # random value, can be changed
         if var > 5:
-            anomalous_groups.append(hashv)
+            if anomaly_types[anomalous_groups].get("Groups:") is not None:
+                anomaly_types[anomalous_groups]["Groups:"].append(group)
+            else:
+                anomaly_types[anomalous_groups]["Groups:"] = [group]
             
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info
