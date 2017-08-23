@@ -7,6 +7,12 @@ from decimal import *
 categories = {}
 anomaly_types = {'anomalous_groups': {}, 'anomalous_edges': {}, 'high_covar_edges': {}}
 
+def add_to_dict(dic, key, add_val):
+    if dic.get(key) is not None:
+        dic[key].append(add_val)
+    else:
+        dic[key] = [add_val]
+
 def depth_first_traversal(trace):
     """
     the DFT traverses DAG dict starting with 
@@ -48,11 +54,7 @@ def group_traces(trace):
     hashvalues, values are lists of trace ids in that
     group.
     """
-    maybe_key = categories.get(trace.hashval)
-    if maybe_key is not None:
-        categories[trace.hashval].append(trace.traceId)
-    else:
-        categories[trace.hashval] = [trace.traceId]
+    add_to_dict(categories, trace.hashval, trace.traceId)
 
 def trace_lookup(tid, tlist):
     for trace in tlist:
@@ -103,10 +105,7 @@ def process_groups(d, tlist):
                 pass
         # random value, can be changed
         if var > 5:
-            if anomaly_types[anomalous_groups].get("Groups:") is not None:
-                anomaly_types[anomalous_groups]["Groups:"].append(group)
-            else:
-                anomaly_types[anomalous_groups]["Groups:"] = [group]
+            add_to_dict(anomaly_types[anomalous_groups], "Groups:", group)
             
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info

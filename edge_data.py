@@ -6,9 +6,6 @@ from make_dag import *
 from decimal import *
 from group_traces import *
 
-#anomalous_edges = {}
-#high_covar_edges = {}
-
 # ----------- time conversion helpers --------------------------------------------
 
 def convert_microsec(string):
@@ -126,15 +123,7 @@ def edge_latencies(group, tlist):
             edge_variance[key] = (1 / float(numvals)) * psum
         #arbitrary threshold
         if edge_variance[key] > 5:
-            if anomaly_types['anomalous_edges'].get(group) is not None:
-                anomaly_types['anomalous_edges'][group].append(key)
-            else:
-                anomaly_types['anomalous_edges'][group] = [key]
-        #print "edge variance is: " + str(edge_variance[key]) + " microseconds\n"
-
-    #print "edges in group: "
-    #print edge_latencies
-
+            add_to_dict(anomaly_types['anomalous_edges'], group, key)
     return (edge_latencies, edge_averages, edge_variance)
 
 
@@ -178,11 +167,9 @@ def cov_matrix(group, e_lat_dict, tlist):
 
                     edge1 = e_lat_dict.keys()[row_ctr - 1]
                     edge2 = e_lat_dict.keys()[col_ctr - 1]
+                   
+                    add_to_dict(anomaly_types['high_covar_edges'], group, (edge1, edge2, edge_val1, edge_val2, covar))
 
-                    if anomaly_types['high_covar_edges'].get(group) is not None:
-                        anomaly_types['high_covar_edges'][group].append((edge1, edge2, edge_val1, edge_val2, covar))
-                    else:
-                        anomaly_types['high_covar_edges'][group] = [(edge1, edge2, edge_val1, edge_val2, covar)]
                 col_ctr += 1
             row_ctr += 1
         return matrix
