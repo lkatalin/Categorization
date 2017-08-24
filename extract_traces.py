@@ -1,4 +1,5 @@
 import re
+import sys
 from objectify import *
 
 def extract_traces(infile):

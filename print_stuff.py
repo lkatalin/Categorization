@@ -2,6 +2,7 @@
 # credit for print tree: https://stackoverflow.com/questions/30893895/how-to-print-a-tree-in-python
 
 import sys
+from def_color import *
 
 def print_trace(tracelist):
     for trace in tracelist:
@@ -17,6 +18,43 @@ def print_trace(tracelist):
 	for edge in trace.fullEdges:
 	    print edge
 	print "\nhashval: " + trace.hashval
+
+def report_anomaly(anomaly, threshold):
+    def ret_string(nonstring):
+        return {
+            "anomalous_groups": "anomalous groups",
+            "anomalous_edges": "anomalous edges",
+            "high_covar_edges": "high covariance edges"
+        }[nonstring[0]]
+
+    def print_report(rep_type):
+        if rep_type[0] == 'anomalous_groups':
+            print "{}---> Anomalous groups found (var > %d):{} ".format(R, W) % threshold + str(rep_type[1]) + "\n"
+        elif rep_type[0] == 'anomalous_edges':
+            print "\n{}---> Anomalous edges found (var > %d):{}\n".format(R, W) % threshold
+            for group, edges in rep_type[1].iteritems():
+                print "    Group: " + str(group)
+                print "    Edges: " 
+                for edge in edges:
+                    print "           " + str(edge)    
+        else:
+            assert(rep_type[0] == 'high_covar_edges')
+            print "\n{}---> High covariance edges found (var > %d):{}\n".format(R, W) % threshold
+            for group, var in rep_type[1].iteritems():
+                print "     Group: " + str(group)
+                print "     Edges: "
+                for v in var:
+                    print "            " + str(v[0])
+                    print "            " + "with"
+                    print "            " + str(v[1])
+                    print "            " + "Observation values: " + str(v[2]) + " " + str(v[3])
+                    print "            " + "Covar: " + str(v[4]) + "\n\n"
+
+    if len(anomaly[1].keys()) == 0:
+        print "{}---> No %s found (var > %d).{}\n".format(G, W) % (ret_string(anomaly), threshold)
+    else:
+        print_report(anomaly)
+
 
 def print_tree(current_node, indent="", last='updown'):
     nb_children = lambda node: sum(nb_children(child) for child in node.children) + 1

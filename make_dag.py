@@ -69,5 +69,6 @@ def dag(trace):
     if len(root) == 1:
         return id_to_obj[root[0]]
     else:
-        print "error: multiple root nodes detected in trace"
+        print "error: no root node or multiple root nodes detected in trace"
+        print "root: " + str([root])
         sys.exit()
