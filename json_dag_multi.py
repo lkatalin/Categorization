@@ -13,6 +13,8 @@ def json_dag(filename):
     converts a span-model, JSON-format trace into
     a DAG-model, DOT-format trace showing concurrency
     '''
+    join_ctr = 0
+
     # edge list as [traceid -> traceid]
     edge_list = []
 
@@ -111,6 +113,9 @@ def json_dag(filename):
 		    edge_latency = find_latency(b_end, curr_start)
 		    edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
 
+            # increment join counter
+            join_ctr += 1
+
 	    # reset params
 	    check_join = False
 	    branch_ends = []
@@ -171,30 +176,40 @@ def json_dag(filename):
 	open_count = 0
 	close_count = 0
 	for line in data_file:
-	    open_count += line.count('{')
-	    close_count += line.count('}')
-	    json_buff.append(line)
-            #print "curr buff is: " + str(json_buff)
-	    if open_count == close_count:
-                #"json object finished!"
-		json_list.append("".join(json_buff))
-                #print "json list is: " + str(json_list)
-		json_buff = []
-
+            if line.isspace():
+                pass
+            else:
+		#if len(json_list) < 1:
+		open_count += line.count('{')
+		close_count += line.count('}')
+		json_buff.append(line)
+		if open_count == close_count and open_count != 0:
+		    #print "now it's done\n"
+		    json_list.append("".join(json_buff))
+		    #print json_list
+		    json_buff = []
+    
 	# parse and print each JSON object
 	for curr_json in json_list:
-            #print "curr json is: " + str(curr_json)
-	    json_data = json.loads(curr_json)
-	    iterate(json_data["children"], False, [])
+            print "length of list is: " + str(len(json_list))
+            try:
+		json_data = json.loads(curr_json)
+		iterate(json_data["children"], False, [])
 
-	    print " # 1 R: %d usecs \nDigraph {" % json_data["info"]["finished"]
-	    for node in node_list:
-		print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
-	    for edge in edge_list:
-		print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
-	    print "}"
-            node_list = []
-            edge_list = []
+		print " # 1 R: %d usecs \nDigraph {" % json_data["info"]["finished"]
+		for node in node_list:
+		    print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
+		for edge in edge_list:
+		    print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
+		print "}"
+		node_list = []
+		edge_list = []
+            except ValueError:
+                print "curr json is: " + str(curr_json)
+                sys.exit()
+
+    if join_ctr > 0:
+        print "joins detected: %d\n" % join_ctr
 
 
 # OUTPUT (check to-file flag)
