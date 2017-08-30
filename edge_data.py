@@ -142,18 +142,19 @@ def cov_matrix(group, e_lat_dict, tlist):
 	    ftime_list.append(ftime)
 	return ftime_list
 
-    print "------------------------------- COVARIANCE DATA --------------------------------"
+    #print "------------------------------- COVARIANCE DATA --------------------------------"
     if len(tlist) == 1:
-        print "\ncannot create covariance matrix from one trace... skipping \n"
+        pass
+        #print "\ncannot create covariance matrix from one trace... skipping \n"
     else:
         float_list = [to_float(e_lat_dict[k]) for k in e_lat_dict]
         lat_array = np.array([f for f in float_list]).astype(np.float)
-        print "\narray of latencies for group {}%s{} per edge (one edge per row): \n".format(G, W) % group
-        print  lat_array
+        #print "\narray of latencies for group {}%s{} per edge (one edge per row): \n".format(G, W) % group
+        #print  lat_array
 	matrix = np.cov(lat_array)
-        print "\ncovariance matrix for edges of group {}%s{}: \n".format(G, W) % group
-	print matrix
-	print "\n"
+        #print "\ncovariance matrix for edges of group {}%s{}: \n".format(G, W) % group
+	#print matrix
+	#print "\n"
         row_ctr = 1
         for i, j in enumerate(matrix):
             col_ctr = 1

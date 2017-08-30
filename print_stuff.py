@@ -29,7 +29,9 @@ def report_anomaly(anomaly, threshold):
 
     def print_report(rep_type):
         if rep_type[0] == 'anomalous_groups':
-            print "{}---> Anomalous groups found (var > %d):{} ".format(R, W) % threshold + str(rep_type[1]) + "\n"
+            print "{}---> Anomalous groups found (var > %d):{}\n".format(R, W) % threshold 
+            for group in rep_type[1]["Groups:"]:
+                print group + "\n"
         elif rep_type[0] == 'anomalous_edges':
             print "\n{}---> Anomalous edges found (var > %d):{}\n".format(R, W) % threshold
             for group, edges in rep_type[1].iteritems():

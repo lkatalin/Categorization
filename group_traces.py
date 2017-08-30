@@ -105,7 +105,7 @@ def process_groups(d, tlist):
                 pass
         # random value, can be changed
         if var > 5:
-            add_to_dict(anomaly_types[anomalous_groups], "Groups:", group)
+            add_to_dict(anomaly_types["anomalous_groups"], "Groups:", hashv)
             
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
     return group_info

@@ -21,7 +21,7 @@ def dag(trace):
         '''
 
         idnum = re.search(r'(.*) \[', node_text).group(1)
-        label = re.search(r'\[label="(.*)"\]', node_text).group(1)
+        label = re.search(r'\[.*label="(.*)"\]', node_text).group(1)
          
         new_node = Node(label)
         new_node.id = idnum
@@ -60,7 +60,7 @@ def dag(trace):
         # update node relationships
 	srcnode.add_child(dstnode)
 	dstnode.add_parent(srcnode)
-        dstnode.latency = re.search(r'\[label="(.*)"\]', edge).group(1)
+        dstnode.latency = re.search(r'\[.*label="(.*)"\]', edge).group(1)
 
         # remove from root if is dst
         if dstnode.id in root:
@@ -69,6 +69,6 @@ def dag(trace):
     if len(root) == 1:
         return id_to_obj[root[0]]
     else:
-        print "error: no root node or multiple root nodes detected in trace"
+        print "error: no root node or multiple root nodes detected in trace: %s with response time %s" % (str(trace.traceId), str(trace.response))
         print "root: " + str([root])
         sys.exit()
