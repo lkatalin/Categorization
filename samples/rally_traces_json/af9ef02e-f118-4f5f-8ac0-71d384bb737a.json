@@ -1,0 +1,1821 @@
+{
+  "info": {
+    "started": 0, 
+    "finished": 3356, 
+    "name": "total"
+  }, 
+  "stats": {
+    "wsgi": {
+      "count": 2, 
+      "duration": 1788
+    }, 
+    "neutron_api": {
+      "count": 36, 
+      "duration": 5309
+    }
+  }, 
+  "children": [
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_compute", 
+        "started": 0, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_compute", 
+          "timestamp": "2017-06-02T19:26:15.526346", 
+          "trace_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "project": "nova", 
+          "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+        }, 
+        "finished": 1470, 
+        "project": "nova", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2.1/9d3ce58d274440d292de682f596ac48f/os-security-groups", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_compute", 
+          "timestamp": "2017-06-02T19:26:14.056243", 
+          "trace_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "project": "nova", 
+          "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+        }
+      }, 
+      "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+      "trace_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+      "children": [
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.list_security_groups of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                  "kwargs": "{}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:14.409374", 
+              "trace_id": "4e2673a7-067e-4552-b7a1-f42351ebf6ca", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 353, 
+            "finished": 353, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:14.410213", 
+              "trace_id": "4e2673a7-067e-4552-b7a1-f42351ebf6ca", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "4e2673a7-067e-4552-b7a1-f42351ebf6ca", 
+          "children": []
+        }, 
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>,)", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.list_security_groups", 
+                  "kwargs": "{'tenant_id': u'9d3ce58d274440d292de682f596ac48f'}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:14.410772", 
+              "trace_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 354, 
+            "finished": 1311, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.367476", 
+              "trace_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+          "children": [
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.list of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:14.411503", 
+                  "trace_id": "9e58c260-0f3d-42fc-9de8-f6571b389fb8", 
+                  "project": "nova", 
+                  "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 355, 
+                "finished": 355, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:14.412061", 
+                  "trace_id": "9e58c260-0f3d-42fc-9de8-f6571b389fb8", 
+                  "project": "nova", 
+                  "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+              "trace_id": "9e58c260-0f3d-42fc-9de8-f6571b389fb8", 
+              "children": []
+            }, 
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, 'security_groups', '/security-groups', True)", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.list", 
+                      "kwargs": "{'tenant_id': u'9d3ce58d274440d292de682f596ac48f'}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:14.413720", 
+                  "trace_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                  "project": "nova", 
+                  "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 357, 
+                "finished": 1310, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.366906", 
+                  "trace_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                  "project": "nova", 
+                  "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "06a2a8af-4161-477c-9a5c-e2d597011c8d", 
+              "trace_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+              "children": [
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper._pagination of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:14.414361", 
+                      "trace_id": "469c0e7c-8dd2-4e1d-8173-0bfd5ddfa136", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 358, 
+                    "finished": 358, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:14.414933", 
+                      "trace_id": "469c0e7c-8dd2-4e1d-8173-0bfd5ddfa136", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                  "trace_id": "469c0e7c-8dd2-4e1d-8173-0bfd5ddfa136", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.get of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:14.415717", 
+                      "trace_id": "50d2facf-226a-4115-8a73-f6e3a929cb27", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 359, 
+                    "finished": 360, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:14.416300", 
+                      "trace_id": "50d2facf-226a-4115-8a73-f6e3a929cb27", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                  "trace_id": "50d2facf-226a-4115-8a73-f6e3a929cb27", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, '/security-groups')", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.get", 
+                          "kwargs": "{'params': {'tenant_id': u'9d3ce58d274440d292de682f596ac48f'}}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:14.417515", 
+                      "trace_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 361, 
+                    "finished": 1310, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.366323", 
+                      "trace_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                      "project": "nova", 
+                      "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "6589f8c1-4e2e-47fa-bfa3-59e376be4630", 
+                  "trace_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                  "children": [
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.retry_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:14.418173", 
+                          "trace_id": "4b985c14-e3cb-494c-a9fa-32b0676a2ea9", 
+                          "project": "nova", 
+                          "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 361, 
+                        "finished": 364, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:14.420700", 
+                          "trace_id": "4b985c14-e3cb-494c-a9fa-32b0676a2ea9", 
+                          "project": "nova", 
+                          "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                      "trace_id": "4b985c14-e3cb-494c-a9fa-32b0676a2ea9", 
+                      "children": []
+                    }, 
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, 'GET', '/security-groups')", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.retry_request", 
+                              "kwargs": "{'body': None, 'headers': None, 'params': {'tenant_id': u'9d3ce58d274440d292de682f596ac48f'}}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:14.421377", 
+                          "trace_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                          "project": "nova", 
+                          "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 365, 
+                        "finished": 1309, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.365658", 
+                          "trace_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                          "project": "nova", 
+                          "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "2e5dd759-d9cc-45d1-8f2f-5934f3631ea2", 
+                      "trace_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                      "children": [
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.do_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:14.422869", 
+                              "trace_id": "727df4ed-15a2-47a4-bf07-81e344db40f5", 
+                              "project": "nova", 
+                              "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 366, 
+                            "finished": 367, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:14.423507", 
+                              "trace_id": "727df4ed-15a2-47a4-bf07-81e344db40f5", 
+                              "project": "nova", 
+                              "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                          "trace_id": "727df4ed-15a2-47a4-bf07-81e344db40f5", 
+                          "children": []
+                        }, 
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, 'GET', '/security-groups')", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.do_request", 
+                                  "kwargs": "{'body': None, 'headers': None, 'params': {'tenant_id': u'9d3ce58d274440d292de682f596ac48f'}}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:14.424242", 
+                              "trace_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                              "project": "nova", 
+                              "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 367, 
+                            "finished": 1277, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.333911", 
+                              "trace_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                              "project": "nova", 
+                              "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "4854c879-5567-4798-92ad-7fc0c97dec53", 
+                          "trace_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                          "children": [
+                            {
+                              "info": {
+                                "exception": "None", 
+                                "name": "neutron_api", 
+                                "service": "osapi_compute", 
+                                "meta.raw_payload.neutron_api-start": {
+                                  "info": {
+                                    "function": {
+                                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper.deserialize of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                                      "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                      "kwargs": "{}"
+                                    }, 
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-start", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.306504", 
+                                  "trace_id": "65ca90c5-b3ec-435d-b011-c55aa2c410a7", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }, 
+                                "started": 1250, 
+                                "finished": 1253, 
+                                "project": "nova", 
+                                "host": "demo.moclocal", 
+                                "meta.raw_payload.neutron_api-stop": {
+                                  "info": {
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-stop", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.309576", 
+                                  "trace_id": "65ca90c5-b3ec-435d-b011-c55aa2c410a7", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }
+                              }, 
+                              "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                              "trace_id": "65ca90c5-b3ec-435d-b011-c55aa2c410a7", 
+                              "children": []
+                            }, 
+                            {
+                              "info": {
+                                "exception": "None", 
+                                "name": "neutron_api", 
+                                "service": "osapi_compute", 
+                                "meta.raw_payload.neutron_api-start": {
+                                  "info": {
+                                    "function": {
+                                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, u'{\"security_groups\": [{\"description\": \"Default security group\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"created_at\": \"2017-06-02T19:26:14Z\", \"updated_at\": \"2017-06-02T19:26:14Z\", \"security_group_rules\": [{\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"eac0e6a8-d7e4-44f9-acde-50c60ab5f580\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"184c37be-2aca-41fc-86b6-3ab1a524dde1\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"142be4b1-8e80-44c2-8551-b3c79c8af5ae\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"de54e323-3dcc-49bc-b970-7aba3a173f60\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}], \"revision_number\": 1, \"project_id\": \"9d3ce58d274440d292de682f596ac48f\", \"id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"name\": \"default\"}]}', 200)", 
+                                      "name": "nova.network.neutronv2.api.ClientWrapper.deserialize", 
+                                      "kwargs": "{}"
+                                    }, 
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-start", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.310649", 
+                                  "trace_id": "d688a576-bf1e-4b7a-bb08-43382f2be5bd", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }, 
+                                "started": 1254, 
+                                "finished": 1255, 
+                                "project": "nova", 
+                                "host": "demo.moclocal", 
+                                "meta.raw_payload.neutron_api-stop": {
+                                  "info": {
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-stop", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.311436", 
+                                  "trace_id": "d688a576-bf1e-4b7a-bb08-43382f2be5bd", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }
+                              }, 
+                              "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                              "trace_id": "d688a576-bf1e-4b7a-bb08-43382f2be5bd", 
+                              "children": []
+                            }, 
+                            {
+                              "info": {
+                                "exception": "None", 
+                                "name": "neutron_api", 
+                                "service": "osapi_compute", 
+                                "meta.raw_payload.neutron_api-start": {
+                                  "info": {
+                                    "function": {
+                                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>, <bound method ClientWrapper._convert_into_with_meta of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6090>>)", 
+                                      "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                      "kwargs": "{}"
+                                    }, 
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-start", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.312054", 
+                                  "trace_id": "fc7098a0-3c36-4c77-9d77-a1619e750b48", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }, 
+                                "started": 1255, 
+                                "finished": 1256, 
+                                "project": "nova", 
+                                "host": "demo.moclocal", 
+                                "meta.raw_payload.neutron_api-stop": {
+                                  "info": {
+                                    "project": null, 
+                                    "host": "demo.moclocal", 
+                                    "service": null
+                                  }, 
+                                  "name": "neutron_api-stop", 
+                                  "service": "osapi_compute", 
+                                  "timestamp": "2017-06-02T19:26:15.312657", 
+                                  "trace_id": "fc7098a0-3c36-4c77-9d77-a1619e750b48", 
+                                  "project": "nova", 
+                                  "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                                }
+                              }, 
+                              "parent_id": "1e17d9ed-01b0-48cc-983b-b9b825f3e81a", 
+                              "trace_id": "fc7098a0-3c36-4c77-9d77-a1619e750b48", 
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper.show_security_group of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                  "kwargs": "{}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.368468", 
+              "trace_id": "03d64f2f-5fce-4916-b6e8-4fffffe112f9", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 1312, 
+            "finished": 1313, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.369796", 
+              "trace_id": "03d64f2f-5fce-4916-b6e8-4fffffe112f9", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "03d64f2f-5fce-4916-b6e8-4fffffe112f9", 
+          "children": []
+        }, 
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, u'b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.show_security_group", 
+                  "kwargs": "{}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.370723", 
+              "trace_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 1314, 
+            "finished": 1398, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.455230", 
+              "trace_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+          "children": [
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper.get of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.371378", 
+                  "trace_id": "84abef12-a59e-4b11-b5ce-13ead4f7f73d", 
+                  "project": "nova", 
+                  "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 1315, 
+                "finished": 1315, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.371881", 
+                  "trace_id": "84abef12-a59e-4b11-b5ce-13ead4f7f73d", 
+                  "project": "nova", 
+                  "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+              "trace_id": "84abef12-a59e-4b11-b5ce-13ead4f7f73d", 
+              "children": []
+            }, 
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.get", 
+                      "kwargs": "{'params': {}}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.372511", 
+                  "trace_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                  "project": "nova", 
+                  "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 1316, 
+                "finished": 1398, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.454615", 
+                  "trace_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                  "project": "nova", 
+                  "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "d333bb7f-2163-49a0-8e3e-60b9345e435f", 
+              "trace_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+              "children": [
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper.retry_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.373120", 
+                      "trace_id": "16335c1e-7746-44e2-a418-bfab2528a3d7", 
+                      "project": "nova", 
+                      "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 1316, 
+                    "finished": 1317, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.373737", 
+                      "trace_id": "16335c1e-7746-44e2-a418-bfab2528a3d7", 
+                      "project": "nova", 
+                      "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                  "trace_id": "16335c1e-7746-44e2-a418-bfab2528a3d7", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, 'GET', u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.retry_request", 
+                          "kwargs": "{'body': None, 'headers': None, 'params': {}}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.374377", 
+                      "trace_id": "86b99217-218e-4030-98fe-d03987794248", 
+                      "project": "nova", 
+                      "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 1318, 
+                    "finished": 1397, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.454066", 
+                      "trace_id": "86b99217-218e-4030-98fe-d03987794248", 
+                      "project": "nova", 
+                      "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "934273d0-f03c-435b-bf08-726c3df994d7", 
+                  "trace_id": "86b99217-218e-4030-98fe-d03987794248", 
+                  "children": [
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper.do_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.375014", 
+                          "trace_id": "2775cff0-6d88-42cf-80ca-d6ab13d2b5ff", 
+                          "project": "nova", 
+                          "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 1318, 
+                        "finished": 1319, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.375628", 
+                          "trace_id": "2775cff0-6d88-42cf-80ca-d6ab13d2b5ff", 
+                          "project": "nova", 
+                          "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                      "trace_id": "2775cff0-6d88-42cf-80ca-d6ab13d2b5ff", 
+                      "children": []
+                    }, 
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, 'GET', u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.do_request", 
+                              "kwargs": "{'body': None, 'headers': None, 'params': {}}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.377541", 
+                          "trace_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                          "project": "nova", 
+                          "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 1321, 
+                        "finished": 1397, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.453424", 
+                          "trace_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                          "project": "nova", 
+                          "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "86b99217-218e-4030-98fe-d03987794248", 
+                      "trace_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                      "children": [
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper.deserialize of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.447522", 
+                              "trace_id": "d4c92a15-4dcc-4f9e-b895-7d95f37dd93c", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1391, 
+                            "finished": 1392, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.448780", 
+                              "trace_id": "d4c92a15-4dcc-4f9e-b895-7d95f37dd93c", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                          "trace_id": "d4c92a15-4dcc-4f9e-b895-7d95f37dd93c", 
+                          "children": []
+                        }, 
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, u'{\"security_group\": {\"description\": \"Default security group\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"created_at\": \"2017-06-02T19:26:14Z\", \"updated_at\": \"2017-06-02T19:26:14Z\", \"security_group_rules\": [{\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"142be4b1-8e80-44c2-8551-b3c79c8af5ae\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"184c37be-2aca-41fc-86b6-3ab1a524dde1\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"de54e323-3dcc-49bc-b970-7aba3a173f60\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"eac0e6a8-d7e4-44f9-acde-50c60ab5f580\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}], \"revision_number\": 1, \"project_id\": \"9d3ce58d274440d292de682f596ac48f\", \"id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"name\": \"default\"}}', 200)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.deserialize", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.449836", 
+                              "trace_id": "94c163cb-ea93-4729-973c-b78d556cc76c", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1393, 
+                            "finished": 1394, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.450681", 
+                              "trace_id": "94c163cb-ea93-4729-973c-b78d556cc76c", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                          "trace_id": "94c163cb-ea93-4729-973c-b78d556cc76c", 
+                          "children": []
+                        }, 
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>, <bound method ClientWrapper._convert_into_with_meta of <nova.network.neutronv2.api.ClientWrapper object at 0x97e6710>>)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.452058", 
+                              "trace_id": "3fb16ae7-b73a-46ce-8f4a-aa70b8f218db", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1395, 
+                            "finished": 1396, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.452815", 
+                              "trace_id": "3fb16ae7-b73a-46ce-8f4a-aa70b8f218db", 
+                              "project": "nova", 
+                              "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "e44d0365-4959-4f59-8097-ad64ea45ef93", 
+                          "trace_id": "3fb16ae7-b73a-46ce-8f4a-aa70b8f218db", 
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper.show_security_group of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                  "kwargs": "{}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.456158", 
+              "trace_id": "3713f7d7-ce39-4e49-8f9c-5329a9b32cb5", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 1399, 
+            "finished": 1400, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.456803", 
+              "trace_id": "3713f7d7-ce39-4e49-8f9c-5329a9b32cb5", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "3713f7d7-ce39-4e49-8f9c-5329a9b32cb5", 
+          "children": []
+        }, 
+        {
+          "info": {
+            "exception": "None", 
+            "name": "neutron_api", 
+            "service": "osapi_compute", 
+            "meta.raw_payload.neutron_api-start": {
+              "info": {
+                "function": {
+                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, u'b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                  "name": "nova.network.neutronv2.api.ClientWrapper.show_security_group", 
+                  "kwargs": "{}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-start", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.457429", 
+              "trace_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }, 
+            "started": 1401, 
+            "finished": 1469, 
+            "project": "nova", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.neutron_api-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "neutron_api-stop", 
+              "service": "osapi_compute", 
+              "timestamp": "2017-06-02T19:26:15.525362", 
+              "trace_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+              "project": "nova", 
+              "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+            }
+          }, 
+          "parent_id": "61723d1c-dfae-49aa-86a7-9130940058d2", 
+          "trace_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+          "children": [
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper.get of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.458074", 
+                  "trace_id": "43aaf3e9-1d76-405b-93c8-75bf19398299", 
+                  "project": "nova", 
+                  "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 1401, 
+                "finished": 1402, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.458713", 
+                  "trace_id": "43aaf3e9-1d76-405b-93c8-75bf19398299", 
+                  "project": "nova", 
+                  "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+              "trace_id": "43aaf3e9-1d76-405b-93c8-75bf19398299", 
+              "children": []
+            }, 
+            {
+              "info": {
+                "exception": "None", 
+                "name": "neutron_api", 
+                "service": "osapi_compute", 
+                "meta.raw_payload.neutron_api-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                      "name": "nova.network.neutronv2.api.ClientWrapper.get", 
+                      "kwargs": "{'params': {}}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-start", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.459359", 
+                  "trace_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                  "project": "nova", 
+                  "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }, 
+                "started": 1403, 
+                "finished": 1468, 
+                "project": "nova", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.neutron_api-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "neutron_api-stop", 
+                  "service": "osapi_compute", 
+                  "timestamp": "2017-06-02T19:26:15.524818", 
+                  "trace_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                  "project": "nova", 
+                  "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+                  "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                }
+              }, 
+              "parent_id": "77dd1bf1-8eb0-490e-8662-d166a4898685", 
+              "trace_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+              "children": [
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper.retry_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.460360", 
+                      "trace_id": "50e6e0d3-4bc8-47a7-adc2-88c9853dd6ee", 
+                      "project": "nova", 
+                      "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 1404, 
+                    "finished": 1404, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.461209", 
+                      "trace_id": "50e6e0d3-4bc8-47a7-adc2-88c9853dd6ee", 
+                      "project": "nova", 
+                      "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                  "trace_id": "50e6e0d3-4bc8-47a7-adc2-88c9853dd6ee", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "neutron_api", 
+                    "service": "osapi_compute", 
+                    "meta.raw_payload.neutron_api-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, 'GET', u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                          "name": "nova.network.neutronv2.api.ClientWrapper.retry_request", 
+                          "kwargs": "{'body': None, 'headers': None, 'params': {}}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-start", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.461877", 
+                      "trace_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                      "project": "nova", 
+                      "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }, 
+                    "started": 1405, 
+                    "finished": 1468, 
+                    "project": "nova", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.neutron_api-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "neutron_api-stop", 
+                      "service": "osapi_compute", 
+                      "timestamp": "2017-06-02T19:26:15.524243", 
+                      "trace_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                      "project": "nova", 
+                      "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                      "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                    }
+                  }, 
+                  "parent_id": "c85975bf-a4c1-4c16-8a2e-622fe7427e28", 
+                  "trace_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                  "children": [
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper.do_request of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.463319", 
+                          "trace_id": "81b61b50-55b7-4e7c-826e-ad55d8ce4507", 
+                          "project": "nova", 
+                          "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 1407, 
+                        "finished": 1407, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.463876", 
+                          "trace_id": "81b61b50-55b7-4e7c-826e-ad55d8ce4507", 
+                          "project": "nova", 
+                          "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                      "trace_id": "81b61b50-55b7-4e7c-826e-ad55d8ce4507", 
+                      "children": []
+                    }, 
+                    {
+                      "info": {
+                        "exception": "None", 
+                        "name": "neutron_api", 
+                        "service": "osapi_compute", 
+                        "meta.raw_payload.neutron_api-start": {
+                          "info": {
+                            "function": {
+                              "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, 'GET', u'/security-groups/b102ad4f-b881-4bab-a872-cab8cf4e9a0d')", 
+                              "name": "nova.network.neutronv2.api.ClientWrapper.do_request", 
+                              "kwargs": "{'body': None, 'headers': None, 'params': {}}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-start", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.464613", 
+                          "trace_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                          "project": "nova", 
+                          "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }, 
+                        "started": 1408, 
+                        "finished": 1467, 
+                        "project": "nova", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.neutron_api-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "neutron_api-stop", 
+                          "service": "osapi_compute", 
+                          "timestamp": "2017-06-02T19:26:15.523579", 
+                          "trace_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                          "project": "nova", 
+                          "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                        }
+                      }, 
+                      "parent_id": "afeb77ca-8e6d-42a3-a514-4ec79220bec5", 
+                      "trace_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                      "children": [
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper.deserialize of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.518987", 
+                              "trace_id": "79c9108d-bb6d-4bc2-9ad3-dd96534855dc", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1462, 
+                            "finished": 1463, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.519783", 
+                              "trace_id": "79c9108d-bb6d-4bc2-9ad3-dd96534855dc", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                          "trace_id": "79c9108d-bb6d-4bc2-9ad3-dd96534855dc", 
+                          "children": []
+                        }, 
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, u'{\"security_group\": {\"description\": \"Default security group\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"created_at\": \"2017-06-02T19:26:14Z\", \"updated_at\": \"2017-06-02T19:26:14Z\", \"security_group_rules\": [{\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"142be4b1-8e80-44c2-8551-b3c79c8af5ae\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"184c37be-2aca-41fc-86b6-3ab1a524dde1\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"egress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"de54e323-3dcc-49bc-b970-7aba3a173f60\", \"remote_group_id\": null, \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv6\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}, {\"direction\": \"ingress\", \"protocol\": null, \"description\": null, \"port_range_max\": null, \"updated_at\": \"2017-06-02T19:26:14Z\", \"revision_number\": 1, \"id\": \"eac0e6a8-d7e4-44f9-acde-50c60ab5f580\", \"remote_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"remote_ip_prefix\": null, \"created_at\": \"2017-06-02T19:26:14Z\", \"security_group_id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"tenant_id\": \"9d3ce58d274440d292de682f596ac48f\", \"port_range_min\": null, \"ethertype\": \"IPv4\", \"project_id\": \"9d3ce58d274440d292de682f596ac48f\"}], \"revision_number\": 1, \"project_id\": \"9d3ce58d274440d292de682f596ac48f\", \"id\": \"b102ad4f-b881-4bab-a872-cab8cf4e9a0d\", \"name\": \"default\"}}', 200)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.deserialize", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.520390", 
+                              "trace_id": "50c5d867-ea74-4e72-be17-d7b5b7074c45", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1464, 
+                            "finished": 1465, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.521660", 
+                              "trace_id": "50c5d867-ea74-4e72-be17-d7b5b7074c45", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                          "trace_id": "50c5d867-ea74-4e72-be17-d7b5b7074c45", 
+                          "children": []
+                        }, 
+                        {
+                          "info": {
+                            "exception": "None", 
+                            "name": "neutron_api", 
+                            "service": "osapi_compute", 
+                            "meta.raw_payload.neutron_api-start": {
+                              "info": {
+                                "function": {
+                                  "args": "(<nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>, <bound method ClientWrapper._convert_into_with_meta of <nova.network.neutronv2.api.ClientWrapper object at 0x97e65d0>>)", 
+                                  "name": "nova.network.neutronv2.api.ClientWrapper.proxy", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-start", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.522355", 
+                              "trace_id": "fcc51606-ab88-4095-bdec-06ea82dff2fc", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }, 
+                            "started": 1466, 
+                            "finished": 1466, 
+                            "project": "nova", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.neutron_api-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "neutron_api-stop", 
+                              "service": "osapi_compute", 
+                              "timestamp": "2017-06-02T19:26:15.522966", 
+                              "trace_id": "fcc51606-ab88-4095-bdec-06ea82dff2fc", 
+                              "project": "nova", 
+                              "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                              "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+                            }
+                          }, 
+                          "parent_id": "f18731d0-6da0-4b33-b9f2-2837fe05b4ab", 
+                          "trace_id": "fcc51606-ab88-4095-bdec-06ea82dff2fc", 
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_compute", 
+        "started": 3038, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_compute", 
+          "timestamp": "2017-06-02T19:26:17.412671", 
+          "trace_id": "87ee7aa9-f45a-4f9b-8de1-442ffcc79e90", 
+          "project": "nova", 
+          "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+        }, 
+        "finished": 3356, 
+        "project": "nova", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2.1/b63e4569b9414260bfcd5a30588aff1d/os-services", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_compute", 
+          "timestamp": "2017-06-02T19:26:17.094845", 
+          "trace_id": "87ee7aa9-f45a-4f9b-8de1-442ffcc79e90", 
+          "project": "nova", 
+          "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+          "base_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a"
+        }
+      }, 
+      "parent_id": "af9ef02e-f118-4f5f-8ac0-71d384bb737a", 
+      "trace_id": "87ee7aa9-f45a-4f9b-8de1-442ffcc79e90", 
+      "children": []
+    }
+  ]
+}

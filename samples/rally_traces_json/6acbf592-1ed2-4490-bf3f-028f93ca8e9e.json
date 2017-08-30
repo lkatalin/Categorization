@@ -1,0 +1,2893 @@
+{
+  "info": {
+    "started": 0, 
+    "finished": 92421, 
+    "name": "total"
+  }, 
+  "stats": {
+    "wsgi": {
+      "count": 37, 
+      "duration": 10163
+    }, 
+    "driver": {
+      "count": 16, 
+      "duration": 81034
+    }, 
+    "rpc": {
+      "count": 7, 
+      "duration": 89950
+    }
+  }, 
+  "children": [
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 0, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:45.205611", 
+          "trace_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 2525, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes", 
+              "scheme": "http", 
+              "method": "POST", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:42.679767", 
+          "trace_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+      "children": [
+        {
+          "info": {
+            "exception": "None", 
+            "name": "rpc", 
+            "service": "cinder-scheduler", 
+            "started": 2503, 
+            "finished": 2732, 
+            "project": "cinder", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.rpc-start": {
+              "info": {
+                "function": {
+                  "args": "(<cinder.scheduler.manager.SchedulerManager object at 0x81b19d0>, <cinder.context.RequestContext object at 0x9085c90>)", 
+                  "name": "cinder.scheduler.manager.SchedulerManager.create_volume", 
+                  "kwargs": "{u'volume': Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host=None,id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=None,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='creating',terminated_at=None,updated_at=None,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=<?>,volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95), u'image_id': u'ce84e00b-eff1-4a35-a8ea-cac0682ca346', u'request_spec': RequestSpec(CG_backend=<?>,cgsnapshot_id=None,consistencygroup_id=None,group_backend=<?>,group_id=None,image_id=ce84e00b-eff1-4a35-a8ea-cac0682ca346,snapshot_id=None,source_replicaid=None,source_volid=None,volume=Volume(a79421f9-63ea-4756-9aa6-566f222e02e8),volume_id=a79421f9-63ea-4756-9aa6-566f222e02e8,volume_properties=VolumeProperties,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95)), u'filter_properties': {}, u'snapshot_id': None}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-start", 
+              "service": "cinder-scheduler", 
+              "timestamp": "2017-06-03T04:50:45.182839", 
+              "trace_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+              "project": "cinder", 
+              "parent_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+            }, 
+            "meta.raw_payload.rpc-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-stop", 
+              "service": "cinder-scheduler", 
+              "timestamp": "2017-06-03T04:50:45.412221", 
+              "trace_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+              "project": "cinder", 
+              "parent_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+            }
+          }, 
+          "parent_id": "1e3c9e1f-7682-4ac5-9f11-c8e0f47d7399", 
+          "trace_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+          "children": [
+            {
+              "info": {
+                "exception": "None", 
+                "name": "rpc", 
+                "service": "cinder-volume", 
+                "started": 2740, 
+                "finished": 48203, 
+                "project": "cinder", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.rpc-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<cinder.volume.manager.VolumeManager object at 0x7f69d10>, <cinder.context.RequestContext object at 0x8c620d0>)", 
+                      "name": "cinder.volume.manager.VolumeManager.create_volume", 
+                      "kwargs": "{u'volume': Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='creating',terminated_at=None,updated_at=None,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95), u'allow_reschedule': True, u'request_spec': RequestSpec(CG_backend=<?>,cgsnapshot_id=None,consistencygroup_id=None,group_backend=<?>,group_id=None,image_id=ce84e00b-eff1-4a35-a8ea-cac0682ca346,snapshot_id=None,source_replicaid=None,source_volid=None,volume=Volume(a79421f9-63ea-4756-9aa6-566f222e02e8),volume_id=a79421f9-63ea-4756-9aa6-566f222e02e8,volume_properties=VolumeProperties,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95)), u'filter_properties': {u'config_options': {}, u'request_spec': {u'resource_properties': {u'status': u'creating', u'volume_type_id': u'a567f7fb-11ee-48b7-a0e9-26021ad5db95', u'group_id': None, u'user_id': u'ec5f4f9ec40845b7b3265d751f0f9d8a', u'availability_zone': u'nova', u'reservations': [u'2060bf73-2e33-48a9-9546-026d42bdd004', u'045c5a90-a799-4936-8a78-2df647866af0', u'3930b291-a359-45e7-95d7-6e8bb286e570', u'074ee89c-f595-4e82-afb4-59e3a44b9d80'], u'multiattach': False, u'attach_status': u'detached', u'source_volid': None, u'cgsnapshot_id': None, u'metadata': {}, u'qos_specs': None, u'encryption_key_id': None, u'display_description': None, u'snapshot_id': None, u'source_replicaid': None, u'project_id': u'a118e3df395c4978ac77faab53871587', u'consistencygroup_id': None, u'size': 10, u'display_name': u's_rally_36f841aa_KpxbeWi5'}, u'source_replicaid': None, u'volume_properties': {u'status': u'creating', u'volume_type_id': u'a567f7fb-11ee-48b7-a0e9-26021ad5db95', u'group_id': None, u'user_id': u'ec5f4f9ec40845b7b3265d751f0f9d8a', u'availability_zone': u'nova', u'reservations': [u'2060bf73-2e33-48a9-9546-026d42bdd004', u'045c5a90-a799-4936-8a78-2df647866af0', u'3930b291-a359-45e7-95d7-6e8bb286e570', u'074ee89c-f595-4e82-afb4-59e3a44b9d80'], u'multiattach': False, u'attach_status': u'detached', u'source_volid': None, u'cgsnapshot_id': None, u'metadata': {}, u'qos_specs': None, u'encryption_key_id': None, u'display_description': None, u'snapshot_id': None, u'source_replicaid': None, u'project_id': u'a118e3df395c4978ac77faab53871587', u'consistencygroup_id': None, u'size': 10, u'display_name': u's_rally_36f841aa_KpxbeWi5'}, u'source_volid': None, u'cgsnapshot_id': None, u'volume': {u'migration_status': None, u'provider_id': None, u'availability_zone': u'nova', u'terminated_at': None, u'updated_at': None, u'provider_geometry': None, u'replication_extended_status': None, u'replication_status': None, u'snapshot_id': None, u'ec2_id': None, u'deleted_at': None, u'id': u'a79421f9-63ea-4756-9aa6-566f222e02e8', u'size': 10, u'display_name': u's_rally_36f841aa_KpxbeWi5', u'display_description': None, u'cluster_name': None, u'name_id': u'a79421f9-63ea-4756-9aa6-566f222e02e8', u'volume_admin_metadata': [], u'project_id': u'a118e3df395c4978ac77faab53871587', u'launched_at': None, u'scheduled_at': None, u'status': u'creating', u'volume_type_id': u'a567f7fb-11ee-48b7-a0e9-26021ad5db95', u'multiattach': False, u'deleted': False, u'provider_location': None, u'volume_glance_metadata': [], u'host': None, u'consistencygroup_id': None, u'source_volid': None, u'provider_auth': None, u'previous_status': None, u'group_id': None, u'name': u'volume-a79421f9-63ea-4756-9aa6-566f222e02e8', u'user_id': u'ec5f4f9ec40845b7b3265d751f0f9d8a', u'bootable': False, u'created_at': u'2017-06-03T04:50:44.000000', u'attach_status': u'detached', u'volume_metadata': [], u'_name_id': None, u'encryption_key_id': None, u'replication_driver_data': None, u'metadata': {}}, u'image_id': u'ce84e00b-eff1-4a35-a8ea-cac0682ca346', u'snapshot_id': None, u'consistencygroup_id': None, u'volume_type': {u'name': u'iscsi', u'qos_specs_id': None, u'deleted': False, u'created_at': u'2017-05-12T19:49:40.000000', u'updated_at': None, u'extra_specs': {u'volume_backend_name': u'lvm'}, u'is_public': True, u'deleted_at': None, u'id': u'a567f7fb-11ee-48b7-a0e9-26021ad5db95', u'projects': [], u'description': None}, u'volume_id': u'a79421f9-63ea-4756-9aa6-566f222e02e8', u'group_id': None}, u'user_id': u'ec5f4f9ec40845b7b3265d751f0f9d8a', u'availability_zone': u'nova', u'volume_type': VolumeType(created_at=2017-05-12T19:49:40Z,deleted=False,deleted_at=None,description=None,extra_specs={volume_backend_name='lvm'},id=a567f7fb-11ee-48b7-a0e9-26021ad5db95,is_public=True,name='iscsi',projects=[],qos_specs=<?>,qos_specs_id=None,updated_at=None), u'qos_specs': None, u'retry': {u'num_attempts': 1, u'backends': [u'demo.moclocal@lvm#lvm'], u'hosts': [u'demo.moclocal@lvm#lvm']}, u'metadata': {}, u'resource_type': VolumeType(created_at=2017-05-12T19:49:40Z,deleted=False,deleted_at=None,description=None,extra_specs={volume_backend_name='lvm'},id=a567f7fb-11ee-48b7-a0e9-26021ad5db95,is_public=True,name='iscsi',projects=[],qos_specs=<?>,qos_specs_id=None,updated_at=None), u'size': 10}}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "rpc-start", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:50:45.420752", 
+                  "trace_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                  "project": "cinder", 
+                  "parent_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }, 
+                "meta.raw_payload.rpc-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "rpc-stop", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:51:30.883181", 
+                  "trace_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                  "project": "cinder", 
+                  "parent_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }
+              }, 
+              "parent_id": "d7745a48-1c06-4a94-889d-daef82b1a533", 
+              "trace_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+              "children": [
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:50:45.695189", 
+                      "trace_id": "3cb8b034-7a0e-4296-bbda-44975c424428", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 3014, 
+                    "finished": 3015, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<cinder.context.RequestContext object at 0x81064d0>, Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='creating',terminated_at=None,updated_at=2017-06-03T04:50:45Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95), (None, None), {'status': u'active', 'name': u'cirros', 'deleted': False, 'container_format': u'bare', 'created_at': datetime.datetime(2017, 5, 12, 19, 48, 34, tzinfo=<iso8601.Utc>), 'disk_format': u'qcow2', 'updated_at': datetime.datetime(2017, 5, 12, 19, 48, 35, tzinfo=<iso8601.Utc>), 'id': u'ce84e00b-eff1-4a35-a8ea-cac0682ca346', 'owner': u'e47df8ae9fe94bc2b66e89f212535369', 'protected': False, 'min_ram': 0, 'checksum': u'ee1eca47dc88f4879d8a229cc70a07c6', 'min_disk': 0, 'is_public': True, 'deleted_at': None, 'properties': {}, 'size': 13287936}, <cinder.image.glance.GlanceImageService object at 0x8651c10>)", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.clone_image", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:50:45.694380", 
+                      "trace_id": "3cb8b034-7a0e-4296-bbda-44975c424428", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                  "trace_id": "3cb8b034-7a0e-4296-bbda-44975c424428", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:51:13.801868", 
+                      "trace_id": "9138070d-acba-41ef-bf66-6509e2bd3686", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 4715, 
+                    "finished": 31122, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "(Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='creating',terminated_at=None,updated_at=2017-06-03T04:50:45Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95),)", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.create_volume", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:50:47.395447", 
+                      "trace_id": "9138070d-acba-41ef-bf66-6509e2bd3686", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                  "trace_id": "9138070d-acba-41ef-bf66-6509e2bd3686", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:51:30.461724", 
+                      "trace_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 35863, 
+                    "finished": 47781, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<cinder.context.RequestContext object at 0x81064d0>, Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='downloading',terminated_at=None,updated_at=2017-06-03T04:50:45Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95), <cinder.image.glance.GlanceImageService object at 0x8651c10>, 'ce84e00b-eff1-4a35-a8ea-cac0682ca346')", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.copy_image_to_volume", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:51:18.543116", 
+                      "trace_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                      "project": "cinder", 
+                      "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "2e91ce4d-cc37-4fae-af68-d6c36be9ad6a", 
+                  "trace_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                  "children": [
+                    {
+                      "info": {
+                        "meta.raw_payload.driver-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-stop", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:51:18.546828", 
+                          "trace_id": "ccdfe72b-73f7-4e3e-8a37-498d9a0eb941", 
+                          "project": "cinder", 
+                          "parent_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }, 
+                        "exception": "None", 
+                        "name": "driver", 
+                        "service": "cinder-volume", 
+                        "started": 35866, 
+                        "finished": 35867, 
+                        "project": "cinder", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.driver-start": {
+                          "info": {
+                            "function": {
+                              "args": "(Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='downloading',terminated_at=None,updated_at=2017-06-03T04:50:45Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95),)", 
+                              "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.local_path", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-start", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:51:18.545923", 
+                          "trace_id": "ccdfe72b-73f7-4e3e-8a37-498d9a0eb941", 
+                          "project": "cinder", 
+                          "parent_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }
+                      }, 
+                      "parent_id": "248ef100-3c72-4e86-9c0e-e7dbc415846d", 
+                      "trace_id": "ccdfe72b-73f7-4e3e-8a37-498d9a0eb941", 
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 4561, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:47.365866", 
+          "trace_id": "d62477c4-5651-416e-a594-63a5f9d03b29", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 4686, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:47.241415", 
+          "trace_id": "d62477c4-5651-416e-a594-63a5f9d03b29", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "d62477c4-5651-416e-a594-63a5f9d03b29", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 5630, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:48.525479", 
+          "trace_id": "22da7b4a-f845-4f4e-b45b-fcb60e1b023e", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 5845, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:48.309933", 
+          "trace_id": "22da7b4a-f845-4f4e-b45b-fcb60e1b023e", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "22da7b4a-f845-4f4e-b45b-fcb60e1b023e", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 8443, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:51.447636", 
+          "trace_id": "e5d1f66d-280a-4bd1-9a32-b62f1f294f1c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 8767, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:51.123253", 
+          "trace_id": "e5d1f66d-280a-4bd1-9a32-b62f1f294f1c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "e5d1f66d-280a-4bd1-9a32-b62f1f294f1c", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 11675, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:54.465015", 
+          "trace_id": "cf98df0a-b29e-4f94-add1-63e8f3b73ced", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 11785, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:54.355202", 
+          "trace_id": "cf98df0a-b29e-4f94-add1-63e8f3b73ced", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "cf98df0a-b29e-4f94-add1-63e8f3b73ced", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 14112, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:57.303725", 
+          "trace_id": "3cdc33d8-2b3c-4044-b8e9-ea5ac223eeda", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 14623, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:56.792359", 
+          "trace_id": "3cdc33d8-2b3c-4044-b8e9-ea5ac223eeda", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "3cdc33d8-2b3c-4044-b8e9-ea5ac223eeda", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 17063, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:59.856557", 
+          "trace_id": "5c03cf49-c041-4a36-b2fb-8fbc59e06d4d", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 17176, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:50:59.743302", 
+          "trace_id": "5c03cf49-c041-4a36-b2fb-8fbc59e06d4d", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "5c03cf49-c041-4a36-b2fb-8fbc59e06d4d", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 19712, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:03.059285", 
+          "trace_id": "920cb5c5-820c-4720-89f3-0425c6300b29", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 20379, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:02.392241", 
+          "trace_id": "920cb5c5-820c-4720-89f3-0425c6300b29", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "920cb5c5-820c-4720-89f3-0425c6300b29", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 23851, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:06.641855", 
+          "trace_id": "0d170476-755d-4d10-a064-1b1d1901ef10", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 23962, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:06.531681", 
+          "trace_id": "0d170476-755d-4d10-a064-1b1d1901ef10", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "0d170476-755d-4d10-a064-1b1d1901ef10", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 27024, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:10.156021", 
+          "trace_id": "03b8f241-7c0f-4565-ab67-c2db8a9f0312", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 27476, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:09.704739", 
+          "trace_id": "03b8f241-7c0f-4565-ab67-c2db8a9f0312", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "03b8f241-7c0f-4565-ab67-c2db8a9f0312", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 29486, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:12.310523", 
+          "trace_id": "8d01dd02-c471-479c-a222-841a1c03542f", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 29630, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:12.166385", 
+          "trace_id": "8d01dd02-c471-479c-a222-841a1c03542f", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "8d01dd02-c471-479c-a222-841a1c03542f", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 31849, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:14.833939", 
+          "trace_id": "f002b998-0735-42b7-abb7-857c89c5aabb", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 32154, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:14.528978", 
+          "trace_id": "f002b998-0735-42b7-abb7-857c89c5aabb", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "f002b998-0735-42b7-abb7-857c89c5aabb", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 34742, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:17.547589", 
+          "trace_id": "8fe3485f-8c54-4187-ab40-8b48c400dcc6", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 34867, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:17.422686", 
+          "trace_id": "8fe3485f-8c54-4187-ab40-8b48c400dcc6", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "8fe3485f-8c54-4187-ab40-8b48c400dcc6", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 37870, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:20.649659", 
+          "trace_id": "a02a9c12-5a2d-43b5-87c3-1a0181d033ca", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 37969, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:20.550474", 
+          "trace_id": "a02a9c12-5a2d-43b5-87c3-1a0181d033ca", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "a02a9c12-5a2d-43b5-87c3-1a0181d033ca", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 40514, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:23.289475", 
+          "trace_id": "27aba8e4-0c7b-49c5-b21f-2273f20b1133", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 40609, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:23.194020", 
+          "trace_id": "27aba8e4-0c7b-49c5-b21f-2273f20b1133", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "27aba8e4-0c7b-49c5-b21f-2273f20b1133", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 42618, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:25.400938", 
+          "trace_id": "23cd8945-917c-438b-9749-0818ca4b1939", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 42721, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:25.297923", 
+          "trace_id": "23cd8945-917c-438b-9749-0818ca4b1939", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "23cd8945-917c-438b-9749-0818ca4b1939", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 44754, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:27.554166", 
+          "trace_id": "90de2fbe-4f74-4506-9835-9ac6821dc8ca", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 44874, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:27.434614", 
+          "trace_id": "90de2fbe-4f74-4506-9835-9ac6821dc8ca", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "90de2fbe-4f74-4506-9835-9ac6821dc8ca", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 46882, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:29.662265", 
+          "trace_id": "bc762c75-7b1a-4ddb-82c5-25bf1967e913", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 46982, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:29.562437", 
+          "trace_id": "bc762c75-7b1a-4ddb-82c5-25bf1967e913", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "bc762c75-7b1a-4ddb-82c5-25bf1967e913", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 48992, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:31.773389", 
+          "trace_id": "ea044316-8119-4940-904c-b3f503f2a688", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 49093, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:31.671977", 
+          "trace_id": "ea044316-8119-4940-904c-b3f503f2a688", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "ea044316-8119-4940-904c-b3f503f2a688", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 49113, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:31.953289", 
+          "trace_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 49273, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "DELETE", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:31.793540", 
+          "trace_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+      "children": [
+        {
+          "info": {
+            "exception": "None", 
+            "name": "rpc", 
+            "service": "cinder-volume", 
+            "started": 49276, 
+            "finished": 92421, 
+            "project": "cinder", 
+            "host": "demo.moclocal", 
+            "meta.raw_payload.rpc-start": {
+              "info": {
+                "function": {
+                  "args": "(<cinder.volume.manager.VolumeManager object at 0x7f69d10>, <cinder.context.RequestContext object at 0x8c623d0>)", 
+                  "name": "cinder.volume.manager.VolumeManager.delete_volume", 
+                  "kwargs": "{u'volume': Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=True,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=2017-06-03T04:51:30Z,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='deleting',terminated_at=2017-06-03T04:51:31Z,updated_at=2017-06-03T04:51:30Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95), u'cascade': False, u'unmanage_only': False}"
+                }, 
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-start", 
+              "service": "cinder-volume", 
+              "timestamp": "2017-06-03T04:51:31.956063", 
+              "trace_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+              "project": "cinder", 
+              "parent_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+            }, 
+            "meta.raw_payload.rpc-stop": {
+              "info": {
+                "project": null, 
+                "host": "demo.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-stop", 
+              "service": "cinder-volume", 
+              "timestamp": "2017-06-03T04:52:15.101616", 
+              "trace_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+              "project": "cinder", 
+              "parent_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+            }
+          }, 
+          "parent_id": "a175537a-19ad-46f3-b211-4ece1427ea3b", 
+          "trace_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+          "children": [
+            {
+              "info": {
+                "meta.raw_payload.driver-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "driver-stop", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:51:32.142198", 
+                  "trace_id": "5b194328-b502-4b63-b8c1-5ce73bd2c937", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }, 
+                "exception": "None", 
+                "name": "driver", 
+                "service": "cinder-volume", 
+                "started": 49460, 
+                "finished": 49462, 
+                "project": "cinder", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.driver-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<cinder.context.RequestContext object at 0x8874d90>, Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=True,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=2017-06-03T04:51:30Z,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='deleting',terminated_at=2017-06-03T04:51:31Z,updated_at=2017-06-03T04:51:31Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95))", 
+                      "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.remove_export", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "driver-start", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:51:32.140573", 
+                  "trace_id": "5b194328-b502-4b63-b8c1-5ce73bd2c937", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }
+              }, 
+              "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+              "trace_id": "5b194328-b502-4b63-b8c1-5ce73bd2c937", 
+              "children": []
+            }, 
+            {
+              "info": {
+                "meta.raw_payload.driver-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "driver-stop", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:52:13.707818", 
+                  "trace_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }, 
+                "exception": "None", 
+                "name": "driver", 
+                "service": "cinder-volume", 
+                "started": 49463, 
+                "finished": 91028, 
+                "project": "cinder", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.driver-start": {
+                  "info": {
+                    "function": {
+                      "args": "(Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=True,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=2017-06-03T04:51:30Z,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='deleting',terminated_at=2017-06-03T04:51:31Z,updated_at=2017-06-03T04:51:31Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95),)", 
+                      "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.delete_volume", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "driver-start", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:51:32.143335", 
+                  "trace_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }
+              }, 
+              "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+              "trace_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+              "children": [
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:51:33.192877", 
+                      "trace_id": "53f2c631-76b7-43c5-be83-999b85bbe306", 
+                      "project": "cinder", 
+                      "parent_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 50511, 
+                    "finished": 50513, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "(Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=True,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-06-03T04:50:44Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_36f841aa_KpxbeWi5',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host='demo.moclocal@lvm#lvm',id=a79421f9-63ea-4756-9aa6-566f222e02e8,launched_at=2017-06-03T04:51:30Z,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='a118e3df395c4978ac77faab53871587',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=2017-06-03T04:50:45Z,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='deleting',terminated_at=2017-06-03T04:51:31Z,updated_at=2017-06-03T04:51:31Z,user_id='ec5f4f9ec40845b7b3265d751f0f9d8a',volume_attachment=<?>,volume_type=VolumeType(a567f7fb-11ee-48b7-a0e9-26021ad5db95),volume_type_id=a567f7fb-11ee-48b7-a0e9-26021ad5db95),)", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.local_path", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:51:33.191572", 
+                      "trace_id": "53f2c631-76b7-43c5-be83-999b85bbe306", 
+                      "project": "cinder", 
+                      "parent_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "d4386065-e4c3-4e2a-ba4d-f7a6671d4f7a", 
+                  "trace_id": "53f2c631-76b7-43c5-be83-999b85bbe306", 
+                  "children": []
+                }
+              ]
+            }, 
+            {
+              "info": {
+                "exception": "None", 
+                "name": "rpc", 
+                "service": "cinder-volume", 
+                "started": 91277, 
+                "finished": 92382, 
+                "project": "cinder", 
+                "host": "demo.moclocal", 
+                "meta.raw_payload.rpc-start": {
+                  "info": {
+                    "function": {
+                      "args": "(<cinder.volume.manager.VolumeManager object at 0x7f69d10>, <cinder.context.RequestContext object at 0x8874d90>)", 
+                      "name": "cinder.volume.manager.VolumeManager.publish_service_capabilities", 
+                      "kwargs": "{}"
+                    }, 
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "rpc-start", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:52:13.957453", 
+                  "trace_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }, 
+                "meta.raw_payload.rpc-stop": {
+                  "info": {
+                    "project": null, 
+                    "host": "demo.moclocal", 
+                    "service": null
+                  }, 
+                  "name": "rpc-stop", 
+                  "service": "cinder-volume", 
+                  "timestamp": "2017-06-03T04:52:15.062098", 
+                  "trace_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "project": "cinder", 
+                  "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+                  "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                }
+              }, 
+              "parent_id": "dcf74802-7675-4363-a573-a31f11a36408", 
+              "trace_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+              "children": [
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.047147", 
+                      "trace_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 91278, 
+                    "finished": 92367, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "()", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_volume_stats", 
+                          "kwargs": "{'refresh': True}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:13.958401", 
+                      "trace_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                  "children": [
+                    {
+                      "info": {
+                        "meta.raw_payload.driver-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-stop", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.025564", 
+                          "trace_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                          "project": "cinder", 
+                          "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }, 
+                        "exception": "None", 
+                        "name": "driver", 
+                        "service": "cinder-volume", 
+                        "started": 92342, 
+                        "finished": 92345, 
+                        "project": "cinder", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.driver-start": {
+                          "info": {
+                            "function": {
+                              "args": "()", 
+                              "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_filter_function", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-start", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.022598", 
+                          "trace_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                          "project": "cinder", 
+                          "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }
+                      }, 
+                      "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                      "trace_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                      "children": [
+                        {
+                          "info": {
+                            "meta.raw_payload.driver-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "driver-stop", 
+                              "service": "cinder-volume", 
+                              "timestamp": "2017-06-03T04:52:15.025021", 
+                              "trace_id": "adf527f2-c962-4aed-891d-0f5a01715306", 
+                              "project": "cinder", 
+                              "parent_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                            }, 
+                            "exception": "None", 
+                            "name": "driver", 
+                            "service": "cinder-volume", 
+                            "started": 92344, 
+                            "finished": 92345, 
+                            "project": "cinder", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.driver-start": {
+                              "info": {
+                                "function": {
+                                  "args": "()", 
+                                  "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_default_filter_function", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "driver-start", 
+                              "service": "cinder-volume", 
+                              "timestamp": "2017-06-03T04:52:15.024356", 
+                              "trace_id": "adf527f2-c962-4aed-891d-0f5a01715306", 
+                              "project": "cinder", 
+                              "parent_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                            }
+                          }, 
+                          "parent_id": "e5a6871f-0098-4732-8b91-e4a33f71299b", 
+                          "trace_id": "adf527f2-c962-4aed-891d-0f5a01715306", 
+                          "children": []
+                        }
+                      ]
+                    }, 
+                    {
+                      "info": {
+                        "meta.raw_payload.driver-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-stop", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.046532", 
+                          "trace_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                          "project": "cinder", 
+                          "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }, 
+                        "exception": "None", 
+                        "name": "driver", 
+                        "service": "cinder-volume", 
+                        "started": 92346, 
+                        "finished": 92366, 
+                        "project": "cinder", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.driver-start": {
+                          "info": {
+                            "function": {
+                              "args": "()", 
+                              "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_goodness_function", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-start", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.026272", 
+                          "trace_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                          "project": "cinder", 
+                          "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }
+                      }, 
+                      "parent_id": "f65f6ca7-6514-44e2-9ef9-79ca0b7682dc", 
+                      "trace_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                      "children": [
+                        {
+                          "info": {
+                            "meta.raw_payload.driver-stop": {
+                              "info": {
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "driver-stop", 
+                              "service": "cinder-volume", 
+                              "timestamp": "2017-06-03T04:52:15.045882", 
+                              "trace_id": "cc40423a-5d0e-4cf4-b1a6-ac34256f813c", 
+                              "project": "cinder", 
+                              "parent_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                            }, 
+                            "exception": "None", 
+                            "name": "driver", 
+                            "service": "cinder-volume", 
+                            "started": 92347, 
+                            "finished": 92366, 
+                            "project": "cinder", 
+                            "host": "demo.moclocal", 
+                            "meta.raw_payload.driver-start": {
+                              "info": {
+                                "function": {
+                                  "args": "()", 
+                                  "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_default_goodness_function", 
+                                  "kwargs": "{}"
+                                }, 
+                                "project": null, 
+                                "host": "demo.moclocal", 
+                                "service": null
+                              }, 
+                              "name": "driver-start", 
+                              "service": "cinder-volume", 
+                              "timestamp": "2017-06-03T04:52:15.026985", 
+                              "trace_id": "cc40423a-5d0e-4cf4-b1a6-ac34256f813c", 
+                              "project": "cinder", 
+                              "parent_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                              "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                            }
+                          }, 
+                          "parent_id": "43154460-366d-48f5-8e4b-dbf5a0363813", 
+                          "trace_id": "cc40423a-5d0e-4cf4-b1a6-ac34256f813c", 
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.050560", 
+                      "trace_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 92368, 
+                    "finished": 92370, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "()", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_filter_function", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.047854", 
+                      "trace_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                  "children": [
+                    {
+                      "info": {
+                        "meta.raw_payload.driver-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-stop", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.049269", 
+                          "trace_id": "a9e8c4ad-919f-4fd2-8f04-80a369fb86e8", 
+                          "project": "cinder", 
+                          "parent_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }, 
+                        "exception": "None", 
+                        "name": "driver", 
+                        "service": "cinder-volume", 
+                        "started": 92368, 
+                        "finished": 92369, 
+                        "project": "cinder", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.driver-start": {
+                          "info": {
+                            "function": {
+                              "args": "()", 
+                              "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_default_filter_function", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-start", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.048548", 
+                          "trace_id": "a9e8c4ad-919f-4fd2-8f04-80a369fb86e8", 
+                          "project": "cinder", 
+                          "parent_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }
+                      }, 
+                      "parent_id": "c5698ba2-0070-4b7e-9688-9e7baacf4ebe", 
+                      "trace_id": "a9e8c4ad-919f-4fd2-8f04-80a369fb86e8", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "info": {
+                    "meta.raw_payload.driver-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.053440", 
+                      "trace_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "exception": "None", 
+                    "name": "driver", 
+                    "service": "cinder-volume", 
+                    "started": 92371, 
+                    "finished": 92373, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.driver-start": {
+                      "info": {
+                        "function": {
+                          "args": "()", 
+                          "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_goodness_function", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "driver-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.051197", 
+                      "trace_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                  "children": [
+                    {
+                      "info": {
+                        "meta.raw_payload.driver-stop": {
+                          "info": {
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-stop", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.052899", 
+                          "trace_id": "f8b569ab-f1e8-4230-9f17-df3e9af8bf56", 
+                          "project": "cinder", 
+                          "parent_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }, 
+                        "exception": "None", 
+                        "name": "driver", 
+                        "service": "cinder-volume", 
+                        "started": 92372, 
+                        "finished": 92373, 
+                        "project": "cinder", 
+                        "host": "demo.moclocal", 
+                        "meta.raw_payload.driver-start": {
+                          "info": {
+                            "function": {
+                              "args": "()", 
+                              "name": "cinder.volume.drivers.lvm.LVMVolumeDriver.get_default_goodness_function", 
+                              "kwargs": "{}"
+                            }, 
+                            "project": null, 
+                            "host": "demo.moclocal", 
+                            "service": null
+                          }, 
+                          "name": "driver-start", 
+                          "service": "cinder-volume", 
+                          "timestamp": "2017-06-03T04:52:15.051889", 
+                          "trace_id": "f8b569ab-f1e8-4230-9f17-df3e9af8bf56", 
+                          "project": "cinder", 
+                          "parent_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                        }
+                      }, 
+                      "parent_id": "09949bd9-bb4d-496d-96ae-d5aead0f291b", 
+                      "trace_id": "f8b569ab-f1e8-4230-9f17-df3e9af8bf56", 
+                      "children": []
+                    }
+                  ]
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "rpc", 
+                    "service": "cinder-volume", 
+                    "started": 92374, 
+                    "finished": 92375, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.rpc-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<cinder.volume.manager.VolumeManager object at 0x7f69d10>, {'filter_function': None, 'goodness_function': None, 'volume_backend_name': 'lvm', 'driver_version': '3.0.0', 'sparse_copy_volume': False, 'pools': [{'pool_name': 'lvm', 'filter_function': None, 'allocated_capacity_gb': 0, 'goodness_function': None, 'multiattach': True, 'provisioned_capacity_gb': 0.0, 'total_volumes': 0, 'thin_provisioning_support': False, 'free_capacity_gb': 20.6, 'location_info': 'LVMVolumeDriver:demo.moclocal:cinder-volumes:default:0', 'total_capacity_gb': 20.6, 'thick_provisioning_support': True, 'reserved_percentage': 0, 'QoS_support': False, 'max_over_subscription_ratio': 1.0}], 'vendor_name': 'Open Source', 'storage_protocol': 'iSCSI'})", 
+                          "name": "cinder.volume.manager.VolumeManager.update_service_capabilities", 
+                          "kwargs": "{}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-start", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.054145", 
+                      "trace_id": "2d162bb1-2d41-4037-922e-c689bd5d0992", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "meta.raw_payload.rpc-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-stop", 
+                      "service": "cinder-volume", 
+                      "timestamp": "2017-06-03T04:52:15.054768", 
+                      "trace_id": "2d162bb1-2d41-4037-922e-c689bd5d0992", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "2d162bb1-2d41-4037-922e-c689bd5d0992", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "rpc", 
+                    "service": "cinder-scheduler", 
+                    "started": 92380, 
+                    "finished": 92382, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.rpc-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<cinder.scheduler.manager.SchedulerManager object at 0x81b19d0>, <cinder.context.RequestContext object at 0x8e94490>)", 
+                          "name": "cinder.scheduler.manager.SchedulerManager.update_service_capabilities", 
+                          "kwargs": "{u'cluster_name': None, u'service_name': u'volume', u'host': u'demo.moclocal@lvm', u'capabilities': {u'filter_function': None, u'goodness_function': None, u'volume_backend_name': u'lvm', u'driver_version': u'3.0.0', u'sparse_copy_volume': False, u'pools': [{u'pool_name': u'lvm', u'filter_function': None, u'goodness_function': None, u'total_volumes': 0, u'multiattach': True, u'provisioned_capacity_gb': 0.0, u'allocated_capacity_gb': 0, u'thin_provisioning_support': False, u'free_capacity_gb': 20.6, u'location_info': u'LVMVolumeDriver:demo.moclocal:cinder-volumes:default:0', u'total_capacity_gb': 20.6, u'thick_provisioning_support': True, u'reserved_percentage': 0, u'QoS_support': False, u'max_over_subscription_ratio': 1.0}], u'vendor_name': u'Open Source', u'storage_protocol': u'iSCSI'}, u'timestamp': u'2017-06-03T04:52:15.055531'}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-start", 
+                      "service": "cinder-scheduler", 
+                      "timestamp": "2017-06-03T04:52:15.060757", 
+                      "trace_id": "e704b664-2424-4490-bcc6-82f2517e4623", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "meta.raw_payload.rpc-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-stop", 
+                      "service": "cinder-scheduler", 
+                      "timestamp": "2017-06-03T04:52:15.062012", 
+                      "trace_id": "e704b664-2424-4490-bcc6-82f2517e4623", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "e704b664-2424-4490-bcc6-82f2517e4623", 
+                  "children": []
+                }, 
+                {
+                  "info": {
+                    "exception": "None", 
+                    "name": "rpc", 
+                    "service": "cinder-scheduler", 
+                    "started": 92384, 
+                    "finished": 92389, 
+                    "project": "cinder", 
+                    "host": "demo.moclocal", 
+                    "meta.raw_payload.rpc-start": {
+                      "info": {
+                        "function": {
+                          "args": "(<cinder.scheduler.manager.SchedulerManager object at 0x81b19d0>, <cinder.context.RequestContext object at 0x98d9210>)", 
+                          "name": "cinder.scheduler.manager.SchedulerManager.notify_service_capabilities", 
+                          "kwargs": "{u'service_name': u'volume', u'timestamp': u'2017-06-03T04:52:15.057932', u'capabilities': {u'filter_function': None, u'goodness_function': None, u'volume_backend_name': u'lvm', u'driver_version': u'3.0.0', u'sparse_copy_volume': False, u'pools': [{u'pool_name': u'lvm', u'filter_function': None, u'goodness_function': None, u'total_volumes': 0, u'multiattach': True, u'provisioned_capacity_gb': 0.0, u'allocated_capacity_gb': 0, u'thin_provisioning_support': False, u'free_capacity_gb': 20.6, u'location_info': u'LVMVolumeDriver:demo.moclocal:cinder-volumes:default:0', u'total_capacity_gb': 20.6, u'thick_provisioning_support': True, u'reserved_percentage': 0, u'QoS_support': False, u'max_over_subscription_ratio': 1.0}], u'vendor_name': u'Open Source', u'storage_protocol': u'iSCSI'}, u'backend': u'demo.moclocal@lvm'}"
+                        }, 
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-start", 
+                      "service": "cinder-scheduler", 
+                      "timestamp": "2017-06-03T04:52:15.064660", 
+                      "trace_id": "c65100fb-013f-4ca5-8085-e4f99c5b5c35", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }, 
+                    "meta.raw_payload.rpc-stop": {
+                      "info": {
+                        "project": null, 
+                        "host": "demo.moclocal", 
+                        "service": null
+                      }, 
+                      "name": "rpc-stop", 
+                      "service": "cinder-scheduler", 
+                      "timestamp": "2017-06-03T04:52:15.069092", 
+                      "trace_id": "c65100fb-013f-4ca5-8085-e4f99c5b5c35", 
+                      "project": "cinder", 
+                      "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                      "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+                    }
+                  }, 
+                  "parent_id": "61440227-ddc7-4858-b2d4-9318726d61cd", 
+                  "trace_id": "c65100fb-013f-4ca5-8085-e4f99c5b5c35", 
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 49279, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:32.061951", 
+          "trace_id": "7698218d-1222-40ec-b96d-c933dc73f6d1", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 49382, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:31.958851", 
+          "trace_id": "7698218d-1222-40ec-b96d-c933dc73f6d1", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "7698218d-1222-40ec-b96d-c933dc73f6d1", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 51391, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:34.185486", 
+          "trace_id": "db3ebd75-0cfe-435b-8457-f78ea387fddf", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 51505, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:34.070902", 
+          "trace_id": "db3ebd75-0cfe-435b-8457-f78ea387fddf", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "db3ebd75-0cfe-435b-8457-f78ea387fddf", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 53515, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:36.399559", 
+          "trace_id": "d4df97ba-8874-4d05-a065-c647a5b1cbc4", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 53719, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:36.195078", 
+          "trace_id": "d4df97ba-8874-4d05-a065-c647a5b1cbc4", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "d4df97ba-8874-4d05-a065-c647a5b1cbc4", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 56184, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:39.066775", 
+          "trace_id": "dbb80752-9e36-48c5-984d-98d4efef0a7d", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 56387, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:38.864398", 
+          "trace_id": "dbb80752-9e36-48c5-984d-98d4efef0a7d", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "dbb80752-9e36-48c5-984d-98d4efef0a7d", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 59357, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:42.548244", 
+          "trace_id": "2db43bad-cd59-48b6-8d02-d7cbb149fee3", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 59868, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:42.037370", 
+          "trace_id": "2db43bad-cd59-48b6-8d02-d7cbb149fee3", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "2db43bad-cd59-48b6-8d02-d7cbb149fee3", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 61933, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:45.128064", 
+          "trace_id": "edbb4c30-7e95-490e-91f0-eb3c7bd19a3f", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 62448, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:44.613471", 
+          "trace_id": "edbb4c30-7e95-490e-91f0-eb3c7bd19a3f", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "edbb4c30-7e95-490e-91f0-eb3c7bd19a3f", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 65056, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:48.252321", 
+          "trace_id": "43a809c6-85d0-4fd0-8943-92bf428734dd", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 65572, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:47.735826", 
+          "trace_id": "43a809c6-85d0-4fd0-8943-92bf428734dd", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "43a809c6-85d0-4fd0-8943-92bf428734dd", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 67580, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:50.518031", 
+          "trace_id": "26aa8b28-6e26-45c9-87cb-af7acfbfd018", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 67838, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:50.260192", 
+          "trace_id": "26aa8b28-6e26-45c9-87cb-af7acfbfd018", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "26aa8b28-6e26-45c9-87cb-af7acfbfd018", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 70358, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:53.151393", 
+          "trace_id": "d3ab17b5-f273-4c9e-af39-6ab009bde94a", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 70471, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:53.038194", 
+          "trace_id": "d3ab17b5-f273-4c9e-af39-6ab009bde94a", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "d3ab17b5-f273-4c9e-af39-6ab009bde94a", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 73292, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:56.092814", 
+          "trace_id": "27a443e6-480f-464d-b379-a147d5f95b0a", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 73413, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:55.972094", 
+          "trace_id": "27a443e6-480f-464d-b379-a147d5f95b0a", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "27a443e6-480f-464d-b379-a147d5f95b0a", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 76471, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:59.262865", 
+          "trace_id": "6dac8097-d0f2-482e-9cb3-5cdc44ecfea3", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 76583, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:51:59.151320", 
+          "trace_id": "6dac8097-d0f2-482e-9cb3-5cdc44ecfea3", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "6dac8097-d0f2-482e-9cb3-5cdc44ecfea3", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 79236, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:02.025958", 
+          "trace_id": "bb4000b2-6e27-459a-9843-a27f494bde9c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 79346, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:01.916188", 
+          "trace_id": "bb4000b2-6e27-459a-9843-a27f494bde9c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "bb4000b2-6e27-459a-9843-a27f494bde9c", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 81820, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:04.628119", 
+          "trace_id": "43a015bb-d8ff-426c-975c-29f06ec6f0aa", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 81948, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:04.500430", 
+          "trace_id": "43a015bb-d8ff-426c-975c-29f06ec6f0aa", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "43a015bb-d8ff-426c-975c-29f06ec6f0aa", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 84354, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:07.326171", 
+          "trace_id": "727333c5-32e3-4b41-8bd9-2ff9fd8732a8", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 84646, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:07.034657", 
+          "trace_id": "727333c5-32e3-4b41-8bd9-2ff9fd8732a8", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "727333c5-32e3-4b41-8bd9-2ff9fd8732a8", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 87093, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:09.950915", 
+          "trace_id": "5cc54519-eb6c-4474-adfe-196f392c625b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 87271, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:09.773525", 
+          "trace_id": "5cc54519-eb6c-4474-adfe-196f392c625b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "5cc54519-eb6c-4474-adfe-196f392c625b", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 89450, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:12.237928", 
+          "trace_id": "c74b6dca-876d-402a-a10f-b4fd58ad821c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 89558, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:12.130683", 
+          "trace_id": "c74b6dca-876d-402a-a10f-b4fd58ad821c", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "c74b6dca-876d-402a-a10f-b4fd58ad821c", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 91567, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:14.319365", 
+          "trace_id": "c29debb6-c6d1-4954-95c0-9ecfe581c97b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }, 
+        "finished": 91639, 
+        "project": "cinder", 
+        "host": "demo.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "demo.moclocal", 
+            "request": {
+              "path": "/v2/a118e3df395c4978ac77faab53871587/volumes/a79421f9-63ea-4756-9aa6-566f222e02e8", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-06-03T04:52:14.247330", 
+          "trace_id": "c29debb6-c6d1-4954-95c0-9ecfe581c97b", 
+          "project": "cinder", 
+          "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+          "base_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e"
+        }
+      }, 
+      "parent_id": "6acbf592-1ed2-4490-bf3f-028f93ca8e9e", 
+      "trace_id": "c29debb6-c6d1-4954-95c0-9ecfe581c97b", 
+      "children": []
+    }
+  ]
+}

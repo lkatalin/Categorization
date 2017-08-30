@@ -1,0 +1,211 @@
+{
+  "info": {
+    "started": 0, 
+    "finished": 4799, 
+    "name": "total"
+  }, 
+  "stats": {
+    "wsgi": {
+      "count": 3, 
+      "duration": 2784
+    }, 
+    "rpc": {
+      "count": 1, 
+      "duration": 182
+    }
+  }, 
+  "children": [
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 0, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:27.822208", 
+          "trace_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }, 
+        "finished": 2598, 
+        "project": "cinder", 
+        "host": "cluster.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "request": {
+              "path": "/v2/35b0b1aa136a45cda8ca6f0175378e30/volumes", 
+              "scheme": "http", 
+              "method": "POST", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:25.223882", 
+          "trace_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }
+      }, 
+      "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+      "trace_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+      "children": [
+        {
+          "info": {
+            "exception": "None", 
+            "name": "rpc", 
+            "service": "cinder-scheduler", 
+            "started": 2580, 
+            "finished": 2762, 
+            "project": "cinder", 
+            "host": "cluster.moclocal", 
+            "meta.raw_payload.rpc-start": {
+              "info": {
+                "function": {
+                  "args": "(<cinder.scheduler.manager.SchedulerManager object at 0x7f0d7fcca690>, <cinder.context.RequestContext object at 0x8d4cf90>)", 
+                  "name": "cinder.scheduler.manager.SchedulerManager.create_volume", 
+                  "kwargs": "{u'volume': Volume(_name_id=None,admin_metadata=<?>,attach_status='detached',availability_zone='nova',bootable=False,cluster=<?>,cluster_name=None,consistencygroup=<?>,consistencygroup_id=None,created_at=2017-05-31T00:31:27Z,deleted=False,deleted_at=None,display_description=None,display_name='s_rally_2c4c2f38_uBRI8ZZk',ec2_id=None,encryption_key_id=None,glance_metadata=<?>,group=<?>,group_id=None,host=None,id=84c76524-cfd1-473c-b328-a11c0ae9c9a4,launched_at=None,metadata={},migration_status=None,multiattach=False,previous_status=None,project_id='35b0b1aa136a45cda8ca6f0175378e30',provider_auth=None,provider_geometry=None,provider_id=None,provider_location=None,replication_driver_data=None,replication_extended_status=None,replication_status=None,scheduled_at=None,size=10,snapshot_id=None,snapshots=<?>,source_volid=None,status='creating',terminated_at=None,updated_at=None,user_id='34f8091cdd4a4ab1b325d3442b0d1e67',volume_attachment=<?>,volume_type=<?>,volume_type_id=9d2173f9-7cbe-46e1-b04f-1505bd56ebb3), u'image_id': u'8ba8214f-0379-4560-a3b2-abeb5069c12f', u'request_spec': RequestSpec(CG_backend=<?>,cgsnapshot_id=None,consistencygroup_id=None,group_backend=<?>,group_id=None,image_id=8ba8214f-0379-4560-a3b2-abeb5069c12f,snapshot_id=None,source_replicaid=None,source_volid=None,volume=Volume(84c76524-cfd1-473c-b328-a11c0ae9c9a4),volume_id=84c76524-cfd1-473c-b328-a11c0ae9c9a4,volume_properties=VolumeProperties,volume_type=VolumeType(9d2173f9-7cbe-46e1-b04f-1505bd56ebb3)), u'filter_properties': {}, u'snapshot_id': None}"
+                }, 
+                "project": null, 
+                "host": "cluster.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-start", 
+              "service": "cinder-scheduler", 
+              "timestamp": "2017-05-31T00:31:27.804445", 
+              "trace_id": "46fb355e-c46b-45a7-9f17-526ad594146e", 
+              "project": "cinder", 
+              "parent_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+              "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+            }, 
+            "meta.raw_payload.rpc-stop": {
+              "info": {
+                "project": null, 
+                "host": "cluster.moclocal", 
+                "service": null
+              }, 
+              "name": "rpc-stop", 
+              "service": "cinder-scheduler", 
+              "timestamp": "2017-05-31T00:31:27.986562", 
+              "trace_id": "46fb355e-c46b-45a7-9f17-526ad594146e", 
+              "project": "cinder", 
+              "parent_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+              "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+            }
+          }, 
+          "parent_id": "2cfa0a9c-a1c7-4772-9dd5-5fd67ff7ffc7", 
+          "trace_id": "46fb355e-c46b-45a7-9f17-526ad594146e", 
+          "children": []
+        }
+      ]
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 4608, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:29.924402", 
+          "trace_id": "1377a63c-6e05-4a39-93cc-d237790d4fd1", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }, 
+        "finished": 4700, 
+        "project": "cinder", 
+        "host": "cluster.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "request": {
+              "path": "/v2/35b0b1aa136a45cda8ca6f0175378e30/volumes/84c76524-cfd1-473c-b328-a11c0ae9c9a4", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:29.831994", 
+          "trace_id": "1377a63c-6e05-4a39-93cc-d237790d4fd1", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }
+      }, 
+      "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+      "trace_id": "1377a63c-6e05-4a39-93cc-d237790d4fd1", 
+      "children": []
+    }, 
+    {
+      "info": {
+        "exception": "None", 
+        "name": "wsgi", 
+        "service": "osapi_volume", 
+        "started": 4705, 
+        "meta.raw_payload.wsgi-stop": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "service": null
+          }, 
+          "name": "wsgi-stop", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:30.023296", 
+          "trace_id": "684fea3a-d4d2-4001-b521-3a843c4f30c6", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }, 
+        "finished": 4799, 
+        "project": "cinder", 
+        "host": "cluster.moclocal", 
+        "meta.raw_payload.wsgi-start": {
+          "info": {
+            "project": null, 
+            "host": "cluster.moclocal", 
+            "request": {
+              "path": "/v2/35b0b1aa136a45cda8ca6f0175378e30/volumes/84c76524-cfd1-473c-b328-a11c0ae9c9a4", 
+              "scheme": "http", 
+              "method": "GET", 
+              "query": ""
+            }, 
+            "service": null
+          }, 
+          "name": "wsgi-start", 
+          "service": "osapi_volume", 
+          "timestamp": "2017-05-31T00:31:29.929837", 
+          "trace_id": "684fea3a-d4d2-4001-b521-3a843c4f30c6", 
+          "project": "cinder", 
+          "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+          "base_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401"
+        }
+      }, 
+      "parent_id": "12c2781a-51a1-47cd-ac1a-7d6643ad6401", 
+      "trace_id": "684fea3a-d4d2-4001-b521-3a843c4f30c6", 
+      "children": []
+    }
+  ]
+}
