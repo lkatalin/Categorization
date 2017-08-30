@@ -13,13 +13,12 @@ def json_dag(filename):
     converts a span-model, JSON-format trace into
     a DAG-model, DOT-format trace showing concurrency
     '''
-    #import pdb; pdb.set_trace();
-
     # edge list as [traceid -> traceid]
     edge_list = []
 
     # node list as [(traceid, name, service)]
     node_list = []
+    #import pdb; pdb.set_trace();
 
     def extract_timestamp(element):
 	for key in element["info"].keys():
@@ -76,6 +75,7 @@ def json_dag(filename):
 	branch_ends = [(element, end_time)] tracked in case of fan out
 	prev_traceid = where to attach current node in linear case
 	'''
+
 	if len(lst) == 1:
 	    curr = lst[0]
 	    rest = []
@@ -162,6 +162,7 @@ def json_dag(filename):
 	if len(rest) > 0:
 	    iterate(rest, check_join, branch_ends, dcurr_traceid, curr_stop)
 
+
     with open(filename, 'r') as data_file:
 
 	# read each JSON object into list
@@ -173,16 +174,16 @@ def json_dag(filename):
 	    open_count += line.count('{')
 	    close_count += line.count('}')
 	    json_buff.append(line)
-            print "curr buff is: " + str(json_buff)
+            #print "curr buff is: " + str(json_buff)
 	    if open_count == close_count:
-                "json object finished!"
+                #"json object finished!"
 		json_list.append("".join(json_buff))
-                print "json list is: " + str(json_list)
+                #print "json list is: " + str(json_list)
 		json_buff = []
 
 	# parse and print each JSON object
 	for curr_json in json_list:
-            print "curr json is: " + str(curr_json)
+            #print "curr json is: " + str(curr_json)
 	    json_data = json.loads(curr_json)
 	    iterate(json_data["children"], False, [])
 
@@ -192,6 +193,9 @@ def json_dag(filename):
 	    for edge in edge_list:
 		print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
 	    print "}"
+            node_list = []
+            edge_list = []
+
 
 # OUTPUT (check to-file flag)
 if len(sys.argv) > 2 and sys.argv[2] == "to-file":
