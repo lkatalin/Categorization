@@ -1,5 +1,4 @@
 import sys
-from def_color import *
 from make_dag import *
 from extract_traces import *
 from print_stuff import *
@@ -46,6 +45,7 @@ for key, values in categories.items():
 
 for key in categories.keys():
     latencies = edge_latencies(key, tracelist)
+    # only calculate covariance if > 1 observation (> 1 trace in group)
     if len(categories[key]) > 1:
         cov_matrix(key, latencies[0], tracelist)
     
