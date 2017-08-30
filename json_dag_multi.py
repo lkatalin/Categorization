@@ -8,13 +8,13 @@ from datetime import datetime
 # - only toggle or only pass check_join?
 # - what's up with negative latencies?
 
+join_ctr = 0
+
 def json_dag(filename):
     '''
     converts a span-model, JSON-format trace into
     a DAG-model, DOT-format trace showing concurrency
     '''
-    join_ctr = 0
-
     # edge list as [traceid -> traceid]
     edge_list = []
 
@@ -77,6 +77,7 @@ def json_dag(filename):
 	branch_ends = [(element, end_time)] tracked in case of fan out
 	prev_traceid = where to attach current node in linear case
 	'''
+        global join_ctr
 
 	if len(lst) == 1:
 	    curr = lst[0]
@@ -175,13 +176,16 @@ def json_dag(filename):
 	json_list = []
 	open_count = 0
 	close_count = 0
+        ignore_flag = 0
 	for line in data_file:
             # if empty, ignore
             if line.isspace():
                 pass
             else:
+                ignore_flag = line.count('{}')
+
                 # see if it closes a JSON object
-                close_count += line.count('}')
+                close_count += (line.count('}') - ignore_flag)
  
                 # if complete JSON, append to list and clear buffers
 		if open_count == close_count and open_count != 0:
@@ -190,11 +194,11 @@ def json_dag(filename):
 		    json_list.append("".join(json_buff))
 		    json_buff = [split_line[1]]
                     close_count = 0
-                    open_count = line.count('{')
+                    open_count = (line.count('{') - ignore_flag)
    
                 # if not complete JSON, add to open count and append to buff 
                 else: 
-		    open_count += line.count('{')
+		    open_count += (line.count('{') - ignore_flag)
 		    json_buff.append(line)
 
 	# parse and print each JSON object
