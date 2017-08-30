@@ -176,24 +176,36 @@ def json_dag(filename):
 	open_count = 0
 	close_count = 0
 	for line in data_file:
+            # if empty, ignore
             if line.isspace():
                 pass
             else:
-		#if len(json_list) < 1:
-		open_count += line.count('{')
-		close_count += line.count('}')
-		json_buff.append(line)
+                # see if it closes a JSON object
+                close_count += line.count('}')
+ 
+                # if complete JSON, append to list and clear buffers
 		if open_count == close_count and open_count != 0:
-		    #print "now it's done\n"
+                    split_line = line.split(('}'), 1)
+                    json_buff.append(split_line[0] + "\n}")
 		    json_list.append("".join(json_buff))
-		    #print json_list
-		    json_buff = []
-    
+		    json_buff = [split_line[1]]
+                    close_count = 0
+                    open_count = line.count('{')
+   
+                # if not complete JSON, add to open count and append to buff 
+                else: 
+		    open_count += line.count('{')
+		    json_buff.append(line)
+
 	# parse and print each JSON object
 	for curr_json in json_list:
-            print "length of list is: " + str(len(json_list))
+            #print "length of list is: " + str(len(json_list))
+            #for l in json_list:
+            #    print "///////////////// ONE OBJECT ////////////////////////\n"
+            #    print l
+            #    print "\n"
             try:
-		json_data = json.loads(curr_json)
+		json_data = json.loads(curr_json.strip())
 		iterate(json_data["children"], False, [])
 
 		print " # 1 R: %d usecs \nDigraph {" % json_data["info"]["finished"]
