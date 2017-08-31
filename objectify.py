@@ -40,8 +40,10 @@ class Trace(object):
         self.mainText = trace
         if re.search(r'R: (.*?) usecs', trace) is not None:
             self.response = re.search(r'R: (.*?) usecs', trace).group(1)
-        self.fullNodes = re.findall(r'^\s*((?!.* -> .*).*\[.*\])$', trace, re.MULTILINE)
-        self.fullEdges = re.findall(r'\S+ -> .+', trace)
+        #self.fullNodes = re.findall(r'^\s*((?!.* -> .*).*\[.*\])\s*$', trace, re.MULTILINE)
+        self.fullNodes = re.findall(r'\{*\s*(.*?\])', (trace.split("->", 1)[0]).split("{", 1)[1])
+        #self.fullEdges = re.findall(r'\S+ -> .+', trace)
+        self.fullEdges = re.findall(r'(\S*\s->.*?\])', trace)
         self.dag = dag(self)
         self.hashval = hashval(self)
         self.traceId = gen_traceid(self.dag.id)

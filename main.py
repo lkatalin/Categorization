@@ -4,13 +4,21 @@ from extract_traces import *
 from print_stuff import *
 from group_traces import *
 from edge_data import *
+from json_dag_multi import json_dag
 
 # open file from arg or use piped input from stdin
 # to be used if piping from json_parser
+
 try:
     filename = sys.argv[1]
-    with open(filename) as infile:
-        tracelist = extract_traces(infile)
+    if filename.endswith(".json"):
+        dot_format = iter((json_dag(filename, True)).splitlines())
+        tracelist = extract_traces(dot_format)
+                
+    else:
+	with open(filename) as infile:
+	    tracelist = extract_traces(infile)
+
 except IndexError:
     tracelist = extract_traces(sys.stdin.readlines())
 

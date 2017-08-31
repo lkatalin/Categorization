@@ -46,6 +46,7 @@ def dag(trace):
 	    srcnode = id_to_obj[src_str]
         except KeyError:
             print "error: source node %s of edge not in node group" % src_str
+            print "here are the iter items:"
             for n in id_to_obj.iteritems():
                 print n
             sys.exit()

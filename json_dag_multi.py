@@ -1,6 +1,8 @@
 import json
 import sys
+from cStringIO import StringIO
 from datetime import datetime
+
 
 # TO DO:
 # - control for two sequential concurrent batches
@@ -10,11 +12,12 @@ from datetime import datetime
 
 join_ctr = 0
 
-def json_dag(filename):
+def json_dag(filename, main=False):
     '''
     converts a span-model, JSON-format trace into
     a DAG-model, DOT-format trace showing concurrency
     '''
+
     # edge list as [traceid -> traceid]
     edge_list = []
 
@@ -206,6 +209,11 @@ def json_dag(filename):
             first_json = json.loads(json_list[0])
 	    sys.stdout = open('%s.dot' % first_json["children"][0]["parent_id"], 'a')
 
+        elif main == True:
+            old_stdout = sys.stdout
+            sys.stdout = stdout_capture = StringIO()
+
+        # PARSING
 	# parse and print each JSON object
 	for curr_json in json_list:
             try:
@@ -227,7 +235,11 @@ def json_dag(filename):
     if join_ctr > 0:
         print "\nJOINS DETECTED: %d / %d\n" % (join_ctr, len(json_list))
 
+    if main == True:
+        sys.stdout = old_stdout
+        return stdout_capture.getvalue()
 
 # START HERE
-filename = sys.argv[1]
-json_dag(filename)
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    json_dag(filename)

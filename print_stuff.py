@@ -9,7 +9,7 @@ def print_trace(tracelist):
 	print "\n\ntrace id: " + trace.traceId
 	print "\ntrace raw text: \n"
 	print trace.mainText
-	print "\ntracename: " + trace.traceName
+	print "\ntracename: " + str(trace.traceName)
 	print "\ntotal response time: " + trace.response
 	print "\nfull nodes: "
 	for node in trace.fullNodes:
