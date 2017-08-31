@@ -201,13 +201,13 @@ def json_dag(filename):
 		    open_count += (line.count('{') - ignore_flag)
 		    json_buff.append(line)
 
+	# OUTPUT (check to-file flag)
+	if len(sys.argv) > 2 and sys.argv[2] == "to-file":
+            first_json = json.loads(json_list[0])
+	    sys.stdout = open('%s.dot' % first_json["children"][0]["parent_id"], 'a')
+
 	# parse and print each JSON object
 	for curr_json in json_list:
-            #print "length of list is: " + str(len(json_list))
-            #for l in json_list:
-            #    print "///////////////// ONE OBJECT ////////////////////////\n"
-            #    print l
-            #    print "\n"
             try:
 		json_data = json.loads(curr_json.strip())
 		iterate(json_data["children"], False, [])
@@ -225,13 +225,9 @@ def json_dag(filename):
                 sys.exit()
 
     if join_ctr > 0:
-        print "joins detected: %d\n" % join_ctr
+        print "\nJOINS DETECTED: %d / %d\n" % (join_ctr, len(json_list))
 
 
-# OUTPUT (check to-file flag)
-if len(sys.argv) > 2 and sys.argv[2] == "to-file":
-    sys.stdout = open('%s.dot' % json_data["children"][0]["parent_id"], 'a')
-
-# INPUT (call function)
+# START HERE
 filename = sys.argv[1]
 json_dag(filename)
