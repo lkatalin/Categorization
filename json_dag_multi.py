@@ -205,6 +205,8 @@ def json_dag(filename, main=False):
 		    json_buff.append(line)
 
 	# OUTPUT (check to-file flag)
+        # if 'to-file' flag was passed, opens a new file in working directory named
+        # for the base_id of the first JSON object parsed from the input file
 	if len(sys.argv) > 2 and sys.argv[2] == "to-file":
             first_json = json.loads(json_list[0])
 	    sys.stdout = open('%s.dot' % first_json["children"][0]["parent_id"], 'a')
