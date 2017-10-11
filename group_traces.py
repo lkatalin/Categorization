@@ -21,11 +21,11 @@ def depth_first_traversal(trace):
     kept in case of sync and full paths are 
     not kept.
     """
-    from timer import Timer
+    #from timer import Timer
     nodes = []
     stack = [trace.dag]
     while stack:
-	with Timer() as t:
+	#with Timer() as t:
 	    cur_node = stack[0]
 	    stack = stack[1:]
 	    if cur_node.id not in nodes: #do not duplicate in case of sync
