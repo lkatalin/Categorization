@@ -1,5 +1,7 @@
 # Categorization
 
+## Note: this code is now being developed at https://github.com/lkatalin/tracing/structural_sort. This version is outdated and will not be evolving.
+
 ## Goals
 
 This code is part of a larger project at the [Massachusetts Open Cloud](https://github.com/cci-moc/moc-public) aiming to automate decisions about quantity and quality of instrumentation in tracing distributed systems. The Categorization code will group traces that are "similar" based on structure or some other pre-determined quality. Within these groups, variance will be assessed and high variance triggers further instrumentation at points of anomalous system behavior. The idea is that similar traces should behave similarly, and if they don't, further investigation may be warranted. Automating this prodecure escapes the double bind of capturing too little/the wrong information vs. capturing too much information about a system's behavior.
