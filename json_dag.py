@@ -180,6 +180,9 @@ def json_dag(file):
         print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
     print "}"
 
-
-filename = sys.argv[1]
-json_dag(filename)
+try:
+    filename = sys.argv[1]
+    json_dag(filename)
+except KeyError:
+    print "error: could not find filename for command with argv: %s" % sys.argv
+    sys.exit()
