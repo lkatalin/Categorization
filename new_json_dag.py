@@ -56,7 +56,7 @@ def json_dag(file):
             
         def collect_data(curr):
             name = curr["info"]["name"]
-            service = curr["info"]["service"]
+            service = (curr["info"]["service"]).replace('-', '_')
             traceid = curr["trace_id"]
             node = name + "_" + service
             (start, stop) = extract_timestamp(curr)
