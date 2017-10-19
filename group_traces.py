@@ -22,15 +22,14 @@ def depth_first_traversal(trace):
     not kept.
     """
     #from timer import Timer
-    print "entering DFT\n"
     nodes = []
     stack = [trace.dag]
     while stack:
 	#with Timer() as t:
 	    cur_node = stack[0]
-            print "DFT cur node: " + str(cur_node)
+            #print "DFT cur node: " + str(cur_node)
 	    stack = stack[1:]
-            print "rest of stack: " + str(stack)
+            #print "rest of stack: " + str(stack)
 	    if cur_node.id not in nodes: #do not duplicate in case of sync
 		nodes.append(cur_node.id)
 	    for child in cur_node.get_rev_children():
