@@ -171,12 +171,28 @@ def json_dag(file):
         output_file = '%s.dot' % json_data["children"][0]["parent_id"]
         output = open(os.path.join(directory, output_file),'w')
         sys.stdout = output
+
+    # make print-out more readable
+    longest_node = 0
+    longest_edge = 0
+    for node in node_list:
+        length = len(node[0])
+        if (length > longest_node):
+            longest_node = length
+
+    for edge in edge_list:
+        length = len(edge[0]) + len(edge[1])
+        if (length > longest_edge):
+            longest_edge = length
  
+    # create output as DOT
     print " # 1 R: %d usecs \nDigraph {" % total_time
     for node in node_list:
-        print '\t' + '%s' % (str(node[0]))+ ' [label="%s - %s"]'  % (str(node[1]), str(node[2]))
+        node_padding = ' ' * (longest_node - len(node[0]))
+        print '\t' + '%s' % (str(node[0])) + node_padding + ' [label="%s - %s"]'  % (str(node[1]), str(node[2]))
     for edge in edge_list:
-        print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
+        edge_padding = ' ' * (longest_edge - (len(edge[0]) + len(edge[1])))
+        print '\t' + edge[0] + ' -> ' + edge[1] + edge_padding + ' [label="%s"]' % str(edge[2])
     print "}"
 
 try:
