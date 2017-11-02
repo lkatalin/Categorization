@@ -21,7 +21,7 @@ def dag(trace):
         '''
 
         id_str = (re.search(r'(.*) \[', node_text).group(1)).strip()
-        print "id_str: " + id_str
+        #print "id_str: " + id_str
         #label = re.search(r'\[.*label="(.*)"\]', node_text).group(1)
         #print "label: " + label
          
@@ -33,18 +33,19 @@ def dag(trace):
 
         # keep track of potential root nodes
         root.append(new_node.id)
-        print "current root list: " + str(root)
+        #print "current root list: " + str(root)
 
     for edge in trace.fullEdges:
         # extract source and dest nodes as strings
         # below works for DOT output from json_dag.py (span -> DAG)
         try:
             dst_str = (re.search(r'-> (.+) \[', edge).group(1)).strip()
-            print "dst str: " + dst_str
+            #print "dst str: " + dst_str
         except AttributeError:
             dst_str = re.search(r'\d+ -> (\d+)', edge).group(1)
+
         src_str = re.search(r'(.+) ->', edge).group(1)
-        print "src str: " + src_str
+        #print "src str: " + src_str
 
         # update both node object fields, if nodes successfully created
         try:
@@ -54,13 +55,16 @@ def dag(trace):
             print "here are the iter items:"
             for n in id_to_obj.iteritems():
                 print n
+
             sys.exit()
+
         try:
 	    dstnode = id_to_obj[dst_str]
         except KeyError:
             print "error: dest node %s of edge not in node group" % dst_str
-            for n in id_to_obj.iteritems():
-                print n
+            #for n in id_to_obj.iteritems():
+            #    print n
+
             sys.exit()
 
         # update node relationships
@@ -73,11 +77,11 @@ def dag(trace):
             root.remove(dstnode.id)
 
         # debugging info dump
-        for (idstr, obj) in id_to_obj.iteritems():
-            print "idstr: " + idstr + " obj: " + str(obj)
+        #for (idstr, obj) in id_to_obj.iteritems():
+        #    print "idstr: " + idstr + " obj: " + str(obj)
  
     if len(root) == 1:
-        print "root is : " + str(root[0])
+        #print "root is : " + str(root[0])
         return id_to_obj[root[0]]
     else:
         print "error: no root node or multiple root nodes detected in trace: %s with response time %s" % (str(trace.traceId), str(trace.response))

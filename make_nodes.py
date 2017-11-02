@@ -9,10 +9,12 @@ info from edge labels resides in destination nodes/
 children.
 """
 class Node(object):
-    def __init__(self, name='root', children=None, parents=None):
+    def __init__(self, name='root', children=None, parents=None, corresp_start_node=None, corresp_end_node=None):
         self.name = name
         self.children = []
         self.parents = []
+        self.corresp_start_node = corresp_start_node
+        self.corresp_end_node = corresp_end_node
         self.id = ""
         self.latency = ""
         if children is not None:
@@ -43,6 +45,14 @@ class Node(object):
     def add_parent(self, parent):
         assert isinstance(parent, Node)
         self.parents.append(parent)
+    def add_start(self, start):
+        assert isinstance(start, Node)
+        assert self.corresp_end_node == None
+        self.corresp_start_node = start
+    def add_end(self, end):
+        assert isinstance(end, Node)
+        assert self.corresp_start_node == None
+        self.corresp_end_node = end
 
 # breadth first search of tree for element
 def find_b(tree, elm):

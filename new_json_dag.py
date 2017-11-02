@@ -29,6 +29,16 @@ def json_dag(file):
                         if 'start' in locals():
                             return (start, stop)
 
+        def extract_startnode(span):
+            for (key, value) in span["info"].iteritems():
+                if 'meta.raw_payload' in key and 'start' in key:
+                    return (key, value)
+
+        def extract_endnode(span):
+            for (key, value) in span["info"].iteritems():
+                if 'meta.raw_payload' in key and 'stop' in key:
+                    return (key, value)
+                        
         def is_earlier(fst, snd):
             t1 = datetime.strptime(fst, "%Y-%m-%dT%H:%M:%S.%f")
             t2 = datetime.strptime(snd, "%Y-%m-%dT%H:%M:%S.%f")
@@ -72,7 +82,8 @@ def json_dag(file):
 	    check_join = False unless prev elements on this level were concurrent
 	    branch_ends = [(element, end_time)] tracked in case of fan out
             prev_traceid = where to attach current node in linear case
-	    '''
+    	    '''
+
             if len(lst) == 1:
                 curr = lst[0]
                 rest = []
@@ -81,6 +92,12 @@ def json_dag(file):
             else:
                 curr = find_earliest(lst)[0]
                 rest = [x for x in lst if x != curr]
+
+            start = extract_startnode(curr)
+            end = extract_endnode(curr)
+  
+            print "start: \n" + str(start)
+            print "\nend: \n" + str(end)
 
             # current node data
             (curr_name, curr_service, curr_start, curr_stop, curr_traceid, curr_node) = collect_data(curr)
@@ -172,7 +189,7 @@ def json_dag(file):
         output = open(os.path.join(directory, output_file),'w')
         sys.stdout = output
 
-    # make print-out more readable
+    # get padding info to make print-out more readable
     longest_node = 0
     longest_edge = 0
     for node in node_list:

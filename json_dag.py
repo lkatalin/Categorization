@@ -1,5 +1,6 @@
 import json
 import sys
+import os
 from datetime import datetime
 
 # TO DO:
@@ -171,7 +172,10 @@ def json_dag(file):
     # OUTPUT 
     # check to-file flag
     if len(sys.argv) > 2 and sys.argv[2] == "to-file":
-        sys.stdout = open('%s.dot' % json_data["children"][0]["parent_id"], 'w')
+        directory = sys.argv[1].rsplit('/', 1)[0]
+        output_file = '%s.dot' % json_data["children"][0]["parent_id"]
+        output = open(os.path.join(directory, output_file),'w')
+        sys.stdout = output
  
     print " # 1 R: %d usecs \nDigraph {" % total_time
     for node in node_list:
