@@ -17,6 +17,7 @@ class Node(object):
         self.corresp_end_node = corresp_end_node
         self.id = ""
         self.latency = ""
+        self.timestamp = ""
         if children is not None:
             for child in children:
                 self.add_child(child)

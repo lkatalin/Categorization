@@ -2,6 +2,7 @@ import json
 import sys
 import os
 from datetime import datetime
+from make_nodes import *
 
 # TO DO:
 # - control for two sequential concurrent batches
@@ -58,26 +59,45 @@ def json_dag(file):
                 elm_start = extract_timestamp(elm)[0]
 		if is_earlier(elm_start, curr_stop):
 		    concurr.append(elm)
-            return concurr
-            
-        def collect_data(curr):
-            name = curr["info"]["name"]
-            service = curr["info"]["service"]
-            traceid = curr["trace_id"]
-            (start, stop) = extract_timestamp(curr)
-            return (name, service, start, stop, traceid)
+            return concurr 
+
+        def get_start_node(curr):
+            start_node = Node(curr["info"]["name"] + ":" + curr["info"]["service"] + ":START")
+            start_node.id = dot_friendlify(curr["trace_id"])
+            start_node.timestamp = extract_timestamp(curr)[0] 
+            start_node.corresp_end_node = get_end_node(curr)
+            return start_node
+
+        def get_end_node(curr):
+            end_node = Node(curr["info"]["name"] + ":" + curr["info"]["service"] + ":END")
+            end_node.id = dot_friendlify(curr["trace_id"]) + "_E"
+            end_node.timestamp = extract_timestamp(curr)[1]
+            corresp_start_node = None # add this outside of fxn call to avoid loop
+            return end_node
 
         def dot_friendlify(traceid):
             return "a" + traceid.replace("-", "")
         
         # either pass this stuff or define it here but not both ***********
-        def iterate(lst, check_join, branch_ends, prev_traceid=None, prev_stop=None):
+        def iterate(lst, check_join, branch_ends, prev_node=None, prev_end_time=None):
 	    '''
 	    lst = elements left to process on current level
 	    check_join = False unless prev elements on this level were concurrent
 	    branch_ends = [(element, end_time)] tracked in case of fan out
             prev_traceid = where to attach current node in linear case
 	    '''
+
+#            print "---------- REPORT ------------"
+#            print "current list is "
+#            for item in lst:
+#                print item["info"]["name"]
+#            print "check join is " + str(check_join)
+#            print "branch ends are "
+#            for end in branch_ends:
+#                print end[0]["info"]["name"]
+#            print "prev_node = " + str(prev_node) + " and prev_end_time = " + str(prev_end_time)
+#            print "\n"
+
             if len(lst) == 1:
                 curr = lst[0]
                 rest = []
@@ -87,31 +107,34 @@ def json_dag(file):
                 curr = find_earliest(lst)[0]
                 rest = [x for x in lst if x != curr]
 
-            # current node data
-            (curr_name, curr_service, curr_start, curr_stop, curr_traceid) = collect_data(curr)
-
-            # because apparently DOT can't handle alphanumeric traceids
-            dcurr_traceid = dot_friendlify(curr_traceid)
+            # create connected start and end nodes for current span
+            curr_start = get_start_node(curr)
+            curr_end = curr_start.corresp_end_node
+            curr_end.corresp_start_node = curr_start
 
             # determine if any concurrency with current element
-            concurrent_elms = find_concurr(curr_stop, rest)
+            concurrent_elms = find_concurr(curr_end.timestamp, rest)
 
             # if curr has no children, track end time for later synch
+            # ... because otherwise its children might be the end instead
             if len(concurrent_elms) > 0 and len(curr["children"]) == 0:
-                branch_ends.append((curr, extract_timestamp(curr)[1]))
-
-            # add curr to nodes whether synch or linear
-            node_list.append((dcurr_traceid, curr_name, curr_service))
+                branch_ends.append((curr, curr_end.timestamp))
+                
+            # add curr START to nodes whether synch or linear 
+            node_list.append(curr_start)
             
             # ----------------- ATTACH CURRENT NODE ------------------------------------
             # SYNCH CASE : check for sequential relationship to add edges
             if check_join == True:
                 for (b_elm, b_end) in branch_ends:
                     # add edge if branch ended before curr started
-                    if is_earlier(b_end, extract_timestamp(curr)[0]):
-                        (b_name, b_service, b_start, b_stop, b_traceid) = collect_data(b_elm)
-                        edge_latency = find_latency(b_end, curr_start)
-                        edge_list.append((dot_friendlify(b_traceid), dcurr_traceid, edge_latency))
+                    if is_earlier(b_end, curr_start.timestamp):
+                        b_start = get_start_node(b_elm)
+                        b_end = b_start.corresp_end_node
+                        b_end.corresp_start_node = b_start
+
+                        edge_latency = find_latency(b_end.timestamp, curr_start.timestamp)
+                        edge_list.append((b_end.id, curr_start.id, edge_latency))
 
                 # reset params
                 check_join = False
@@ -119,51 +142,72 @@ def json_dag(file):
 
             # LINEAR CASE : only add edge if curr is not first / base node
             else:
-                if prev_traceid != None and prev_stop != None:
-                    edge_latency = find_latency(prev_stop, curr_start)
-                    edge_list.append((prev_traceid, dcurr_traceid, edge_latency))
+                if prev_node != None and prev_end_time != None:
+                    edge_latency = find_latency(prev_end_time, curr_start.timestamp)
+                    edge_list.append((prev_node.id, curr_start.id, edge_latency))
 
             # -------------------- CHECK FOR FAN OUT  -------------------------------
             if len(concurrent_elms) > 0:
+                #print "our current elm is " + str(curr_start) + " and its concurr elms are: "
+                
                 for elm in concurrent_elms:
-
+ 
                     # add node
-                    (e_name, e_service, e_start, e_stop, e_traceid) = collect_data(elm)
-                    node_list.append((dot_friendlify(e_traceid), e_name, e_service))
+                    e_start = get_start_node(elm)
+                    e_end = e_start.corresp_end_node
+                    e_end.corresp_start_node = e_start
+
+                    node_list.append(e_start)
 
                     # add edge if not first / base node
-                    if prev_traceid != None:
-                        edge_latency = find_latency(prev_stop, e_start)
-                        edge_list.append((prev_traceid, dot_friendlify(e_traceid), edge_latency))
+                    if prev_node != None:
+                        edge_latency = find_latency(prev_end_time, e_start.timestamp)
+                        edge_list.append((prev_node.id, e_start.id, edge_latency))
 
                     # don't process concurrent elements twice
                     rest.remove(elm)
 
                     # traverse concurrent branch's children
                     if len(elm["children"]) > 0:
-                        iterate(elm["children"], check_join, branch_ends, dot_friendlify(e_traceid), e_stop)
+                        iterate(elm["children"], check_join, branch_ends, e_start, e_end.timestamp)
 
-                    # or track end time for future synch
-                    else:
-                        branch_ends.append((elm, extract_timestamp(elm)[1]))
-                
+                    # or track end time for future synch if no children can push end time later
+                    #else:
+                    branch_ends.append((elm, e_end.timestamp))
+ 
+                    ## after children: cap it no matter what! and then add to branch_ends
+                    most_recent = node_list[len(node_list) - 1]
+
+                    node_list.append(e_end)
+                    edge_latency = find_latency(most_recent.timestamp, curr_end.timestamp)
+                    edge_list.append((most_recent.id, e_end.id, edge_latency))
+ 
                 # check branch end times when attaching next node on same level
+                
                 check_join = True
 
             # ---------------------------- RECURSE -----------------------------------
-            # check if end of branch
-	    if len(curr["children"]) == 0 and len(rest) == 0:
-                branch_ends.append((curr, extract_timestamp(curr)[1]))
-		return
-
             # traverse any children
 	    if len(curr["children"]) > 0:
-		iterate(curr["children"], check_join, branch_ends, dcurr_traceid, curr_stop)
+		iterate(curr["children"], check_join, branch_ends, curr_start, curr_start.timestamp)
+ 
+            if (len(concurrent_elms) > 0):
+                most_recent = curr_start
+
+            else:
+                # find most recently appended node
+                most_recent = node_list[len(node_list) - 1]
+
+            # cap
+            node_list.append(curr_end)
+            edge_latency = find_latency(most_recent.timestamp, curr_end.timestamp)
+            edge_list.append((most_recent.id, curr_end.id, edge_latency))
 
             # traverse rest of level
 	    if len(rest) > 0:
-		iterate(rest, check_join, branch_ends, dcurr_traceid, curr_stop)
-
+		iterate(rest, check_join, branch_ends, curr_end, curr_end.timestamp)
+            
+            return
 
     # BEGIN CALL
     total_time = json_data["info"]["finished"]
@@ -179,7 +223,7 @@ def json_dag(file):
  
     print " # 1 R: %d usecs \nDigraph {" % total_time
     for node in node_list:
-        print '\t' + str(node[0]) + ' [label="%s - %s"]' % (str(node[1]), str(node[2]))
+        print '\t' + node.id + ' [label="%s"]' % node.name
     for edge in edge_list:
         print '\t' + edge[0] + ' -> ' + edge[1] + ' [label="%s"]' % str(edge[2])
     print "}"
