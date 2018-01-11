@@ -130,4 +130,4 @@ def process_groups(d, tlist):
             add_to_dict(anomaly_types["anomalous_groups"], "Groups:", hashv)
 
         group_info[hashv] = {'Number of edges': num_edges, 'Trace total time average' : avg, 'Trace total time variance': var}
-        return group_info
+    return group_info
