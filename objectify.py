@@ -33,6 +33,7 @@ class Trace(object):
     fullNodes = []
     dag = {}
     hashval = ""
+    edgelst = []
     traceId = 0
 
     def __init__(self, trace):
@@ -44,9 +45,6 @@ class Trace(object):
         self.fullNodes = re.findall(r'\{*\s*(.*?\])', (trace.split("->", 1)[0]).split("{", 1)[1])
         #self.fullEdges = re.findall(r'\S+ -> .+', trace)
         self.fullEdges = re.findall(r'(\S*\s->.*?\])', trace)
-        self.dag = dag(self)
-        self.hashval = hashval(self)
-        self.traceId = gen_traceid(self.dag.id)
 
 def make_trace(trace):
     t = Trace(trace)

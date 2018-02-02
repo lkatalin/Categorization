@@ -21,11 +21,19 @@ from make_dag import dag
 categories = {}
 anomaly_types = {'anomalous_groups': {}, 'anomalous_edges': {}, 'high_covar_edges': {}}
 
-def add_to_dict(dic, key, add_val):
-    if dic.get(key) is not None:
-        dic[key].append(add_val)
+def add_to_categories(key, rtime, dag, traceid, edges):
+    """
+    keys are: hash values of traces.
+    values are: a DAG in that group, followed by another
+    dict of a trace_id key with a list of edge latencies as 
+    values.
+    """
+    if categories.get(key) is not None:
+        categories[key][1].append(rtime)
+	categories[key][3][traceid] = edges
     else:
-        dic[key] = [add_val]
+        categories[key] = [dag, [rtime], { traceid : edges}]
+
 
 def depth_first_traversal(trace):
     """
@@ -43,6 +51,7 @@ def depth_first_traversal(trace):
 
     #from timer import Timer
     nodes = []
+    edge_latencies = []
     stack = [trace.dag]
     while stack:
         #with Timer() as t:
@@ -52,10 +61,11 @@ def depth_first_traversal(trace):
         #print "rest of stack: " + str(stack)
         if cur_node.name not in nodes: #do not duplicate in case of sync
             nodes.append(cur_node.name)
+	    edge_latencies.append(cur_node.latency)
             for child in cur_node.get_rev_children():
                 stack.insert(0, child)
                 #print "=> time of start: %s" % t.start
-                return nodes
+                return (nodes, edge_latencies)
 
 def hashval(trace):
     """
@@ -63,19 +73,14 @@ def hashval(trace):
     creates a string for the hash value
     of each trace (stored in trace object).
     """
-    lst = depth_first_traversal(trace)
-    trunc = [re.search(r'....$', x).group(0) if len(x) > 3 else x for x in lst]
+    (hashlst, edgelst) = depth_first_traversal(trace)
+    trunc = [re.search(r'....$', x).group(0) if len(x) > 3 else x for x in hashlst]
 
     hashval = "".join(trunc)
-    return hashval
+
+    return (hashval, edgelst)
 
 def group_traces(trace):
-    """
-    traces with the same hash value (determined by
-    hashval function) are in the same group. keys are
-    hashvalues, values are lists of trace ids in that
-    group.
-    """
     add_to_dict(categories, trace.hashval, trace.traceId)
 
 def trace_lookup(tid, tlist):
