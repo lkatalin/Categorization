@@ -65,7 +65,8 @@ def depth_first_traversal(trace):
             for child in cur_node.get_rev_children():
                 stack.insert(0, child)
                 #print "=> time of start: %s" % t.start
-                return (nodes, edge_latencies)
+                
+    return (nodes, edge_latencies)
 
 def hashval(trace):
     """
