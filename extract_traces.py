@@ -42,9 +42,9 @@ def extract_traces(infile):
             traceObj.dag = dag(traceObj)
                
             # only traverse dag once in DFT to get both hashval and edge list
-	    (hashv, edges) = hashval(traceObj)
-            traceObj.hashval = hashv
-            traceObj.edgelst = edges
+	    #(hashv, edges) = hashval(traceObj)
+            #traceObj.hashval = hashv
+            #traceObj.edgelst = edges
 
             # create unique ID based on id of root node
             traceObj.traceId =  gen_traceid(traceObj.dag.id)
