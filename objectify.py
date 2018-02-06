@@ -1,5 +1,6 @@
 import re
 from group_traces import *
+from memory_profiler import profile
 
 ids_used = []
 ctr = 1

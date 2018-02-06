@@ -42,12 +42,23 @@ print "INFO BY CATEGORY: \n"
 for key, values in categories.items():
     print "Category hashval: " + str(key)
 
+    # count traces in category
     numincategory = 0
     for trace in categories[key][2]:
         numincategory += 1
 
     print "Number of traces: %d" % numincategory
-    print "The traces are: " + str (values) 
+    print "Example trace: %s" % values[0]
+
+    print "Total overall response times listed in category: " + str(values[1])
+    print "Average overall response time: "
+    
+    print "Traces included:\n"
+
+    for trace in categories[key][2]:
+        print "\tTrace ID: " + trace
+        print "\tEdge latencies: " + str(categories[key][2][trace])
+
 #    for val in group_data[key]:
 #        print (val + ': ' + str(group_data[key][val]))
     print "\n"

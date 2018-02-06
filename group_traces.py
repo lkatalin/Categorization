@@ -13,9 +13,8 @@
 # governing permissions and limitations under the License.
 
 import re
-#import numpy as np
 from make_dag import dag
-#from decimal import *
+from memory_profiler import profile
 
 # groups of traces based on structure
 categories = {}
@@ -33,7 +32,6 @@ def add_to_categories(key, rtime, dag, traceid, edges):
 	categories[key][3][traceid] = edges
     else:
         categories[key] = [dag, [rtime], { traceid : edges}]
-
 
 def depth_first_traversal(trace):
     """
@@ -61,7 +59,8 @@ def depth_first_traversal(trace):
         #print "rest of stack: " + str(stack)
         if cur_node.name not in nodes: #do not duplicate in case of sync
             nodes.append(cur_node.name)
-	    edge_latencies.append(cur_node.latency)
+            if cur_node.latency is not '':
+	        edge_latencies.append(cur_node.latency)
             for child in cur_node.get_rev_children():
                 stack.insert(0, child)
                 #print "=> time of start: %s" % t.start
