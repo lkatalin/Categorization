@@ -29,7 +29,8 @@ def add_to_categories(key, rtime, dag, traceid, edges):
     """
     if categories.get(key) is not None:
         categories[key][1].append(rtime)
-	categories[key][3][traceid] = edges
+	categories[key][2][traceid] = edges
+        
     else:
         categories[key] = [dag, [rtime], { traceid : edges}]
 

@@ -5,6 +5,7 @@ from print_stuff import *
 from group_traces import *
 from edge_data import *
 from json_dag_multi import json_dag
+from def_color import *
 
 # open file from arg or use piped input from stdin
 # to be used if piping from json_parser
@@ -35,29 +36,30 @@ key_counter = 0
 for key in categories.keys():
     key_counter += 1
 
-print "Number of traces: %d" % numtraces
-print "Number of categories: %d \n" % key_counter
+print "{}Number of traces:{} %d".format(G, W) % numtraces
+print "{}Number of categories:{} %d \n".format(G, W) % key_counter
 
 print "INFO BY CATEGORY: \n"
 for key, values in categories.items():
-    print "Category hashval: " + str(key)
+    print "----------------------------------------------------------------------------"
+    print "{}Category hashval:{} %s".format(G, W) % key
 
     # count traces in category
     numincategory = 0
     for trace in categories[key][2]:
         numincategory += 1
 
-    print "Number of traces: %d" % numincategory
-    print "Example trace: %s" % values[0]
+    print "{}Number of traces:{} %d".format(G, W) % numincategory
+    print "{}Example trace:{} %s\n".format(G, W) % values[0]
 
-    print "Total overall response times listed in category: " + str(values[1])
-    print "Average overall response time: "
+    print "{}Total overall response times listed in category:{} %s\n".format(G, W) % (values[1])
+    print "{}Average overall response time: {}\n".format(G, W)
     
-    print "Traces included:\n"
+    print "{}Traces included:{}\n".format(G, W)
 
     for trace in categories[key][2]:
-        print "\tTrace ID: " + trace
-        print "\tEdge latencies: " + str(categories[key][2][trace])
+        print "\t{}Trace ID:{} %s".format(G, W) % trace
+        print "\t{}Edge latencies:{} %s\n".format(G, W) % categories[key][2][trace]
 
 #    for val in group_data[key]:
 #        print (val + ': ' + str(group_data[key][val]))

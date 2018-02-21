@@ -22,11 +22,13 @@ def dag(trace):
 
         id_str = (re.search(r'(.*) \[', node_text).group(1)).strip()
         #print "id_str: " + id_str
-        #label = re.search(r'\[.*label="(.*)"\]', node_text).group(1)
+        label = re.search(r'\[.*label="(.*)"\]', node_text).group(1)
         #print "label: " + label
          
-        new_node = Node(id_str)
+        new_node = Node(label)
         new_node.id = id_str
+
+        #print "new node name = " + str(new_node.name) 
 
         # update hash map
         id_to_obj[id_str] = new_node
