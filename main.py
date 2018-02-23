@@ -63,7 +63,7 @@ print "{}Number of categories:{} %d \n".format(G, W) % key_counter
 
 #    for val in group_data[key]:
 #        print (val + ': ' + str(group_data[key][val]))
-    print "\n"
+#    print "\n"
 
 #for key in categories.keys():
 #    latencies = edge_latencies(key, tracelist)
