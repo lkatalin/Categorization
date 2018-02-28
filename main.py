@@ -39,27 +39,27 @@ for key in categories.keys():
 print "{}Number of traces:{} %d".format(G, W) % numtraces
 print "{}Number of categories:{} %d \n".format(G, W) % key_counter
 
-#print "INFO BY CATEGORY: \n"
-#for key, values in categories.items():
-#    print "----------------------------------------------------------------------------"
-#    print "{}Category hashval:{} %s".format(G, W) % key
+print "INFO BY CATEGORY: \n"
+for key, values in categories.items():
+    print "----------------------------------------------------------------------------"
+    print "{}Category hashval:{} %s".format(G, W) % key
 
     # count traces in category
-#    numincategory = 0
-#    for trace in categories[key][2]:
-#        numincategory += 1
+    numincategory = 0
+    for trace in categories[key][2]:
+        numincategory += 1
 
-#    print "{}Number of traces:{} %d".format(G, W) % numincategory
-#    print "{}Example trace:{} %s\n".format(G, W) % values[0]
+    print "{}Number of traces:{} %d".format(G, W) % numincategory
+    print "{}Example trace:{} %s\n".format(G, W) % values[0]
 
-#    print "{}Total overall response times listed in category:{} %s\n".format(G, W) % (values[1])
-#    print "{}Average overall response time: {}\n".format(G, W)
+    print "{}Total overall response times listed in category:{} %s\n".format(G, W) % (values[1])
+    print "{}Average overall response time: {}\n".format(G, W)
     
-#    print "{}Traces included:{}\n".format(G, W)
+    print "{}Traces included:{}\n".format(G, W)
 
-#    for trace in categories[key][2]:
-#        print "\t{}Trace ID:{} %s".format(G, W) % trace
-#        print "\t{}Edge latencies:{} %s\n".format(G, W) % categories[key][2][trace]
+    for trace in categories[key][2]:
+        print "\t{}Trace ID:{} %s".format(G, W) % trace
+        print "\t{}Edge latencies:{} %s\n".format(G, W) % categories[key][2][trace]
 
 #    for val in group_data[key]:
 #        print (val + ': ' + str(group_data[key][val]))

@@ -75,9 +75,11 @@ def hashval(trace):
     of each trace (stored in trace object).
     """
     (hashlst, edgelst) = depth_first_traversal(trace)
-    trunc = [re.search(r'....$', x).group(0) if len(x) > 3 else x for x in hashlst]
+    #trunc = [re.search(r'....$', x).group(0) if len(x) > 3 else x for x in hashlst]
+    trunc = [x for x in hashlst]
 
     hashval = "".join(trunc)
+    #hashval = "".join(hashlst)
 
     return (hashval, edgelst)
 
