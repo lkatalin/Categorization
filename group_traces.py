@@ -61,7 +61,8 @@ def depth_first_traversal(trace):
         if cur_node.name not in nodes: #do not duplicate in case of sync
             nodes.append(cur_node.name)
             if cur_node.latency is not '':
-	        edge_latencies.append(cur_node.latency)
+                latency_str = re.search(r'\d+\.\d+', cur_node.latency).group(0)
+	        edge_latencies.append(float(latency_str))
             for child in cur_node.get_rev_children():
                 stack.insert(0, child)
                 #print "=> time of start: %s" % t.start
@@ -76,10 +77,9 @@ def hashval(trace):
     """
     (hashlst, edgelst) = depth_first_traversal(trace)
     #trunc = [re.search(r'....$', x).group(0) if len(x) > 3 else x for x in hashlst]
-    trunc = [x for x in hashlst]
 
-    hashval = "".join(trunc)
-    #hashval = "".join(hashlst)
+    #hashval = "".join(trunc)
+    hashval = "".join(hashlst)
 
     return (hashval, edgelst)
 
