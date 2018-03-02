@@ -46,20 +46,20 @@ for key, values in categories.items():
 
     # count traces in category
     numincategory = 0
-    for trace in categories[key][2]:
+    for trace in categories[key][1]:
         numincategory += 1
 
     print "{}Number of traces:{} %d".format(G, W) % numincategory
-    print "{}Example trace:{} %s\n".format(G, W) % values[0]
+    #print "{}Example trace:{} %s\n".format(G, W) % values[0]
 
     print "{}Total overall response times listed in category:{} %s\n".format(G, W) % (values[1])
     print "{}Average overall response time: {}\n".format(G, W)
     
     print "{}Traces included:{}\n".format(G, W)
 
-    for trace in categories[key][2]:
+    for trace in categories[key][1]:
         print "\t{}Trace ID:{} %s".format(G, W) % trace
-        print "\t{}Edge latencies:{} %s\n".format(G, W) % categories[key][2][trace]
+        print "\t{}Edge latencies:{} %s\n".format(G, W) % categories[key][1][trace]
 
 #    for val in group_data[key]:
 #        print (val + ': ' + str(group_data[key][val]))

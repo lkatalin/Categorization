@@ -20,7 +20,7 @@ from memory_profiler import profile
 categories = {}
 anomaly_types = {'anomalous_groups': {}, 'anomalous_edges': {}, 'high_covar_edges': {}}
 
-def add_to_categories(key, rtime, dag, traceid, edges):
+def add_to_categories(key, rtime, traceid, edges):
     """
     keys are: hash values of traces.
     values are: a DAG in that group, followed by another
@@ -28,11 +28,11 @@ def add_to_categories(key, rtime, dag, traceid, edges):
     values.
     """
     if categories.get(key) is not None:
-        categories[key][1].append(rtime)
-	categories[key][2][traceid] = edges
+        categories[key][0].append(rtime)
+	categories[key][1][traceid] = edges
         
     else:
-        categories[key] = [dag, [rtime], { traceid : edges}]
+        categories[key] = [[rtime], { traceid : edges}]
 
 def depth_first_traversal(trace):
     """
@@ -50,6 +50,7 @@ def depth_first_traversal(trace):
 
     #from timer import Timer
     nodes = []
+    ids = []
     edge_latencies = []
     stack = [trace.dag]
     while stack:
@@ -58,8 +59,9 @@ def depth_first_traversal(trace):
         #print "DFT cur node: " + str(cur_node)
         stack = stack[1:]
         #print "rest of stack: " + str(stack)
-        if cur_node.name not in nodes: #do not duplicate in case of sync
+        if cur_node.id not in ids: #do not duplicate in case of sync
             nodes.append(cur_node.name)
+            ids.append(cur_node.id)
             if cur_node.latency is not '':
                 latency_str = re.search(r'\d+\.\d+', cur_node.latency).group(0)
 	        edge_latencies.append(float(latency_str))
@@ -86,13 +88,7 @@ def hashval(trace):
 def group_traces(trace):
     add_to_dict(categories, trace.hashval, trace.traceId)
 
-def trace_lookup(tid, tlist):
-    for trace in tlist:
-        if trace.traceId == tid:
-            return trace
-    return None
-
-def process_groups(d, tlist):
+def process_groups(d):
     """
     calculates the average completion time of
     traces within a group, as well as variance

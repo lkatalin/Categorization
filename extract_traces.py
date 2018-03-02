@@ -85,7 +85,7 @@ def extract_traces(infile):
             traceObj.traceId =  gen_traceid(traceObj.dag.id)
 
 	    #place the trace in a group
-            add_to_categories(traceObj.hashval, traceObj.response, traceObj.dag, traceObj.traceId, traceObj.edgelst)	    
+            add_to_categories(traceObj.hashval, traceObj.response, traceObj.traceId, traceObj.edgelst)	    
 
 
             #start a new list
