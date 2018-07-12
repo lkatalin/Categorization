@@ -1,4 +1,5 @@
-# Categorization
+# Trace Grouping and Analysis
+## Please note: this repo is no longer maintained as of 2017. We have moved to a new, private repo for this project. The code does not reflect the current status of the project.
 
 ## Goals
 
